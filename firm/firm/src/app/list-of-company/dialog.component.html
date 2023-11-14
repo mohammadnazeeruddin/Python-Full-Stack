@@ -1,0 +1,98 @@
+<mat-card class="example-card-inner-header">
+  <mat-card-header>
+    <div class="example-header-image"></div>
+    <mat-card-title>MNC Company pvt.ltd</mat-card-title>
+  </mat-card-header>
+</mat-card>
+<mat-card class="example-card-middle">
+  <mat-card-content>
+    <br>
+    <label class='details-label'><b>Company ID :</b></label><br>
+    <label class='details-label'><b>Owner Name :</b></label><br>
+    <label class='details-label'><b>Business Address :</b></label><br>
+    <label class='details-label'><b>Business Name :</b></label><br>
+    <label class='details-label'><b>BSC Period :</b></label><br>
+    <label class='details-label'><b>ABN/ACN :</b></label><br>
+  </mat-card-content>
+</mat-card>
+<mat-card class="example-card-footer">
+  <mat-card-actions class="mat-card-actions">
+    <div class="container">
+
+      <table class="table table-bordered">
+        <tbody>
+          <tr>
+            <td scope="col">
+              <label><b>Period:</b></label>
+            </td>
+            <td scope="col">
+              <mat-form-field>
+                <mat-select [(value)]="period">
+                  <mat-option>None</mat-option>
+                  <mat-option *ngFor='let year of year' value={{year.value}}>{{year.value}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td scope="col">
+              <mat-form-field>
+                <mat-select [(value)]="period1">
+                  <mat-option>None</mat-option>
+                  <mat-option value='qrtrly'>QRTRLY</mat-option>
+                  <mat-option value='hfrly'>HFRLY</mat-option>
+                  <mat-option value='yrly'>YRLY</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td scope="col">
+              <mat-form-field>
+                <mat-select [(value)]="period2">
+                  <mat-option>None</mat-option>
+                  <mat-option value='qrtrly'>QRTRLY</mat-option>
+                  <mat-option value='hfrly'>HFRLY</mat-option>
+                  <mat-option value='yrly'>YRLY</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label><b>Attach File:</b></label>
+            </td>
+            <td scope="col">
+              <mat-form-field>
+                <mat-select [(value)]="period1">
+                  <mat-option>None</mat-option>
+                  <mat-option value='qrtrly'>QRTRLY</mat-option>
+                  <mat-option value='hfrly'>HFRLY</mat-option>
+                  <mat-option value='yrly'>YRLY</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td scope="col">
+              <mat-form-field>
+                <mat-select [(value)]="period2">
+                  <mat-option>None</mat-option>
+                  <mat-option value='qrtrly'>QRTRLY</mat-option>
+                  <mat-option value='hfrly'>HFRLY</mat-option>
+                  <mat-option value='yrly'>YRLY</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+            <td>
+              <button class='attachment-icon' mat-raised-button color="primary" (click)="fileInput.click()"><i class="material-icons">
+                  attach_file
+                </i></button>
+              <input hidden type="file" #fileInput>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><button mat-raised-button color="primary">Upload</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </mat-card-actions>
+</mat-card>

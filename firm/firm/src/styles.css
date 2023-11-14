@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+/* notification */
+.success {
+    background-color: #5cb85c;
+    color : #fff;
+  }
+
+/* 
+  snack-bar-container.notification simple-snack-bar{
+    font-size: 18px !important;
+    font-weight: bold;
+  }
+
+mat-snack-bar-container.notification.success {
+    background-color: #5cb85c;
+    color : #fff;
+} */

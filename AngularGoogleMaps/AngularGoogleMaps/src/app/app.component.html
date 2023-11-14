@@ -1,0 +1,58 @@
+<h1>Maps</h1>
+
+<input type="text" [(ngModel)]="newMarker">
+<button (click)="addMarker()">Add</button>
+
+<agm-map 
+  [latitude]="lat"
+  [longitude]="lng"
+  [zoom]="zoom"
+  [disableDefaultUI]="false"
+  [zoomControl]="false">
+
+  <agm-marker 
+      *ngFor="let m of markers; let i = index"
+      (markerClick)="clickedMarker(m.label, i)"
+      
+      [latitude]="m.lat"
+      [longitude]="m.lng"
+      [label]="m.label"
+      [markerDraggable]="m.draggable"
+      (dragEnd)="markerDragEnd(m, $event)">
+      
+    <agm-info-window>
+      <strong>InfoWindow content</strong>
+    </agm-info-window>
+    
+  </agm-marker>
+  
+  <agm-circle [latitude]="lat + 0.3" [longitude]="lng" 
+      [radius]="5000"
+      [fillColor]="'red'"
+      [circleDraggable]="true"
+      [editable]="true">
+  </agm-circle>
+
+</agm-map>
+
+<table>
+  <tr>
+    <th>S.No</th>
+    <th>Name of the marker</th>
+    <th>Long</th>
+    <th>Lat</th>
+    <th>Actions</th>
+  </tr>
+  
+  <tr *ngFor="let m of markers; let i = index">
+    <td>{{i}}</td>
+    <td>{{m.label}}</td>
+    <td>{{m.lat}}</td>
+    <td>{{m.lng}}</td>
+    <td>
+      <button (click)="editMarker(i,m)">{{m.toggleButtonName}}</button>
+      <button (click)="deleteMarker(i)">Delete</button>
+    </td>
+  </tr>
+</table>
+

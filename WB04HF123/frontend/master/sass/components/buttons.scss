@@ -1,0 +1,39 @@
+/* ========================================================================
+   Component: Button theme
+ ========================================================================== */
+
+.btn {
+    &:focus,
+    &:active {
+        outline: inherit;
+    }
+}
+
+.btn-theme {
+    font-size: 18px;
+    border-radius: 4px;
+    background-color: $info;
+    color: #fff;
+    &:hover,
+    &:focus,
+    &:active {
+        background-color: darken($info, 8%);
+        color: #fff;
+    }
+
+    &.btn-lg, &.btn-store {
+        min-width: 180px;
+        padding: 14px 24px;
+        margin: 5px;
+    }
+
+    &.btn-store {
+        min-width: 200px;
+        text-align: left;
+    }
+
+    em {
+        margin-right: 1em;
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,54 @@
+/* ========================================================================
+   Component: Typography
+ ========================================================================== */
+
+html {
+    direction: ltr; /* @replace rtl */
+}
+
+body {
+    font-weight: 300;
+    overflow-x: hidden !important; // hides overflow animations
+}
+
+// Headings
+h1 {
+    font-size: 3.7rem;
+    line-height: 4.59rem;
+}
+
+h2 {
+    font-size: 3.12rem;
+    line-height: 4.07rem;
+}
+
+h3 {
+    font-size: 24px;
+    line-height: 38px;
+}
+
+h4 {
+    font-size: 20px;
+    line-height: 30px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+u {
+    text-decoration: none;
+    border-width: 2px;
+    border-bottom: 1px solid $gray;
+}
+
+a {
+    transition: all ease 0.3s;
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+small {
+    font-size:  75%;
+}

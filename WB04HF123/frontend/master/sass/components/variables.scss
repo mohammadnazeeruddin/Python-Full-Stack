@@ -1,0 +1,42 @@
+//
+// Bootstrap Variables Overrides
+// --------------------------------------------------
+
+//== Colors
+
+// Redefined Gray colors for theme
+$gray-darker:            #232735;
+$gray-dark:              #3a3f51;
+$gray:                   #dde6e9;
+$gray-light:             #e4eaec;
+$gray-lighter:           #edf1f2;
+
+// Classic colors
+$secondary:        #fff;
+$primary:          #5d9cec;
+$success:          #27c24c;
+$info:             #23b7e5;
+$warning:          #ff902b;
+$danger:           #f05050;
+
+// New brand colors
+$inverse:          #131e26;
+$green:            #37bc9b;
+$pink:             #f532e5;
+$purple:           #7266ba;
+$dark:             #3a3f51;
+$yellow:           #fad732;
+
+//== Scaffolding
+
+$body-bg:               #f5f7fa;
+$body-color:            #515253;
+
+//== Typography
+
+$font-family-sans-serif:  'Source Sans Pro', sans-serif;
+$font-size-base:          1.0625rem;
+
+//== Type
+
+$text-muted:                  #909FA7;

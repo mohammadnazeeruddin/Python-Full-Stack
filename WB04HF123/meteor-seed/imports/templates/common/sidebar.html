@@ -1,0 +1,59 @@
+<template name="sidebar">
+    <aside class="aside-container">
+        <!-- START Sidebar (left)-->
+        <div class="aside-inner">
+            <nav class="sidebar" data-sidebar-anyclick-close="">
+                <!-- START sidebar nav-->
+                <ul class="sidebar-nav">
+                    <!-- START user info-->
+                    <li class="has-user-block">
+                        <div id="user-block" class="collapse in">
+                            <div class="item user-block">
+                                <!-- User picture-->
+                                <div class="user-block-picture">
+                                    <div class="user-block-status">
+                                        <img src='img/user/02.jpg' alt="Avatar" width="60" height="60" class="img-thumbnail rounded-circle" />
+                                        <div class="circle bg-success circle-lg"></div>
+                                    </div>
+                                </div>
+                                <!-- Name and Job-->
+                                <div class="user-block-info">
+                                    <span class="user-block-name">Hello, Mike</span>
+                                    <span class="user-block-role">Designer</span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- END user info-->
+                    <!-- Iterates over all sidebar items-->
+                    <li class="nav-heading ">
+                        <span>{{_"sidebar.heading.HEADER"}}</span>
+                    </li>
+                    <li class="{{isActiveRoute regex='singleview'}}">
+                        <a href="{{ pathFor 'singleview' }}" title="Single View">
+                            <em class="far fa-file"></em>
+                            <span>{{_ "sidebar.nav.SINGLEVIEW" }}</span>
+                        </a>
+                    </li>
+                    <li class="{{isActiveRoute regex='submenu'}}">
+                        <a href="#menuid" title="Menu" data-toggle="collapse">
+                            <em class="icon-folder"></em>
+                            <span>{{_"sidebar.nav.menu.MENU"}}</span>
+                        </a>
+                        <ul id="menuid" class="sidebar-nav sidebar-subnav collapse {{isActiveRoute regex='submenu' className='in'}}">
+                            <li class="sidebar-subnav-header">Menu</li>
+                            <li class="{{isActiveRoute regex='submenu'}}">
+                                <a href="{{ pathFor 'submenu' }}" title="Sub Menu">
+                                    <em></em>
+                                    <span>{{_"sidebar.nav.menu.SUBMENU"}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- END sidebar nav-->
+            </nav>
+        </div>
+        <!-- END Sidebar (left)-->
+    </aside>
+</template>

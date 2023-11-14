@@ -1,0 +1,22 @@
+[
+    "node_modules/@fortawesome/fontawesome-free/css/brands.css",
+    "node_modules/@fortawesome/fontawesome-free/css/regular.css",
+    "node_modules/@fortawesome/fontawesome-free/css/solid.css",
+    "node_modules/@fortawesome/fontawesome-free/css/fontawesome.css",
+    "node_modules/@fortawesome/fontawesome-free/webfonts/*",
+    "node_modules/jquery/dist/jquery.js",
+    "node_modules/jquery.easing/jquery.easing.js",
+    "node_modules/popper.js/dist/umd/popper.js",
+    "node_modules/bootstrap/dist/js/bootstrap.js",
+    "node_modules/bootstrap/dist/css/bootstrap.css",
+    "node_modules/nprogress/nprogress.css",
+    "node_modules/nprogress/nprogress.js",
+    "node_modules/owl.carousel/dist/owl.carousel.js",
+    "node_modules/owl.carousel/dist/assets/owl.carousel.css",
+    "node_modules/owl.carousel/dist/assets/owl.theme.default.css",
+    "node_modules/owl.carousel/dist/assets/ajax-loader.gif",
+    "node_modules/owl.carousel/dist/assets/owl.video.play.png",
+    "node_modules/jquery.waitforimages/dist/jquery.waitforimages.js",
+    "node_modules/aos/dist/aos.css",
+    "node_modules/aos/dist/aos.js"
+]

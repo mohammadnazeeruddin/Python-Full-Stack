@@ -1,0 +1,316 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Angle Docs</title><link rel="stylesheet" href="assets/styles.css"></head><body><div class="inf-header-wrapper"><header class="inf-header"><h1 class="title"><a href="http://themicon.co/angle">Angle Docs</a></h1><div class="support"><a href="https://wrapbootstrap.com/user/themicon#contact" class="btn-support">Contact support</a></div></header></div><div class="inf-wrapper"><nav class="inf-menu"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#structure">Structure</a></li><li><a href="#build">Build</a></li><li><a href="#usage">Usage</a></li><li><a href="#vuex">Vuex</a></li><li><a href="#credits">Credits</a></li></ul><div class="inf-menu-meta"><span>By:</span><a href="https://twitter.com/themicon_co">@themicon</a><br><span>Created:</span><span>2018-07-12</span><br><span>Updated:</span><span>2018-11-23</span></div></nav><div class="inf-content"><div class="inf-item-header"><h1>Angle<small>Bootstrap 4 Admin Template + Vue</small></h1><p>Thank you for purchasing Angle - Bootstrap 4 Admin Template + Vue.<br>If you have any question about this product and beyond the scope of this help file, please feel free to write us using the support button.</p><br><p><strong>Thanks so much!</strong></p></div><section class="inf-section"><article id="introduction"><h2 class="title">Introduction</h2><div class="content"><p>This document aims to explain the best way to work with the product and its components.</p>
+<p><strong>- <em>All the best and enjoy coding.</em></strong></p>
+<h4 id="getting-started-tips">Getting started tips</h4>
+<ul>
+<li>Do not start from scratch, use an existing asset and modify it to learn how it works.</li>
+<li>Explore the sources for ideas and sample code.</li>
+<li>Use Firebug or Chrome Developer Tools to find bugs on your website. Using one of those tools will help you to save time analyzing the site and finding elements structure, like classes, id or tags<ul>
+<li>Quick tip: open your site with Chrome, press F12 and go to console tab, reload your page and if something goes wrong you will see your page errors in red text.</li>
+</ul>
+</li>
+<li>In case of errors, someone might have seen it too, you can try a Google search for a quick fix.</li>
+</ul>
+<blockquote>
+<p><strong>Important</strong> Opening the index.html with a double click (i.e. using file:// protocol) will show you only a blank page because there’s no server that response to the requests made for each view in order to display the app interface.</p>
+</blockquote>
+<h4 id="technologies-used">Technologies used</h4>
+<p>This template is based on the following technologies. Follow the links for each one of them in order to get more information:</p>
+<ul>
+<li>The project is based on <a href="https://vuejs.org/">Vue</a> and <a href="https://getbootstrap.com/">Bootstrap</a></li>
+<li>The environment was created using <a href="https://cli.vuejs.org/">vue-cli</a> tool </li>
+<li>Language used: JavaScript, <a href="http://sass-lang.com/">SCSS</a> and HTML</li>
+<li>Bootstrap support by <a href="https://bootstrap-vue.js.org/">Bootstrap Vue</a></li>
+<li>Supports state management with <a href="https://vuex.vuejs.org/">VUEX</a></li>
+</ul>
+</div></article><article id="structure"><h2 class="title">Structure</h2><div class="content"><p>Before starting to customize the template, here is the project files organization structure:</p>
+<pre><code class="language-css">+---public
+|   +---img
+|   +---locales
+|   +---server
+|   +---themes
++---src
+    +---assets
+    +---components
+    |   +---Charts
+    |   +---Common
+    |   +---Layout
+    |   +---Maps
+    |   +---Tables
+    +---store
+    |   +---modules
+    |   +---plugins
+    +---styles
+    |   +---app
+    |   |   +---charts
+    |   |   +---common
+    |   |   +---elements
+    |   |   +---extras
+    |   |   +---forms
+    |   |   +---layout
+    |   |   +---maps
+    |   |   +---tables
+    |   +---bootstrap
+    |   +---themes
+    +---views
+        +---Blog
+        +---Charts
+        +---Dashboard
+        +---Ecommerce
+        +---Elements
+        +---Extras
+        +---Forms
+        +---Forum
+        +---Maps
+        +---Pages
+        +---Tables
+        +---Widgets</code></pre>
+<p>This structure is based on the provided by the <strong>vue-cli</strong> project. There are more files in the structure, we will list the main files in order to describe the application workflow based on the order they are imported.  </p>
+<p>The application is bootstrapped in file <strong>public/index.html</strong>, this file will include the main application files compiled.</p>
+<p>The application main file is <strong>src/main.js</strong> and it imports the App module and other global modules, like the router, translation, etc.</p>
+<p>The file <strong>App.js</strong> is where the main <strong>App</strong> module is defined and is used as the root element that starts the application.</p>
+<p>Routes are defined in file <strong>router.js</strong> that imports all components that are related to views displayed from the sidebar links.</p>
+<p><strong>vendor.js</strong> imports global dependencies like modernizr, styles, icon fonts, etc.</p>
+<p>The <strong>store</strong> folder is where the application state is defined. See below for more details about the content of this folder.</p>
+<h5 id="components">Components</h5>
+<p>This folder contains components used in views. The &#39;views&#39; folder contains component that represent the content displayed for each route. Components in &#39;views&#39; folder imports and use components from &#39;components&#39; folder.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Charts</td>
+<td>Components used for the Chart views</td>
+</tr>
+<tr>
+<td>Common</td>
+<td>Common components used by other components</td>
+</tr>
+<tr>
+<td>Layout</td>
+<td>Components used as a base to build the app layout</td>
+</tr>
+<tr>
+<td>Maps</td>
+<td>Components used for the Maps views</td>
+</tr>
+<tr>
+<td>Tables</td>
+<td>Components used for the Tables views</td>
+</tr>
+</tbody></table>
+</div></article><article id="build"><h2 class="title">Build</h2><div class="content"><h4 id="installing-tools">Installing tools</h4>
+<p>The following steps are intended to be an orientation guide, if you are not experienced with this you will need to learn a bit more about it from Google :)</p>
+<ul>
+<li>To install node and npm, go to <a href="http://nodejs.org/" title="http://nodejs.org/">http://nodejs.org/</a></li>
+<li>Download and install GIT for your platform from <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a></li>
+</ul>
+<p>Once you have all tools installed</p>
+<ul>
+<li><p>Open a console/terminal and run <code>npm install</code> to install application dependencies</p>
+</li>
+<li><p>Finally run <code>npm run serve</code> to start the application development server.</p>
+</li>
+</ul>
+<p>If everything goes fine, you should see the messages in the terminal telling you the application has been compiled and the server is running. </p>
+<p>Open your browser and go to <strong><a href="http://localhost:8080">http://localhost:8080</a></strong> </p>
+<h4 id="building-for-production">Building for production</h4>
+<p>The following will compile the application for the production:</p>
+<pre><code>npm run build</code></pre><p>This will generate the compiled files under the folder <strong>dist</strong></p>
+<p>Check the <a href="https://cli.vuejs.org/guide/">User Guide</a> online to know more about the vue-cli project.</p>
+<p>If your application is not served from the root, before compilation, set the environment variable <strong>VUE_BASE_URL</strong> and then run compilation.</p>
+<p>Example:</p>
+<p>If your app is served from <a href="http://example.com/some/path">http://example.com/some/path</a> then use:</p>
+<pre><code>set VUE_BASE_URL=/some/path
+npm run build</code></pre></div></article><article id="usage"><h2 class="title">Usage</h2><div class="content"><h4 id="adding-new-components">Adding new components</h4>
+<p>You can add new components by adding a new folder in <strong>src/components</strong></p>
+<p>For example, src/components/MyComp</p>
+<p>Then create there a new file named MyComp.vue with the component code. </p>
+<p>For example, </p>
+<pre><code class="language-javascript">&lt;template&gt;
+    &lt;div&gt;...&lt;/div&gt;
+&lt;/template&gt;
+
+&lt;script&gt;
+    export default {
+        ...
+    }
+&lt;/script&gt;
+
+&lt;styles&gt;
+    ...
+&lt;/styles&gt;</code></pre>
+<h4 id="adding-new-routes">Adding new routes</h4>
+<p><u>If the component is associated to a route you need to create the component under the &#39;views&#39; folder.</u></p>
+<p>For a view component you will use a template structure like this:</p>
+<pre><code class="language-markup">&lt;template&gt;
+    &lt;ContentWrapper&gt;
+        ... view content here
+    &lt;/ContentWrapper&gt;
+&lt;/template&gt;</code></pre>
+<p>You will need now to make the new component accessible to the application by adding a route that loads the component. To do that open routes.js and import the component and add a new route entry following the required structure by <a href="https://router.vuejs.org/">Vue Router</a></p>
+<pre><code class="language-javascript">import MyComp from &#39;@/views/MyComp/MyComp.vue&#39;;
+...
+export default new Router({
+    ...
+    routes: [
+        ...
+        {
+            path: &#39;/mycomp&#39;,
+            component: Mycomp
+        },
+...</code></pre>
+<p>Check other routes in the project to see where to add the route entry correctly.</p>
+<h4 id="menu">Menu</h4>
+<p>Finally, you need to add an entry in order to provide a link for the new route created. </p>
+<p>To do that, add in <strong>src/menu.js</strong>  a new menu entry with the information for your menu. </p>
+<p>Example</p>
+<pre><code class="language-javascript">const Menu = [
+    /* heading elements */
+    {
+        // text to show
+        heading: &#39;Heading Text&#39;,
+        // translation key
+        translate: &#39;sidebar.heading.KEY&#39;
+    },
+    /* menu items elements */
+    {
+        // text to show
+        name: &#39;Item Text&#39;,
+        // class name to show icon
+        icon: &#39;icon-class&#39;,
+        // route path (not used on items with submenu)
+        path: &#39;routepath&#39;,
+        // translation key
+        translate: &#39;sidebar.item.KEY&#39;,
+        // shows a Badge right next to the text
+        label: { value: 10, color: &#39;success&#39; },
+        // list of submenu items
+        submenu: [{
+                ... Same format as menu items
+            }
+    }
+    ...</code></pre>
+<h4 id="vendor-assets">Vendor assets</h4>
+<p>Vendor assets can be installed using the Node Package Manager (npm). The following command shows how to install a package so it becomes part of the project</p>
+<pre><code>npm install package-name --save</code></pre><p>If you don&#39;t add the --save flag, the package won&#39;t be saved as a dependecy in package.json and it will be only available in your local project.</p>
+<p>Once the command ends, files will be available in the node_modules folder and ready to be imported into your application code.</p>
+<p>If the package is used globally you can import files using the file <strong>Vendor.js</strong></p>
+<p>To use a package locally in your new component, you can import the files directly into the code in your component file.</p>
+<h4 id="layout-classes">Layout classes</h4>
+<p>Layout can be changed via the following classed applied to the body tag: </p>
+<table>
+<thead>
+<tr>
+<th>Class name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>.layout-fixed</code></td>
+<td>Makes navbars become fixed while the user can scroll only content</td>
+</tr>
+<tr>
+<td><code>.layout-boxed</code></td>
+<td>Limits the width of the main wrapper element</td>
+</tr>
+<tr>
+<td><code>.aside-collapsed</code></td>
+<td>Condenses the sidebar showing only icons</td>
+</tr>
+<tr>
+<td><code>.aside-collapsed-text</code></td>
+<td>Condenses the sidebar showing icons and Text</td>
+</tr>
+<tr>
+<td><code>.aside-toggle</code></td>
+<td>used internally for mobiles to hide the sidebar off screen</td>
+</tr>
+<tr>
+<td><code>.offsidebar-open</code></td>
+<td>used internally to display the offsidebar component (formally the right sidebar)</td>
+</tr>
+</tbody></table>
+<h4 id="translation">Translation</h4>
+<p>The translation system uses the <strong><a href="https://www.i18next.com/">i18next</a></strong> module.</p>
+<p>The file <strong>src/i18n.js</strong> contains the setup for the module and what it does is to load the translations files located under folder <strong>public/locales</strong> </p>
+<p>This modules simplifies the translation system by loading translate references from a JSON file and replacing the content where the reference has been used.</p>
+<p>Example </p>
+<pre><code class="language-markup">&lt;small&gt;{{$t(&quot;dashboard.WELCOME&quot;)}}&lt;/small&gt;</code></pre>
+<p> Where the i18key values corresponds to an entry in each json file according the current language selected.</p>
+<h4 id="horizontal-menu">Horizontal Menu</h4>
+<p>To use the horizontal menu in a route, you need to declare that route as a child of the the LayoutHorizontal component, like this</p>
+<pre><code class="language-javascript">{
+    path: &#39;/&#39;,
+    component: LayoutHorizontal,
+    children: [
+        // Dashboard
+        {
+            path: &#39;/dashboardh&#39;,
+            component: DashboardH
+        }
+    ]
+},</code></pre>
+<p>The menu of the horizontal header is declared in file <strong>src/components/Layout/HeaderHorizontal.vue</strong> and is limited to a few entries for demo purposes only. </p>
+<h4 id="rtl">RTL</h4>
+<p>RTL is based on <a href="https://rtlcss.com/">rtlcss</a> plugin using a custom postcss plugin that allows to change the application styles into an RTL representation.</p>
+<p>To enable RTL open the file <strong>.postcssrc.js</strong> and uncommment the line that uses the rtlcss-plugin, like this:</p>
+<pre><code class="language-javascript">module.exports = {
+    plugins: {
+        autoprefixer: {},
+        // Uncomment this line to enable RTL
+        [postcssRtlcssPlugin]: {}
+    }
+}</code></pre>
+<p>The plugin is defined in file <strong>postcss-rtlcss-plugin.js</strong> and it simply passes the styles content through the rtlcss parser.</p>
+<h4 id="seed-project">Seed Project</h4>
+<p>This project is an application skeleton. You can use it to quickly bootstrap your VUE projects and dev environment for these projects. The seed app doesn&#39;t do much and has most of the feature removed so you can add them as per your needs just following the full-features version as example.</p>
+<p>This project is provided in order to start with the template using a different approach. Usually, templates will come with all features working and you need to remove them one by one in the way you don&#39;t need them.
+With the seed project you can start adding custom features and others from the full project to make grow your app.
+Since the files and structure is the same for the full and seed versions, you can save time using comparison tools that allows to apply changes from full features project into the seed project.</p>
+<h4 id="jquery-and-wrapper-script">jQuery and Wrapper script</h4>
+<p>Starting from version 4.1, this template doesn&#39;t need jQuery as a mandatory dependency for core files, this means it is only required when using jQuery based plugins for some features included.<br>Seed project versions no more include jQuery by default..</p>
+<p>The <strong>wrapper.js</strong> (~ 7k minified) is a new script introduced to emulate some specific jQuery functions used in the template. This made possible to significantly cut the refactoring changes in the code, keeping it readable in a jQuery way and avoiding extra bytes, mainly when loops are repeatedly used to work with multiple elements.  </p>
+<blockquote>
+<p><strong>Important</strong> The Wrapper script is NOT a replacement for jQuery. All methods were designed for an adequate and specific use and they don&#39;t do a deep validation on the arguments provided. It&#39;s suggested NOT to use this library extensively. Instead, use pure JS or you might even need jQuery.</p>
+</blockquote>
+</div></article><article id="vuex"><h2 class="title">Vuex</h2><div class="content"><p>We have used Vuex mainly to manage application settings to change the layout options and themes. 
+It&#39;s organized using modules so you can easily remove provided modules or add more modules according to your application needs.</p>
+<p>Vuex files are placed under <strong>src/store</strong> folder. In this folder you will find the following files:</p>
+<pre><code>+---store
+    +---modules
+    |   +---setting.js
+    |   +---theme.js
+    +---plugins
+    |   +---setting.js
+    |   +---theme.js
+    +---index.js</code></pre><p>The file <strong>index.js</strong> is imported into the <strong>App.vue</strong> file which makes the store parts of the application. Removing that import will remove Vuex from the project automatically.</p>
+<pre><code class="language-javascript">&lt;script&gt;
+    import store from &#39;./store/index.js&#39;
+
+    export default {
+        name: &#39;App&#39;,
+        store
+    }
+&lt;/script&gt;</code></pre>
+<p>We have created modules for settings which contains state of the current layout options, like fixed, boxed, sidebar collapsed, and also the toggle for sidebar offcanvas on mobile and the sidebar user block. And for themes, which contains a single state with the current theme selected.</p>
+<p>We have also used plugins in order to hook into the vuex lifecycle to change the classes from dom elements (mainly body) and to change active the theme. </p>
+<blockquote>
+<p>The main use of Vuex is done in the Offsidebar component, which provides the demo for layout settings and themes, in file <strong>src/components/Layout/Offsidebar.vue</strong>.</p>
+</blockquote>
+<h4 id="persisted-states">Persisted states</h4>
+<p>In order to save the settings selected and the active theme, we have used a Vuex plugin named <strong>vuex-persistedstate</strong>. This plugin automatically save the entire application state to the browser storage, and restores it when the app loads. </p>
+<p>Since not all state are suitable to be saved, we have used a black list that prevent some state to be saved, for example, the state used to toggle the sidebar on mobile. You will the code to do this in file store/index.js and it look like this</p>
+<pre><code class="language-javascript">createPersistedState({
+    reducer: (persistedState) =&gt; {
+        const stateFilter = JSON.parse(JSON.stringify(persistedState)); // deep clone
+        [&#39;offsidebarOpen&#39;, &#39;asideToggled&#39;, &#39;horizontal&#39;] // states which we don&#39;t want to persist.
+            .forEach(item =&gt; delete stateFilter.setting[item])
+        return stateFilter
+    }
+}),</code></pre>
+<p>You can see the plugin website <a href="https://github.com/robinvdvleuten/vuex-persistedstate">here</a> for more options to prevent state saving.</p>
+</div></article><article id="credits"><h2 class="title">Credits</h2><div class="content"><p><a href="../vendor-credits.html">Vendor Assets</a></p>
+</div></article></section></div></div><script src="assets/scripts.js"></script></body></html>

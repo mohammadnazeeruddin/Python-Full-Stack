@@ -1,0 +1,292 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Angle Docs</title><link rel="stylesheet" href="assets/styles.css"></head><body><div class="inf-header-wrapper"><header class="inf-header"><h1 class="title"><a href="http://themicon.co/angle">Angle Docs</a></h1><div class="support"><a href="https://wrapbootstrap.com/user/themicon#contact" class="btn-support">Contact support</a></div></header></div><div class="inf-wrapper"><nav class="inf-menu"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#structure">Structure</a></li><li><a href="#build">Build</a></li><li><a href="#usage">Usage</a></li><li><a href="#credits">Credits</a></li></ul><div class="inf-menu-meta"><span>By:</span><a href="https://twitter.com/themicon_co">@themicon</a><br><span>Created:</span><span>2018-03-10</span><br><span>Updated:</span><span>2018-11-23</span></div></nav><div class="inf-content"><div class="inf-item-header"><h1>Angle<small>Bootstrap 4 Admin Template + NetCore + Angular</small></h1><p>Thank you for purchasing Angle - Bootstrap 4 Admin Template + NetCore + Angular.<br>If you have any question about this product and beyond the scope of this help file, please feel free to write us using the support button.</p><br><p><strong>Thanks so much!</strong></p></div><section class="inf-section"><article id="introduction"><h2 class="title">Introduction</h2><div class="content"><p>This document aims to explain the best way to work with the product and its components.</p>
+<p>It assumes a minimum knowledge of Visual Studio 2017 and Asp.net technology and the Angular framework.</p>
+<p>For further reference please refer to the Angular documentation included to learn more about it.</p>
+<p><strong>- <em>All the best and enjoy coding.</em></strong></p>
+<h4 id="getting-started-tips">Getting started tips</h4>
+<ul>
+<li>Do not start from scratch, use an existing asset and modify it to learn how it works.</li>
+<li>Explore the sources for ideas and sample code.</li>
+<li>Use Firebug or Chrome Developer Tools to find bugs on your website. Using one of those tools will help you to save time analyzing the site and finding elements structure, like classes, id or tags<ul>
+<li>Quick tip: open your site with Chrome, press F12 and go to console tab, reload your page and if something goes wrong you will see your page errors in red text.</li>
+</ul>
+</li>
+<li>In case of errors, someone might have seen it too, you can try a Google search for a quick fix.</li>
+</ul>
+<h4 id="technologies-used">Technologies used</h4>
+<p>This template is based on the following technologies. Follow the links for each one of them in order to get more information:</p>
+<ul>
+<li><p>The project is based on <a href="https://angular.io/">Angular</a> and <a href="https://getbootstrap.com/">Bootstrap</a></p>
+</li>
+<li><p>Language used: <a href="https://www.typescriptlang.org/">TypeScript</a>, <a href="http://sass-lang.com/">SCSS</a> and raw HTML </p>
+</li>
+<li><p>Bootstrap support by <a href="https://valor-software.com/ngx-bootstrap/#/">ngxBootstrap</a></p>
+</li>
+<li><p><a href="https://angular.io/styleguide">Angular style guide</a> has been followed for better practices.</p>
+</li>
+</ul>
+</div></article><article id="structure"><h2 class="title">Structure</h2><div class="content"><p>Before starting to customize the template, here is the project files organization structure:</p>
+<pre><code class="language-css">+---Angle
+    +---ClientApp
+    |   +---app
+    |   |   +---core
+    |   |   |   +---menu
+    |   |   |   +---settings
+    |   |   |   +---themes
+    |   |   |   +---translator
+    |   |   +---layout
+    |   |   |   +---footer
+    |   |   |   +---header
+    |   |   |   |   +---navsearch
+    |   |   |   +---offsidebar
+    |   |   |   +---sidebar
+    |   |   |       +---userblock
+    |   |   +---routes
+    |   |   |   +---blog
+    |   |   |   |   +---articles
+    |   |   |   |   +---articleview
+    |   |   |   |   +---list
+    |   |   |   |   +---post
+    |   |   |   +---charts
+    |   |   |   |   +---chartjs
+    |   |   |   |   +---flot
+    |   |   |   |   +---radial
+    |   |   |   +---dashboard
+    |   |   |   |   +---dashboardv1
+    |   |   |   |   +---dashboardv2
+    |   |   |   |   +---dashboardv3
+    |   |   |   +---ecommerce
+    |   |   |   |   +---checkout
+    |   |   |   |   +---orders
+    |   |   |   |   +---orderview
+    |   |   |   |   +---products
+    |   |   |   |   +---productview
+    |   |   |   +---elements
+    |   |   |   |   +---buttons
+    |   |   |   |   +---colors
+    |   |   |   |   +---dropdown
+    |   |   |   |   +---grid
+    |   |   |   |   +---gridmasonry
+    |   |   |   |   +---iconsfont
+    |   |   |   |   +---iconsweather
+    |   |   |   |   +---infinitescroll
+    |   |   |   |   +---interaction
+    |   |   |   |   +---navtree
+    |   |   |   |   +---notification
+    |   |   |   |   +---sortable
+    |   |   |   |   +---spinners
+    |   |   |   |   +---typography
+    |   |   |   +---extras
+    |   |   |   |   +---bugtracker
+    |   |   |   |   +---calendar
+    |   |   |   |   +---codeeditor
+    |   |   |   |   +---contactdetails
+    |   |   |   |   +---contacts
+    |   |   |   |   +---faq
+    |   |   |   |   +---filemanager
+    |   |   |   |   +---followers
+    |   |   |   |   +---forum
+    |   |   |   |   |   +---forumdiscussion
+    |   |   |   |   |   +---forumtopics
+    |   |   |   |   +---helpcenter
+    |   |   |   |   +---invoice
+    |   |   |   |   +---mailbox
+    |   |   |   |   |   +---compose
+    |   |   |   |   |   +---folder
+    |   |   |   |   |   +---view
+    |   |   |   |   +---plans
+    |   |   |   |   +---profile
+    |   |   |   |   +---projects
+    |   |   |   |   +---projectsdetails
+    |   |   |   |   +---search
+    |   |   |   |   +---settings
+    |   |   |   |   +---socialboard
+    |   |   |   |   +---teamviewer
+    |   |   |   |   +---timeline
+    |   |   |   |   +---todolist
+    |   |   |   |   +---votelinks
+    |   |   |   +---forms
+    |   |   |   |   +---cropper
+    |   |   |   |   +---extended
+    |   |   |   |   +---standard
+    |   |   |   |   +---upload
+    |   |   |   |   +---validation
+    |   |   |   +---home
+    |   |   |   |   +---home
+    |   |   |   +---maps
+    |   |   |   |   +---google
+    |   |   |   |   +---vector
+    |   |   |   +---pages
+    |   |   |   |   +---error404
+    |   |   |   |   +---error500
+    |   |   |   |   +---lock
+    |   |   |   |   +---login
+    |   |   |   |   +---maintenance
+    |   |   |   |   +---recover
+    |   |   |   |   +---register
+    |   |   |   +---tables
+    |   |   |   |   +---angulargrid
+    |   |   |   |   +---datatable
+    |   |   |   |   +---extended
+    |   |   |   |   +---standard
+    |   |   |   +---widgets
+    |   |   |       +---widgets
+    |   |   +---shared
+    |   |       +---colors
+    |   |       +---directives
+    |   |       |   +---checkall
+    |   |       |   +---easypiechart
+    |   |       |   +---flot
+    |   |       |   +---jqcloud
+    |   |       |   +---now
+    |   |       |   +---scrollable
+    |   |       |   +---sparkline
+    |   |       |   +---vectormap
+    |   |       +---styles
+    |   +---dist
+    +---Controllers
+    +---Views
+    |   +---Home
+    |   +---Shared
+    +---wwwroot
+        +---assets
+        +---dist
+        +---preloader</code></pre>
+<p>*<em>ClientApp: *</em>you will find the source Typescripts files and SASS files to customize the app</p>
+<p><strong>Controllers/Views</strong>: Those folder are standard from Visual Studio project</p>
+<p>*<em>wwwroot: *</em>Here you will find public access files like assets and the distribution folder</p>
+</div></article><article id="build"><h2 class="title">Build</h2><div class="content"><p>To run this version you need to have installed the most recent version of <strong>Visual Studio 2017</strong> and <strong>NetCore.</strong></p>
+<p>You can downdload runtime and sdk dependencies from <a href="https://www.microsoft.com/net/download/core">Netcore Website</a></p>
+<p>Make sure also to download latest .Net framework version.</p>
+<p>You will need also a <strong>nodejs</strong> enviroment. The build system is based on <strong>Webpack</strong></p>
+<p><strong>Node</strong>.js is a platform built on Chrome’s JavaScript runtime for easily building fast, scalable network applications.  </p>
+<h4 id="installing-tools">Installing tools</h4>
+<p>The following steps are intended to be an orientation guide, if you are not experienced with this you will need to learn more about it from Google :) </p>
+<ul>
+<li>To install node and npm, go to <a href="http://nodejs.org/">http://nodejs.org/</a></li>
+<li>Download and install GIT for your platform <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a></li>
+</ul>
+<p>Once you have all tools installed </p>
+<ul>
+<li>Open the project with <strong>VS2017 *<em>using the file *</em>Angle.sln</strong></li>
+<li>Then go to Solution Explorer, right click on dependecies and select <strong>&quot;Restore Packages&quot;</strong></li>
+<li>Wait for the restore to end.</li>
+<li>Press <strong>Ctrl+F5</strong> to show the app on the browser. </li>
+</ul>
+<blockquote>
+<p>Website preview may take some time to run depending on the machine where is executed because VS will compile the app with webpack in the background and due to this there&#39;s some expected latency until the site is visible..</p>
+</blockquote>
+<h4 id="building-for-production">Building for production</h4>
+<p>You can build this project for production by deploying like any other VS project. </p>
+<p>You can also use the following command (in the root folder of the project, where the .sln file exists) to build the project in release mode:</p>
+<pre><code>dotnet publish -f netcoreapp2.0 -c Release</code></pre><p><strong>Issues</strong></p>
+<p> If necessary, configure VS to use the node path installed in your system instead of the version that comes with VS, <a href="https://www.domstamand.com/synchronizing-node-version-with-your-environment-in-visual-studio-2017/">https://www.domstamand.com/synchronizing-node-version-with-your-environment-in-visual-studio-2017/</a></p>
+<p> <strong>Problems loading scripts</strong>: sometimes the compilation process exceeds the time the browser waits and throws error loading files. If this happens, try reloading the page with <a href="https://refreshyourcache.com/en/cache/">cache refresh</a> </p>
+<p><strong>Reference</strong></p>
+<p> We have used this links as a started guide to build the current project </p>
+<p> <strong>- Official docs:</strong></p>
+<p><a href="https://angular.io/docs/ts/latest/cookbook/visual-studio-2015.html#!#prereq3">https://angular.io/docs/ts/latest/cookbook/visual-studio-2015.html#!#prereq3</a></p>
+<p><strong>- Guide to implement Angular2 template:</strong></p>
+<p><a href="http://blog.stevensanderson.com/2016/10/04/angular2-template-for-visual-studio/">http://blog.stevensanderson.com/2016/10/04/angular2-template-for-visual-studio/</a></p>
+<p><strong>- Angular2 Template for VS:</strong></p>
+<p><a href="https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ASPNETCoreTemplatePack">https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ASPNETCoreTemplatePack</a></p>
+</div></article><article id="usage"><h2 class="title">Usage</h2><div class="content"><h4 id="layout">Layout</h4>
+<p>The theme uses a main layout to start the application and then all views are managed by Angular framework</p>
+<p><strong>Views/Shared/_Layout.cshtml</strong></p>
+<pre><code class="language-markup">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot; /&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1, maximum-scale=1&quot;&gt;
+        &lt;title&gt;@ViewData[&quot;Title&quot;] - Angle&lt;/title&gt;
+        &lt;base href=&quot;/&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/preloader/preloader.css&quot; asp-append-version=&quot;true&quot; /&gt;
+        &lt;link rel=&quot;stylesheet&quot; href=&quot;~/dist/vendor.css&quot; asp-append-version=&quot;true&quot; /&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+
+        @RenderBody()
+
+        @RenderSection(&quot;scripts&quot;, required: false)
+
+    &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+<p><strong>Views/Home/Index.cshtml</strong></p>
+<pre><code class="language-markup">@{
+    ViewData[&quot;Title&quot;] = &quot;App&quot;;
+}
+
+&lt;app-root&gt;&lt;/app-root&gt;
+
+&lt;div class=&quot;preloader&quot;&gt;
+    &lt;div class=&quot;preloader-progress&quot;&gt;
+        &lt;div class=&quot;preloader-progress-bar&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src=&quot;~/dist/vendor.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;~/preloader/preloader.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+
+@section scripts {
+    &lt;script src=&quot;~/dist/main-client.js&quot; asp-append-version=&quot;true&quot;&gt;&lt;/script&gt;
+}</code></pre>
+<p>This last file is what includes all files to be served as the main index of the application.</p>
+<h4 id="polyfills">Polyfills</h4>
+<p>Polyfills are declared in file <strong>ClientApp/app/polyfills.ts</strong>
+Use this file to import anything necessary according to your application needs to make it work in the browser. The current imported assets are the requried to run Angular application and for es6 and IE. As you can see, this file is already included in the template.</p>
+<h4 id="vendor-assets">Vendor Assets</h4>
+<p>Vendor assets are declared in the following files: </p>
+<ul>
+<li><strong>ClientApp/app/vendor.ts</strong> (3rd party scripts)</li>
+<li><strong>ClientApp/app/vendor.scss</strong> (3rd party styles)</li>
+</ul>
+<p>Use those files to import all your 3rd party related dependencies. Webpack will automatically include them into the application.</p>
+<h4 id="webapck-commands">Webapck Commands</h4>
+<p>Wepack configuration is defined in one single file, webpack.config.js. 
+In package.json we have included two script to run webpack manually when necessary. Manually execution could be useful when you need to debug some errors that are not visible on browser console and you need a command line output.</p>
+<p>The following commands run the same location, where package.json exists:</p>
+<p>This command will compile the application and will generate the vendor and polyfills files, all for development.</p>
+<pre><code>$ npm run compile-app</code></pre><p>This command is the same but for production environment, the production environment is configured to compile the code using the AOT compiler with scripts and styles minification</p>
+<pre><code>$ npm run compile-app-prod</code></pre><p>The application is compiled in file main-client.js and lazyloaded bundle are the numerated files. All files are generated in *<em>wwwroot/dist *</em>folder.</p>
+<h4 id="testing">Testing</h4>
+<p>Testing is based in Karma/Jasmine and can be executed using the following command in the project folder (where package.json exists)</p>
+<pre><code>&gt; npm run test</code></pre><p>Such command will start Karma and will executed all test files named <strong>*.spec.ts</strong> under the folder <strong>ClientApp/</strong>
+As a convention (as used in @angular/cli) all *.spec.ts files should be placed in the same location where the component file, that is being tested, resides.</p>
+<p>We used the following files to configure the test execution:</p>
+<ul>
+<li>karma.conf.js: <em>karma configuration</em></li>
+<li>webpack.text.js: <em>webpack configuration file for testing</em></li>
+<li>spec.bundle.js: <em>setup file for testing enviroment</em></li>
+</ul>
+<p>Example test file can be located in: <strong>ClientApp/app/routes/home/home/home.component.spec.ts</strong>
+This contains a minimum testing code to show access to markup and component instance. More advanced testing can be performed according to your application needs.
+You can include more information in the Official Angular guide: <a href="https://angular.io/guide/testing">here</a></p>
+<h4 id="preloader">Preloader</h4>
+<p>The preloader files can be found in folder <strong>wwwroot/preloader/</strong></p>
+<p> It&#39;s enabled by adding the following markup to the index file like follows</p>
+<pre><code class="language-markup">&lt;div class=&quot;preloader&quot;&gt;
+    &lt;div class=&quot;preloader-progress&quot;&gt;
+        &lt;div class=&quot;preloader-progress-bar&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p>*<em>Background color *</em></p>
+<p>Background color can be changed be editing class .preloader in file <strong>wwwroot/preloader/preloader.scss</strong></p>
+<p><strong>Image logo</strong></p>
+<p>To generate the loading effect with text we use two images that are the same but one fully colored and the other with a little opacity. </p>
+<p>Both images can be found and replaced in the following paths</p>
+<pre><code>wwwroot/assets/img/preloader/preloader.empty.png
+wwwroot/assets/img/preloader/preloader.full.png</code></pre><p>If you change this images, try to respect the original size. Otherwise, you will need to change a bit of the css to make the expected size matches with the real one.</p>
+<p><strong>Note</strong>: While the preloader is included within the structure of the application, it works independently and is even required independently because it must be available from as soon as possible to show the loading screen while the application is starting.</p>
+<p><strong>Creating the preloader PSD</strong></p>
+<ol>
+<li>Create a psd with a canvas size of 190x60</li>
+<li>Add your custom text, for example in color white, and leave the background layer transparent. Save it as png with transparency and name it <strong>preloader.full.png</strong>. The font used is &quot;Open Sans&quot; 45px.</li>
+<li>Duplicate the above PSD file, open and set 30% opacity to the Text layer. Save it as png with transparency and name it <strong>preloader.empty.png</strong></li>
+</ol>
+<h4 id="jquery-and-wrapper-script">jQuery and Wrapper script</h4>
+<p>Starting from version 4.1, this template doesn&#39;t need jQuery as a mandatory dependency for core files, this means it is only required when using jQuery based plugins for some features included.<br>Seed project versions no more include jQuery by default..</p>
+<p>The <strong>wrapper.js</strong> (~ 7k minified) is a new script introduced to emulate some specific jQuery functions used in the template. This made possible to significantly cut the refactoring changes in the code, keeping it readable in a jQuery way and avoiding extra bytes, mainly when loops are repeatedly used to work with multiple elements.  </p>
+<blockquote>
+<p><strong>Important</strong> The Wrapper script is NOT a replacement for jQuery. All methods were designed for an adequate and specific use and they don&#39;t do a deep validation on the arguments provided. It&#39;s suggested NOT to use this library extensively. Instead, use pure JS or you might even need jQuery.</p>
+</blockquote>
+</div></article><article id="credits"><h2 class="title">Credits</h2><div class="content"><p><a href="../vendor-credits.html">Vendor Assets</a></p>
+</div></article></section></div></div><script src="assets/scripts.js"></script></body></html>

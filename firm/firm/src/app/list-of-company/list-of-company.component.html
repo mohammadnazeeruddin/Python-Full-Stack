@@ -1,0 +1,82 @@
+<mat-tab-group dynamicHeight>
+    <mat-tab label="Customers">
+       <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">List Of Customers</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="text-primary">
+                                    <th scope="col">Companyid</th>
+                                    <th scope="col">OwnerName </th>
+                                    <th scope="col"> Bussiness Address</th>
+                                    <th scope="col">Bussiness Name</th>
+                                    <th scope="col">BCS period</th>
+                                    <th scope="col">ABN/ACN</th>
+                                    <th scope="col">View</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="col">Companyid</td>
+                                        <td scope="col">OwnerName </td>
+                                        <td scope="col"> Bussiness Address</td>
+                                        <td scope="col">Bussiness Name</td>
+                                        <td scope="col">BCS period</td>
+                                        <td scope="col">ABN/ACN</td>
+                                        <td><a mat-raised-button (click)="openDialog()"><i class="material-icons">
+                                                    remove_red_eye
+                                                </i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="Companies">
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">List Of Companies</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead class="text-primary">
+                                    <th scope="col">Companyid</th>
+                                    <th scope="col">OwnerName </th>
+                                    <th scope="col"> Bussiness Address</th>
+                                    <th scope="col">Bussiness Name</th>
+                                    <th scope="col">BCS period</th>
+                                    <th scope="col">ABN/ACN</th>
+                                    <th scope="col">View</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="col">Companyid</td>
+                                        <td scope="col">OwnerName </td>
+                                        <td scope="col"> Bussiness Address</td>
+                                        <td scope="col">Bussiness Name</td>
+                                        <td scope="col">BCS period</td>
+                                        <td scope="col">ABN/ACN</td>
+                                        <td><a mat-raised-button (click)="openDialog()"><i class="material-icons">
+                                                    remove_red_eye
+                                                </i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+</mat-tab-group>

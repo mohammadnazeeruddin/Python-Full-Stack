@@ -1,0 +1,109 @@
+/* ========================================================================
+   Component: Header
+ ========================================================================== */
+
+header {
+    overflow: hidden;
+    text-align: center;
+
+    /* INTRO */
+    .intro-section {
+        position: relative;
+        margin: 0 auto;
+        max-width: 768px;
+
+        @include media-breakpoint-up(sm) {
+            padding-top: 5%;
+        }
+        @include media-breakpoint-up(md) {
+            padding-top: 9%;
+        }
+        @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+            padding-top: 20px;
+            .intro {
+                font-size: 3rem;
+            }
+        }
+
+        .intro {
+            color: #fff;
+            margin-bottom: 36px;
+            margin-top: 0;
+        }
+        .buy-link {
+            color: #fff;
+            &:hover,
+            &:focus {
+                color: $link-color;
+                ;
+            }
+        }
+
+        h5 {
+            color: #fff;
+        }
+
+        .btn-theme {
+            margin-top: 30px;
+        }
+    }
+
+    .intro-shot {
+        position: relative;
+        display: none;
+        padding: 0 20px;
+        margin: 30px auto 0 auto;
+        text-align: center;
+        > img {
+            width: 100%;
+            max-width: 768px;
+        }
+
+        @include media-breakpoint-up(md) {
+            position: absolute;
+            left: 0;
+            right: 0;
+        }
+        @media (min-height: 380px) {
+            display: block;
+        }
+    }
+
+    .top-logo {
+        position: relative;
+        padding: 15px;
+        text-align: center;
+        height: 70px;
+        margin: 0 auto;
+        margin-bottom: 30px;
+        >img {
+            display: inline-block;
+            max-height: 100%;
+            width: auto;
+        }
+        @include media-breakpoint-up(md) {
+            height: auto;
+            padding: 60px;
+            margin-bottom: 0;
+        }
+        @media (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+            padding-bottom: 20px;
+        }
+    }
+
+    .full-screen {
+        width: 100%;
+        min-height: 100vh;
+    }
+
+    @include media-breakpoint-down(sm) {
+        .intro-section {
+            padding-top: 0;
+        }
+        .intro-section .intro {
+            margin-bottom: 18px;
+            font-size: 2rem;
+            line-height: 1;
+        }
+    }
+}

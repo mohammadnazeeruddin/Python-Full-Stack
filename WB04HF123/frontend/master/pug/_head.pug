@@ -1,0 +1,41 @@
+meta(charset='UTF-8')
+meta(name='description', content='Landing Page Template')
+meta(name='keywords', content='bootstrap, app, theme')
+meta(name='author', content='@themicon')
+meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+
+title Angle - Landing Page
+
+// PREALOADER (loads asap)
+link(rel='stylesheet', href="vendor/nprogress/nprogress.css")
+script(src="vendor/nprogress/nprogress.js")
+
+// FAVICON
+link(rel='icon', href='img/favicon/favicon.ico')
+link(rel='apple-touch-icon', href='img/favicon/apple-touch-icon.png')
+link(rel='apple-touch-icon', sizes='57x57', href='img/favicon/apple-touch-icon-57x57-precomposed.png')
+link(rel='apple-touch-icon', sizes='72x72', href='img/favicon/apple-touch-icon-72x72-precomposed.png')
+link(rel='apple-touch-icon', sizes='114x114', href='img/favicon/apple-touch-icon-114x114-precomposed.png')
+link(rel='apple-touch-icon', sizes='144x144', href='img/favicon/apple-touch-icon-144x144-precomposed.png')
+
+// FONT
+link(href='//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,400italic', rel='stylesheet', type='text/css')
+
+// ICONS
+link(rel='stylesheet', href='vendor/@fortawesome/fontawesome-free/css/brands.css')
+link(rel='stylesheet', href='vendor/@fortawesome/fontawesome-free/css/regular.css')
+link(rel='stylesheet', href='vendor/@fortawesome/fontawesome-free/css/solid.css')
+link(rel='stylesheet', href='vendor/@fortawesome/fontawesome-free/css/fontawesome.css')
+
+script.
+    if (navigator.userAgent.match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile/i))
+        if (top.location != location) top.location.href = document.location.href;
+
+// VENDOR CSS
+link(rel='stylesheet', href='vendor/owl.carousel/dist/assets/owl.carousel.css')
+link(rel='stylesheet', href='vendor/owl.carousel/dist/assets/owl.theme.default.css')
+link(rel='stylesheet', href='vendor/aos/dist/aos.css')
+
+// SITE CSS
+link(rel='stylesheet', href='css/styles.css', id="stylescss")
+link(rel='stylesheet', href='css/theme-a.css')

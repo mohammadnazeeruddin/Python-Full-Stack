@@ -1,0 +1,278 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><title>Angle Docs</title><link rel="stylesheet" href="assets/styles.css"></head><body><div class="inf-header-wrapper"><header class="inf-header"><h1 class="title"><a href="http://themicon.co/angle">Angle Docs</a></h1><div class="support"><a href="https://wrapbootstrap.com/user/themicon#contact" class="btn-support">Contact support</a></div></header></div><div class="inf-wrapper"><nav class="inf-menu"><ul><li><a href="#introduction">Introduction</a></li><li><a href="#structure">Structure</a></li><li><a href="#build">Build</a></li><li><a href="#usage">Usage</a></li><li><a href="#routes">Routes</a></li><li><a href="#credits">Credits</a></li></ul><div class="inf-menu-meta"><span>By:</span><a href="https://twitter.com/themicon_co">@themicon</a><br><span>Created:</span><span>2018-06-05</span><br><span>Updated:</span><span>2018-11-23</span></div></nav><div class="inf-content"><div class="inf-item-header"><h1>Angle<small>Bootstrap 4 Admin Template + Meteor</small></h1><p>Thank you for purchasing Angle - Bootstrap 4 Admin Template + Meteor.<br>If you have any question about this product and beyond the scope of this help file, please feel free to write us using the support button.</p><br><p><strong>Thanks so much!</strong></p></div><section class="inf-section"><article id="introduction"><h2 class="title">Introduction</h2><div class="content"><p>This document aims to explain the best way to work with the product and its components.</p>
+<p>All usage reference for Meteor can be found here <a href="https://docs.meteor.com/">https://docs.meteor.com/</a> </p>
+<p><strong>- <em>All the best and enjoy coding.</em></strong></p>
+<h4 id="getting-started-tips">Getting started tips</h4>
+<ul>
+<li>Do not start from scratch, use an existing asset and modify it to learn how it works.</li>
+<li>Explore the sources for ideas and sample code.</li>
+<li>Use Firebug or Chrome Developer Tools to find bugs on your website. Using one of those tools will help you to save time analyzing the site and finding elements structure, like classes, id or tags<ul>
+<li>Quick tip: open your site with Chrome, press F12 and go to console tab, reload your page and if something goes wrong you will see your page errors in red text.</li>
+</ul>
+</li>
+<li>In case of errors, someone might have seen it too, you can try a Google search for a quick fix.</li>
+</ul>
+<h4 id="technologies-used">Technologies used</h4>
+<p>This template is based on the following technologies. Follow the links for each one of them in order to get more information:</p>
+<ul>
+<li><p>The project is based on <a href="https://getbootstrap.com/">Bootstrap 4</a></p>
+</li>
+<li><p>Language used: JavaScript, <a href="http://sass-lang.com/">SCSS</a> and raw HTML</p>
+</li>
+<li><p>NPM dependency manager</p>
+</li>
+</ul>
+</div></article><article id="structure"><h2 class="title">Structure</h2><div class="content"><p>Before starting to customize the template, here is the project files organization structure:</p>
+<pre><code class="language-css">+---.meteor
++---client
++---imports
+|   +---scripts
+|   |   +---modules
+|   +---startup
+|   |   +---client
+|   +---styles
+|   |   +---app
+|   |   |   +---charts
+|   |   |   +---common
+|   |   |   +---elements
+|   |   |   +---extras
+|   |   |   +---forms
+|   |   |   +---layout
+|   |   |   +---maps
+|   |   |   +---tables
+|   |   +---bootstrap
+|   |   +---themes
+|   +---templates
+|       +---common
+|       +---views
+|           +---blog
+|           +---charts
+|           +---dashboard
+|           +---ecommerce
+|           +---elements
+|           +---extras
+|           +---forms
+|           +---forum
+|           +---maps
+|           +---pages
+|           +---tables
+|           +---widgets
++---localize
+|   +---i18n
++---public
+    +---font
+    +---fonts
+    +---img
+    +---rickshaw
+    +---server
+    +---themes
+    +---webfonts</code></pre>
+<ul>
+<li><p><strong>client</strong>: contains the modules loaded into the client side of the application. This folder is loaded by Meteor automatically.</p>
+<ul>
+<li>The script <strong>client/main.js</strong> is the entry point of the application, starting at this files all application code is imported like styles, scrtipt, templates, routes and vendor plugins.</li>
+</ul>
+</li>
+<li><p><strong>imports</strong>: this folder contains imported files from other parts of the application</p>
+<ul>
+<li><strong>startup</strong>: startup scripts to import the application, define routes and include vendor assets</li>
+<li><strong>styles</strong>: styles used in the template</li>
+<li><strong>scripts</strong>: scripts used in the template</li>
+<li><strong>templates</strong> templates files</li>
+</ul>
+</li>
+<li><p><strong>localize/i18n</strong>: translation files</p>
+</li>
+<li><p><strong>public</strong>: accessible from the client side. It contains static assets like images, fonts, etc</p>
+</li>
+<li><p><strong>node_modules</strong>: contains the vendor assets installed with npm</p>
+</li>
+</ul>
+</div></article><article id="build"><h2 class="title">Build</h2><div class="content"><p>To run this version you need to have installed <a href="https://www.meteor.com/developers">Meteor</a> framework.</p>
+<p>You will need also a <strong>Nodejs</strong> enviroment. </p>
+<p><strong>Node</strong>.js is a platform built on Chrome’s JavaScript runtime for easily building fast, scalable network applications.  </p>
+<h4 id="installing-tools">Installing tools</h4>
+<p>The following steps are intended to be an orientation guide, if you are not experienced with this you will need to learn more about it from Google :) </p>
+<ul>
+<li>Start downloading METEOR framework for your platform at <a href="https://www.meteor.com/install">https://www.meteor.com/install</a></li>
+<li>To install node and npm, go to <a href="http://nodejs.org/">http://nodejs.org/</a></li>
+<li>Download and install GIT for your platform <a href="http://git-scm.com/downloads">http://git-scm.com/downloads</a></li>
+</ul>
+<h4 id="starting-the-app">Starting the app</h4>
+<p>Run the following command in the root folder of the project</p>
+<pre><code>npm install</code></pre><p>Once above command ends, you should have all dependencies installed. Now you can run the application with the command:</p>
+<pre><code>meteor</code></pre><p>To specify a port to listen on (instead of the default 3000), use <code>--port [PORT]</code>. </p>
+<p>To learn more about meteor command, please see <a href="https://docs.meteor.com/commandline.html">here</a></p>
+<p><strong>Open your browser</strong></p>
+<p>If everything goes fine, your application should be ready at <a href="http://localhost:3000/">http://localhost:3000/</a> (or the port number you have used)</p>
+</div></article><article id="usage"><h2 class="title">Usage</h2><div class="content"><h4 id="layout">Layout</h4>
+<p>The main layout is defined in file <strong>imports/templates/common/layout.html</strong></p>
+<pre><code class="language-markup">&lt;template name=&quot;layout&quot;&gt;
+      &lt;div class=&quot;wrapper&quot;&gt;
+         &lt;!-- top navbar--&gt;
+         {{&gt; topnavbar }}
+         &lt;!-- sidebar--&gt;
+         {{&gt; sidebar }}
+         &lt;!-- offsidebar--&gt;
+         {{&gt; offsidebar}}
+         &lt;!-- Main section--&gt;
+         &lt;section class=&quot;section-container&quot;&gt;
+            &lt;!-- Page content--&gt;
+            &lt;div class=&quot;content-wrapper&quot;&gt;
+               {{&gt; yield }}
+            &lt;/div&gt;
+         &lt;/section&gt;
+         &lt;!-- Page footer--&gt;
+         {{&gt; footer }}
+      &lt;/div&gt;
+      {{&gt; yield region=&quot;bodyChild&quot; }}
+&lt;/template&gt;</code></pre>
+<p>The <strong>yield region=&quot;bodyChild&quot;</strong> is used to inject from any template a portion of markup directly outside the main wrapper. This is used for modals. </p>
+<h4 id="horizontal-layout">Horizontal layout</h4>
+<p>This layout is defined in file <strong>import/templates/common/layout.horizontal.html</strong></p>
+<p>This layout can be enabled using the route configuration like follows</p>
+<pre><code class="language-javascript">Router.map(function() {
+    this.route(&#39;dashboardh&#39;, function() {
+        this.layout(&#39;layouth&#39;);
+        this.render(&#39;dashboardh&#39;);
+    });
+});</code></pre>
+<h4 id="pages-layout">Pages layout</h4>
+<p>This a full page layout used mainly for login, register, lock and recover views and is defined in file <strong>imports/templates/common/layout-pages.html</strong></p>
+<p>This layout can be enabled using the route configuration like follows</p>
+<pre><code class="language-javascript">Router.map(function() {
+    this.route(&#39;login&#39;, function() {
+        this.render(&#39;login&#39;);
+        this.layout(&#39;layoutPages&#39;);
+    });
+    ...</code></pre>
+<h4 id="styles">Styles</h4>
+<p>All styles are based on SCSS as a preprocessor and all files can be found under <strong>imports/styles</strong> folder</p>
+<p>The main two files that imports the entire application are both are included in file <strong>imports/startup/client/index.js</strong></p>
+<pre><code>bootstrap.scss
+app.scss</code></pre><h4 id="themes">Themes</h4>
+<p>Themes can be easily added directly into the file app.scss at the bottom in order to override default colors</p>
+<p>Available options</p>
+<pre><code class="language-css">@import &quot;themes/theme-a.scss&quot;
+@import &quot;themes/theme-b.scss&quot;
+@import &quot;themes/theme-c.scss&quot;
+@import &quot;themes/theme-d.scss&quot;
+@import &quot;themes/theme-e.scss&quot;
+@import &quot;themes/theme-f.scss&quot;
+@import &quot;themes/theme-g.scss&quot;
+@import &quot;themes/theme-h.scss&quot;</code></pre>
+<h4 id="theme-selector">Theme selector</h4>
+<p>The themes selector used in the right sidebar (offsidebar) uses a custom plugin. This plugin looks for an attribute to receive the path to a css stylesheet to be injected into the head section of the page. </p>
+<p>In the demo, we link to the files under the <strong>/public/themes</strong> folder which contains the predefined theme colors already compiled in order to inject directly into the browser. </p>
+<pre><code class="language-css">&lt;label data-load-css=&quot;themes/theme-a.css&quot;&gt;</code></pre>
+<p>Note that referencing SCSS files will not work in this case. </p>
+<p>If you plan to use only one theme, use the above approach @importing the theme-*.scss directly into app.scss</p>
+<h4 id="scripts">Scripts</h4>
+<p>Scripts are divided into Template scripts and Global scripts</p>
+<p><strong>Global scripts</strong> are located under folder <strong>imports/scripts/modules</strong> and all of them contains functions that can be used across the entire application. Most of them are initialization functions that must be called to attach a behavior to certain elements. For example</p>
+<pre><code class="language-javascript">import initSlimsSroll from &#39;/imports/scripts/modules/slimscroll.js&#39;;
+initSlimsSroll();</code></pre>
+<p><strong>Template scripts</strong> are used to load a JavaScript every time a view is rendered. All this files can be found under the client/templates folder and they are named with the same name used for the view that affects.</p>
+<p>This script uses the rendered event provided by meteor <strong>Templates</strong> object. </p>
+<pre><code class="language-javascript">Template.blogArticleView.onRendered(function() {
+
+    // Chosen select
+    if ($.fn.chosen)
+        $(&#39;.chosen-select&#39;).chosen();
+
+    // Wysiwyg editor
+    if ($.fn.wysiwyg)
+        $(&#39;.wysiwyg&#39;).wysiwyg();
+
+})</code></pre>
+<h4 id="vendor">Vendor</h4>
+<p>All third party plugins are manage via npm using the package.json included in the root folder of the project.
+Then, necessary files are imported in file <strong>imports/startup/client/vendor.js</strong> you can add edit or remove path from there in order to customize the necessary vendor assets for your project.</p>
+<p><strong>About Rickshaw</strong></p>
+<p>There&#39;s a known issue related with the standard minify system of Meteor and rickshaw. The plugin requires to ignore the name change (mangle) of a variable ($super), this can not be configured in Meteor but is possible to use another technique to load rickshaw outside the meteor minifier system.
+The solution used for the issue mentioned is to place rickshaw.js under folder <strong>/public/rickshaw</strong> and then load it using jQuery. This code is present in file <strong>imports/templates/views/charts/rickshaw.js</strong></p>
+<pre><code class="language-javascript">// when template is ready, load rickshaw
+Template.chartRickshaw.onRendered(LoadRickshaw);
+
+// when rickshaw was loaded, start the plugin
+function LoadRickshaw() {
+    $.getScript(&#39;rickshaw/rickshaw.js&#39;, StartRickshawCharts);
+}
+
+function StartRickshawCharts() { ... }</code></pre>
+<p>Styles are still loaded globally in imports/startup/client/vendor.js Rickshaw also requires d3, which is included in the template using the atmosphere package <a href="https://atmospherejs.com/d3js/d3">d3js:d3</a> </p>
+<h4 id="new-vendor-assets">New vendor assets</h4>
+<p>To add new third party assets, you can install using npm:</p>
+<ol>
+<li><p>npm install something -S</p>
+<ul>
+<li>Flag &quot;-S&quot; is to save the dependency in package.json</li>
+</ul>
+</li>
+<li><p>Edit <strong>imports/startup/client/vendor.js</strong> and add the paths of files you want to use</p>
+<p>Note that you don&#39;t need to specify the node_modules folder</p>
+<pre><code>import &#39;something&#39;;
+// or
+import &#39;something/some/file.css&#39;;
+import &#39;something/some/file.js&#39;;</code></pre></li>
+</ol>
+<h4 id="modernizr">Modernizr</h4>
+<p>Modernizr build is generated after the command npm install ends. Specifically, using the <strong>postinstall</strong> script in package.json which at the same time executes the &quot;<strong>modernizr</strong>&quot; scripts responsible for generating the file <strong>modernizr.js</strong> under folder <strong>public/</strong>
+The configuration of the Modernizr build can be found in file <strong>modernizr-config.json</strong></p>
+<h4 id="public-assets">Public assets</h4>
+<p>All public assets like fonts, images, etc should be placed under the public folder. Any file under this folder is served like if it was under the root folder so for example, to serve an image you don&#39;t need to add public to the paths, just used the form </p>
+<pre><code class="language-markup">&lt;img src=&quot;img/bg1.jpg&quot; alt=&quot;&quot; class=&quot;img-thumbnail img-responsive&quot; /&gt;</code></pre>
+<h4 id="translation">Translation</h4>
+<p>Translation system uses the package <strong>tap:i18n</strong></p>
+<p>This package is configured using a file in the root folder of the project with the following information</p>
+<pre><code class="language-javascript">{
+    &quot;helper_name&quot;: &quot;_&quot;,
+    &quot;supported_languages&quot;: null,
+    &quot;i18n_files_route&quot;: &quot;/localize/i18n/&quot;,
+    &quot;cdn_path&quot;: null
+}</code></pre>
+<p>The files used for translation are placed in folder <strong>localize/i18n</strong></p>
+<p>To include a translated text in the markup you need to reference the json path for the string using the &quot;<strong>helper_name</strong>&quot; indicated in the configuration file (in this case the underscore) and a <strong>Blaze template</strong> expression. For example</p>
+<pre><code class="language-markup">&lt;small&gt;{{_&quot;dashboard.WELCOME&quot;}}&lt;/small&gt;</code></pre>
+<p>This nonresponse to a JSON configuration like follows</p>
+<pre><code class="language-javascript">{
+  &quot;dashboard&quot;: {
+    &quot;WELCOME&quot;: &quot;Welcome to Angle !&quot;
+  },
+....
+}</code></pre>
+<h4 id="jquery-and-wrapper-script">jQuery and Wrapper script</h4>
+<p>Starting from version 4.1, this template doesn&#39;t need jQuery as a mandatory dependency for core files, this means it is only required when using jQuery based plugins for some features included.<br>Seed project versions no more include jQuery by default..</p>
+<p>The <strong>wrapper.js</strong> (~ 7k minified) is a new script introduced to emulate some specific jQuery functions used in the template. This made possible to significantly cut the refactoring changes in the code, keeping it readable in a jQuery way and avoiding extra bytes, mainly when loops are repeatedly used to work with multiple elements.  </p>
+<blockquote>
+<p><strong>Important</strong> The Wrapper script is NOT a replacement for jQuery. All methods were designed for an adequate and specific use and they don&#39;t do a deep validation on the arguments provided. It&#39;s suggested NOT to use this library extensively. Instead, use pure JS or you might even need jQuery.</p>
+</blockquote>
+</div></article><article id="routes"><h2 class="title">Routes</h2><div class="content"><p>Routes are defined in the script <strong>imports/startup/client/routes.js</strong> and uses the <strong>Iron Router</strong> package </p>
+<p>Dahsboard routes example</p>
+<pre><code class="language-javascript">// Dashboard
+Router.map(function(){
+    this.route(&#39;dashboardv1&#39;, function(){
+        this.render(&#39;dashboardv1&#39;);
+    });
+    this.route(&#39;dashboardv2&#39;, function(){
+        this.render(&#39;dashboardv2&#39;);
+    });
+    this.route(&#39;dashboardv3&#39;, function(){
+        this.render(&#39;dashboardv3&#39;);
+    });
+});</code></pre>
+<h4 id="default-route">Default route</h4>
+<p>A default route can be defined with the following script</p>
+<pre><code class="language-javascript">Router.route(&#39;/&#39;, function () {
+    Router.go(&#39;dashboardv1&#39;);
+});    </code></pre>
+<h4 id="different-layout">Different layout</h4>
+<p>To use a different template layout for a view just setup the layout property when defining the route</p>
+<p>This example renders a view using the Horizontal layout.</p>
+<pre><code class="language-javascript">Router.map(function(){
+    this.route(&#39;dashboardh&#39;, function(){
+        this.layout(&#39;layouth&#39;);
+        this.render(&#39;dashboardh&#39;);
+    });
+});</code></pre>
+</div></article><article id="credits"><h2 class="title">Credits</h2><div class="content"><p><a href="../vendor-credits.html">Vendor Assets</a></p>
+</div></article></section></div></div><script src="assets/scripts.js"></script></body></html>

@@ -1,0 +1,18 @@
+<template name="layouth">
+      <div class="wrapper">
+         <!-- top navbar-->
+         {{> topnavbarh }}
+         <!-- offsidebar-->
+         {{> offsidebar}}
+         <!-- Main section-->
+         <section class="section-container">
+            <!-- Page content-->
+            <div class="content-wrapper">
+               {{> Template.dynamic template=content }}
+            </div>
+         </section>
+         <!-- Page footer-->
+         {{> footer }}
+      </div>
+      {{> Template.dynamic template=bodyContent }}
+</template>

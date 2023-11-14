@@ -1,0 +1,15 @@
+// START FOOTER
+footer#footer
+  .container
+    .row
+      .col-md-6
+        ul.footer-nav.list-inline
+          li.list-inline-item: a.scrollto(href='#header') Home
+          li.list-inline-item: a.scrollto(href='#features') Features
+          li.list-inline-item: a.scrollto(href='#plans') Plans
+          li.list-inline-item: a.scrollto(href='#download') Download
+      .col-md-6
+        // COPYRIGHT
+        - var copy = "Angle &copy; " + (new Date().getFullYear());
+        p.copyright!= copy
+// END FOOTER

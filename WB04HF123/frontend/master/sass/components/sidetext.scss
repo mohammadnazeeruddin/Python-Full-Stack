@@ -1,0 +1,58 @@
+/* ========================================================================
+   Component: Side Text (pic-text)
+ ========================================================================== */
+
+.pic-text {
+    background: #fff;
+    padding-top: 110px;
+    padding-bottom: 60px;
+    overflow: hidden;
+
+    h2 {
+        margin: 20px 0;
+        @include media-breakpoint-down(sm) {
+            font-size: 2rem;
+            line-height: 2.625rem;
+        }
+    }
+
+    .mockup-mobile {
+        max-width: 380px;
+        margin: auto;
+        margin-bottom: 50px;
+        img {
+            width: 100%;
+        }
+    }
+
+
+    &.pic-text-left {
+        background-color: $gray;
+        @include media-breakpoint-up(md) {
+            text-align: left;
+        }
+    }
+
+    &.pic-text-right {
+        background-color: #fff;
+        @include media-breakpoint-up(md) {
+            text-align: right;
+        }
+    }
+}
+
+.featured-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 40px 0;
+    text-align: left;
+    >li {
+        margin-bottom: 26px;
+        color: $info;
+        >p {
+            display: inline-block;
+            margin: 0 0 0 8px;
+            color: $body-color;
+        }
+    }
+}

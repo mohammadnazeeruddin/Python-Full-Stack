@@ -1,0 +1,64 @@
+@{
+    ViewBag.Title = "ChartMorris";
+}
+<div class="content-heading">Morris JS</div>
+<div class="container-fluid">
+   <div class="row">
+      <div class="col-lg-6">
+         <div class="card card-default">
+            <div class="card-header">Line</div>
+            <div class="card-body">
+               <div id="morris-line"></div>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-6">
+         <div class="card card-default">
+            <div class="card-header">Area</div>
+            <div class="card-body">
+               <div id="morris-area"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-lg-6">
+         <div class="card card-default">
+            <div class="card-header">Bar</div>
+            <div class="card-body">
+               <div id="morris-bar"></div>
+            </div>
+         </div>
+      </div>
+      <div class="col-lg-6">
+         <div class="card card-default">
+            <div class="card-header">Donut</div>
+            <div class="card-body">
+               <div id="morris-donut"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+
+@section Styles {
+    <environment names="Development">
+        <link href="~/vendor/morris.js.so/morris.css" rel="stylesheet" />
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/vendor/morris.js.so/morris.css" rel="stylesheet" />
+    </environment>
+}
+
+@section Scripts {
+
+    <environment names="Development">
+        <script src="~/vendor/raphael/raphael.js"></script>
+        <script src="~/vendor/morris.js.so/morris.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/vendor/raphael/raphael.js"></script>
+        <script src="~/vendor/morris.js.so/morris.js"></script>
+    </environment>
+
+}

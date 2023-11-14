@@ -1,0 +1,64 @@
+/* ========================================================================
+   Component: Features
+ ========================================================================== */
+
+.features-list {
+
+    padding-top: 80px;
+    padding-bottom: 30px;
+    background: #fff;
+
+    .features-left,
+    .features-right {
+        margin-top: 22px;
+        margin-bottom: 80px;
+    }
+
+    .feature {
+        margin-bottom: 40px;
+
+        .feature-icon {
+            display: block;
+            overflow: hidden;
+            min-height: 100px;
+            color: $info;
+            font-size: 20px;
+            text-align: center;
+            @include media-breakpoint-up(md) {
+                display: none;
+            }
+            @include media-breakpoint-up(lg) {
+                display: block;
+            }
+        }
+    }
+
+    .features-left {
+        text-align: right;
+
+        .feature-icon {
+            float: right;
+            margin-left: 20px;
+        }
+    }
+
+
+    .features-right {
+        text-align: left;
+
+        .feature-icon {
+            float: left;
+            margin-right: 20px;
+        }
+    }
+
+    .mockup-mobile {
+        max-width: 260px;
+        margin: auto;
+        margin-bottom: 80px;
+
+        img {
+            width: 100%;
+        }
+    }
+}

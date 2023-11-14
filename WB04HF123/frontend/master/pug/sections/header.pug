@@ -1,0 +1,45 @@
+// START STICKY NAVBAR
+.navbar.navbar-expand-md.navbar-light.fixed-top.navbar-sticky
+  .container.p-0
+    a.navbar-brand.mr-auto(href='#')
+      img(src='img/logo-dark.png', alt='')
+    button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbar-main')
+      span.navbar-toggler-icon
+    // MENU
+    #navbar-main.navbar-collapse.collapse
+      ul.navbar-nav.ml-auto.main-navbar
+        li.nav-item
+          a.nav-link(href='#header') Home
+        li.nav-item
+          a.nav-link(href='#features') Features
+        li.nav-item
+          a.nav-link(href='#shots') Shots
+        li.nav-item
+          a.nav-link(href='#plans') Plans
+        li.nav-item
+          a.nav-link(href='#download'): strong Download
+// END STICKY NAVBAR
+// START HEADER
+header#header.video-bg-container
+  .full-screen
+    .video-bg-wrapper
+        video(preload='true' autoplay='true' loop='true')
+            source(src='video/video.mp4')
+    .container
+      // MAIN LOGO
+      .top-logo
+        img(src='img/logo.png', alt='')
+      // INTRO MESSAGE
+      .intro-section
+        h1.intro Responsive Bootstrap Admin Template
+        h5 Available on
+          a.buy-link(href="https://wrapbootstrap.com/theme/angle-bootstrap-admin-template-WB04HF123?ref=themicon") WrapBootstrap
+        // DEMO BUTTON
+        //- a.btn.btn-lg.btn-theme.scrollto(href='#download')
+        .text-center
+          a.btn.btn-lg.btn-theme.scrollto(href='#versions')
+            span Watch all demos
+      .intro-shot
+        img.img-fluid(src="img/header.shot.png", alt="Header shot")
+// END HEADER
+

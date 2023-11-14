@@ -1,0 +1,25 @@
+/* ========================================================================
+   Component: Sections Header
+ ========================================================================== */
+
+.section-header {
+    padding-bottom: 78px;
+    text-align: center;
+
+    h2 {
+        margin-top: 25px;
+        margin-bottom: 20px;
+        @include media-breakpoint-down(sm) {
+            font-size: 2rem;
+            line-height: 2.625rem;
+        }
+    }
+
+    .section-description {
+        display: inline-block;
+        position: relative;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+}

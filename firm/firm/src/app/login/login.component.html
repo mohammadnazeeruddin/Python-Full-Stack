@@ -1,0 +1,44 @@
+<ng-http-loader 
+    [backgroundColor]="'#ff0000'"
+    [spinner]="spinkit.skDoubleBounce"
+    [debounceDelay]="100"
+    [minDuration]="300"
+    [extraDuration]="300">
+</ng-http-loader>
+
+
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">login</h4>
+            <!-- <p class="card-category">Complete your profile</p> -->
+          </div>
+          <div class="card-body">
+            <form [formGroup]="attendanceForm"  #formDirective="ngForm"  (ngSubmit)="onSubmit(formDirective)">
+              <mat-form-field>
+                  <input matInput placeholder="Enter User Name" value="" formControlName="userName">
+                </mat-form-field>
+
+                <mat-form-field >
+                  <input matInput placeholder="Enter Role" value="" formControlName="role"  >
+                </mat-form-field>
+
+                <mat-form-field >
+                  <input matInput placeholder="Enter Password" value="" formControlName="password">
+                </mat-form-field>
+
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right" [disabled]=attendanceForm.invalid >Continue</button>
+             
+            </form>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
