@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" style="width:0px;height:0px;padding-left: 15px;margin-top: -31px;overflow: hidden;">
+
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="material_code_editor_styles/solarized_dark_theme.css">
+    <link rel="stylesheet" type="text/css" href="material_code_editor_styles/solarized_light_theme.css" id="theme_css">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/addon/hint/show-hint.min.css">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.25.2/addon/scroll/simplescrollbars.css">
+    <link rel="stylesheet" href="style/brython.css">
+    <script type="text/javascript" src="editor_javascripts/brython.js"></script>
+    <script type="text/javascript" src="editor_javascripts/brython_stdlib.js"></script>
+    <!-- <script type="text/javascript" src="editor_javascripts/python-hint.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/235651/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/addon/mode/simple.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/addon/hint/show-hint.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.52.0/addon/scroll/simplescrollbars.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/235651/tooltipster.bundle.min.js"></script>
+    <script src="editor_javascripts/timeme.min.js"></script>
+
+</head>
+
+<body onload="brython({debug:1});" style="margin-top: 30px;background-color:#fafafa !important;">
+    <div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-7" style="padding-right:3px;padding-left: 0px;">
+                <div class="card" style="width:550px;border: 0px;">
+                    <h6 class="card-header" style="padding: 0px;line-height: 0px; background-color:#f0f0f0;">
+                        <div style="background:#3189D6;margin-top: 8px;">
+                            <!-- download file -->
+                            <a id="download_" href="#" style="float:right;padding:4px 4px;"><button class="btn"
+                                    id="savecode" style="box-shadow: none;float:right;padding:0px 3px;"
+                                    onclick="download_code();"><img style="width:15px;margin-right: 4px;"
+                                        src="./images/download.svg"></button></a>
+
+                            <!-- reset code -->
+                            <button title="Reset Code" class="btn" style="float:right;padding:4px 4px;"
+                                onclick="clear_code()"><img style="width:14px;"
+                                    src="../assets/images/reload_1.svg"></i></button>&nbsp;&nbsp;
+
+                            <button style="padding:5px 6px;padding-top: 5px;float:right;" id="run_button" class="btn"
+                                onclick="getProgram();run_code();"><img style="width:14px;margin-left:-12px;"
+                                    src="../assets/images/run_1.svg"></button>
+
+                            <!-- change Theme -->
+                            <button title="change theme" style="box-shadow: none;float: right;padding:5px 17px;"
+                                class="btn" onclick="switchTheme()"><img src="../assets/images/theme.svg"
+                                    width="16px;"></button>
+
+                            <!-- Execute code -->
+                            <div class="dropdown">
+                                <button class="dropbtn btn" style="padding-left: 12px;"><img
+                                        style="height:17px;width:17px;margin-left:-12px;"
+                                        src="../assets/images/python1.svg"></button>
+
+                                <div class="dropdown-content font_applied">
+                                    <a>Execute (Shift+Enter)</a><br>
+                                    <a>Save-code (Ctrl+S)</a>
+                                    <a>Hide editor (Ctrl+Shift+X)</a>
+                                    <a>Syntax-hint (Ctrl+Space)</a>
+                                </div>
+                                <small class="font_applied">Shift + Enter to run</small>
+                            </div>
+                        </div>&nbsp;&nbsp;
+                    </h6>
+                    <div class="card-body card_body_" style="padding:0.25rem;">
+                        <div class="maindiv">
+                            <div id="centralarea">
+                                <div id="canvas">
+                                </div>
+                                <div class="editor IDE">
+                                    <textarea class="codemirror-area" id="code">
+
+                                 </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div style="height: 300px;background-color: #3a4249;">
+                <h6>
+                    <button title="Clear Console" class="btn"
+                        style="float:right;padding: 0px;padding-right: 10px;box-shadow:none;color:white;"
+                        onclick="clear_output()">
+                        <!-- <img src="./images/cancel.svg" style="width:20px;"> -->
+                        x</button>
+                    <p style="font-size:16px; color:white; vertical-align: middle; margin-left:9px;margin-top: 7px;
+                        margin-bottom: 0rem;">&nbsp;></p>
+                </h6>
+                <pre id="output" class="output_ font_applied scrollbar scrollbar-info">
+                </pre>
+            </div>
+
+        </div>
+    </div>
+    <button style="padding: 4px 0px;" style="visibility: hidden;" class="btn" id="code_refresh"
+        onclick="refresh_code()"></button>
+    <button style="padding: 4px 0px;" style="visibility: hidden;" class="btn" id="type_activity"
+        onclick="type_activity_();"></button>
+    <button style="padding: 4px 0px;" style="visibility: hidden;" class="btn" id="reset_timeme"
+        onclick="location.reload();"></button>
+    <!-- this script building a python editor from Brython -->
+    <script type="text/python3">
+        from browser import document, alert
+        def callScript(event):
+            exec(document["code"].value)
+        document["run_button"].bind("click", callScript)
+    </script>
+
+    <script>
+        var parms = {
+            //this is the sample code to display in editor by default
+            program:
+                typeof (Storage) !== "code.py" && localStorage.getItem("code_material") ||
+                ["# Start coding here",
+                    "for v in range(10): ",
+                    "     print(v)",
+                    "print(type(v))",
+
+                ].join("\n"),
+        }
+        function refresh_code() {
+            //refrsh_code  code_material
+            parms.program = localStorage.getItem("code_material");
+            setProgram("");
+        }
+        function clear_output() {
+            //clearing the output of the console 
+            document.getElementById('output').innerHTML = ''
+        }
+        function insertText(data) {
+            // using this method creating lineNumbers for editor form codemirror
+            var cm = $(".CodeMirror")[0].CodeMirror;
+            var doc = cm.getDoc();
+            var cursor = doc.getCursor();
+            var line = doc.getLine(cursor.line);
+            var pos = {
+                line: cursor.line
+            };
+            if (line.length === 0) {
+                doc.replaceRange(data, pos);
+            } else {
+                doc.replaceRange("\n" + data, pos);
+            }
+        }
+        // Here building codemirror python editor by using codemirror
+        var code = $(".codemirror-area")[0];
+        var editor = CodeMirror.fromTextArea(code, {
+            mode: "python",
+            lineNumbers: true,
+            singleLineStringErrors: false,
+            autofocus: true,
+            scrollbarStyle: "simple",
+            extraKeys: { "Ctrl-Space": "autocomplete" },
+            matchBrackets: true
+            // theme: "blackboard",
+        });
+        // editor.on('inputRead', function onChange(editor, input) {
+        //     if (input.text[0] === ';' || input.text[0] === ' ' || input.text[0] === ":") {
+        //         return;
+        //     }
+        //     editor.showHint({
+        //         hint: CodeMirror.pythonHint
+        //     });
+        // });
+        // editor.setOption("extraKeys", {
+        //     Tab: function (cm) {
+        //         var spaces = Array(cm.getOption("indentUnit") + 1).join(" ");
+        //         cm.replaceSelection(spaces);
+        //     }
+        // });
+
+        status_ = []
+        tab_activity = []
+        type_activity = []
+        lines_ = 0
+        function getProgram() {
+            // This method getting code from CodeMirror and running by using Brython
+            var prog = editor.getValue();
+            $("#code").val(prog);
+
+            data = localStorage.getItem('out')
+            data_ = data.split(" ")
+
+            data = "Traceback" == data_[0]
+            if (data == true) {
+                error = "error"
+                status_.push([error, date.toISOString()])
+            }
+            else {
+                success = "success"
+                status_.push([success, date.toISOString()])
+            }
+
+            text = document.getElementById("code").value;
+            lines = text.split(/\r|\r\n|\n/);
+            count = lines.length;
+            if (count > lines_) {
+                status_.push(["true", date.toISOString()])
+            }
+            else if (lines_ > count) {
+                status_.push(["true", date.toISOString()]);
+            }
+            clear_output();
+            // keyboard_events();
+        } setProgram();
+
+        function setProgram(text) {
+            //this method is use for to store code in editor by using codemiiror setValue() method
+            var editor = $('.CodeMirror')[0].CodeMirror;
+            if (text) {
+                //here storing files (uploading files here)
+                var set_prog = editor.setValue(text)
+            }
+            else {
+                //here default program storing here 
+                var set_prog = editor.setValue(parms.program)
+            }
+        }
+        function type_activity_() {
+            var prog = editor.getValue();
+            $("#code").val(prog);
+            text = document.getElementById("code").value;
+            lines = text.split(/\r|\r\n|\n/);
+            count = lines.length;
+            lines_ = count
+        }
+
+        function download_code() {
+            //downlodaing python code from this method
+            var prog = editor.getValue();
+            document.getElementById('download_').onclick = function (event) {
+                var python_code = prog
+                blob = new Blob([python_code], { type: "octet/stream" }),
+                    url = window.URL.createObjectURL(blob);
+                this.href = url;
+                this.target = '_blank';
+
+                // target filename
+                this.download = 'program.py';
+            }
+        }
+
+        function storeProgram() {
+            //uploded file code stored here.
+            localStorage.setItem("skulptIdeProgram", getProgram());
+            localStorage.setItem("skulptIdeProgramName", document.getElementById("savefilename").value);
+        }
+        function loadit(input) {
+            //loaded code file here.
+            var components = input.value.split("/");
+            if (components.length < 2) components = input.value.split("\\");
+            var filename = components[components.length - 1];
+            var fileobj = input.files[0];
+            var reader = new FileReader();
+
+
+            // Closure to capture the file information.
+            reader.onload = (function (theFile) {
+                return function (e) {
+                    var text = e.target.result;
+                    setProgram(text);
+                    storeProgram();
+                    // clear the input element so that a new load on the same file will work
+                    input.value = "";
+                    document.getElementById("savefilename").value = filename;
+                };
+            })(fileobj);
+            // Read in the file as a data URL.
+            reader.readAsText(fileobj);
+        }
+        function clear_code() {
+            //clearing editor code in this method
+            var yes = confirm("Are you sure! You want to Clear code?");
+            if (true === yes) {
+                setProgram("")
+            }
+            getProgram()
+            // document.getElementById("savefilename").value = "program.py";
+        }
+
+        function switchTheme() {
+            // this method change the editor theme
+            var check = document.getElementById('theme_css').classList[0] === 'light';
+            var element = document.getElementById('theme_css');
+            if (check) {
+                element.href = 'material_code_editor_styles/solarized_light_theme.css';
+                element.classList.remove('light')
+                element.classList.add('dark');
+            }
+            else {
+                element.href = 'material_code_editor_styles/solarized_dark_theme.css';
+                element.classList.remove('dark')
+                element.classList.add('light');
+            }
+        }
+
+        function keyboard_events() {
+
+            // this method is to save code_test by using ctrl+s keys.
+            document.onkeydown = function (event) {
+                event || window.event;
+                var code_key = event.which || event.keyCode;
+                if (code_key == 9) {
+                    status_.push(['true', date.toISOString()])
+                }
+                if (event.ctrlKey) {
+                    var code_key = event.which || event.keyCode;
+                    switch (code_key) {
+                        case 83:
+                            event.preventDefault();
+                            document.getElementById("savecode").click();
+                            break;
+                    }
+                } else if (event.shiftKey) {
+                    var code_key = event.which || event.keyCode;
+                    switch (code_key) {
+                        case 13:
+                            event.preventDefault();
+                            document.getElementById("run_button").click();
+                            break;
+                    }
+                }
+            };
+        }
+
+        keyboard_events();
+
+        var date = new Date();
+        var clicks = 0;
+        code_position = localStorage.getItem('code_position_')
+        function run_code() {
+            clicks += 1;
+            document.getElementById("run_button")
+            if (TimeMe.getTimeOnCurrentPageInSeconds() > 1) {
+                data = JSON.stringify(
+                    {
+                        "code_index": code_position,
+                        "runs": clicks,
+                        "practice_time": TimeMe.getTimeOnCurrentPageInSeconds(),
+                        "time_stamp": date.toISOString(),
+                        "status": status_
+                    }
+                )
+            }
+            // .slice((status_.length - 1), status_.length),
+            localStorage.setItem('material_editor_user_activity_', data)
+            // console.log(data)
+
+        }
+        TimeMe.initialize({
+            currentPageName: "material_editorl", // current page
+            idleTimeoutInSeconds: 5, // stop recording time due to inactivity
+
+        });
+
+        function save_data() {
+            // var practice_time = []
+            // if (TimeMe.getTimeOnCurrentPageInSeconds() > 10) {
+            //     data = TimeMe.getTimeOnCurrentPageInSeconds()
+            //     TimeMe.startTimer("material_editor");
+            //     practice_time.push(data)
+            // } else {
+            //     practice_time.push(0)
+            // }
+
+            var url = "http://localhost:5005/api/v1/store/userActivity";
+            var api_token = localStorage.getItem('access_token_cookie');
+            var xhr2 = new XMLHttpRequest();
+            if (TimeMe.getTimeOnCurrentPageInSeconds() > 1) {
+                localStorage.getItem('data')
+            }
+            if (xhr2) {
+                xhr2.open("POST", url, false);
+                xhr2.setRequestHeader("Content-Type", "application/json");
+                xhr2.setRequestHeader('Authorization', 'Bearer ' + api_token);
+                xhr2.send(data);
+                var status = xhr2.status;
+
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

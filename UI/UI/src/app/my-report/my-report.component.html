@@ -1,0 +1,128 @@
+<app-header></app-header>
+<div align="center" style="margin-top: 85px;">My Detailed Report !!</div>
+<div class="container mat-elevation-z4 mt-3 mb-5" id="area-of-interest-1">
+  <div style="padding: 10px;">
+    <!-- Header row  start-->
+    <div class="row header">
+      <div class="col" style="margin-top: 20px;margin-left: 15px;">
+        <p class="true-font">true</p>
+        <p class="qualify-font">qualify</p>
+        <p style="margin-top: -79px;margin-left:140px;font-size: 30px;">
+          &trade;
+        </p>
+      </div>
+      <div class="col text-left" style="padding-left:90px;">
+        <h6 style="margin-top: 20px;">{{ loggedUser }}</h6>
+        <small>{{ institution }} </small><br />
+        <small>PG20190099</small><br />
+      </div>
+      <div class="col-4 text-center wow zoomIn" style="margin-top: -30px;">
+        <apx-chart [series]="circleSeries[6]" [chart]="overallChartOptions" [plotOptions]="overallPlotOptions"
+          [stroke]="stroke" [fill]="circleFill[6]">
+        </apx-chart>
+        <p style="margin-top: -16px;">percentile</p>
+      </div>
+    </div>
+    <!-- Header row closed -->
+    <!-- Circle charts row start -->
+    <div class="row " style="padding: 5px;">
+      <div class="col-6 " style="margin-top: -75px;margin-left: -20px;">
+        <div class="row text-center">
+          <div class="col-6 wow  fadeInLeft " data-wow-duration="1s">
+            <apx-chart [series]="circleSeries[0]" [chart]="circleChartOptions" [plotOptions]="circleplotOptions"
+              [stroke]="stroke" [fill]="circleFill[0]"></apx-chart>
+            <p class="bold">Technical</p>
+          </div>
+          <div class="col-6 wow  fadeInLeft" style="margin-left: -50px;">
+            <apx-chart [series]="circleSeries[1]" [chart]="circleChartOptions" [plotOptions]="circleplotOptions"
+              [stroke]="stroke" [fill]="circleFill[1]"></apx-chart>
+            <p class="bold">Analytical</p>
+          </div>
+        </div>
+        <div class="row text-center" style="margin-top: -30px;">
+          <div class="col-6 wow  fadeInLeft">
+            <apx-chart [series]="circleSeries[2]" [chart]="circleChartOptions" [plotOptions]="circleplotOptions"
+              [stroke]="stroke" [fill]="circleFill[2]"></apx-chart>
+            <p class="bold">Personal</p>
+          </div>
+          <div class="col-6 wow  fadeInLeft" style="margin-left: -50px;">
+            <apx-chart [series]="circleSeries[3]" [chart]="circleChartOptions" [plotOptions]="circleplotOptions"
+              [stroke]="stroke" [fill]="circleFill[3]"></apx-chart>
+            <p class="bold">Delivery</p>
+          </div>
+        </div>
+        <div class="row text-center" style="margin-top: -30px;">
+          <div class="col-6 wow  fadeInLeft">
+            <apx-chart [series]="circleSeries[4]" [chart]="circleChartOptions" [plotOptions]="circleplotOptions"
+              [stroke]="stroke" [fill]="circleFill[4]"></apx-chart>
+            <p class="bold">Attendance</p>
+          </div>
+          <div class="col-6 wow  fadeInLeft" style="margin-left: -50px;">
+            <apx-chart [series]="circleSeries[5]" [chart]="circleChartOptions" [plotOptions]="circleplotOptions"
+              [stroke]="stroke" [fill]="circleFill[5]"></apx-chart>
+            <p class="bold">Academics</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 wow  fadeInRight" style="margin-top:10px ;">
+        <div class="row text-center " style="margin-left: 66px;">
+          <button class="scorebtn  mat-elevation-z0" mat-mini-fab
+            style="background-color:#26c58f ;"></button>&nbsp;&nbsp;
+          <span class="scoretext">
+            Strong > 79
+          </span>
+          <button class="scorebtn  mat-elevation-z0" mat-mini-fab
+            style="background-color:#d8a132 ;"></button>&nbsp;&nbsp;
+          <span class="scoretext">
+            Proficient 79 - 50
+          </span>
+          <button class="scorebtn  mat-elevation-z0" mat-mini-fab
+            style="background-color:#d95467 ;"></button>&nbsp;&nbsp; <span class="scoretext"> Weak < 50 </span>
+        </div>
+      </div>
+      <div class="col-6"></div>
+      <div class="col-6 lineBar wow  fadeInRight">
+        <apx-chart #stacked [series]="stackedSeries" [chart]="stackedChartOptions" [plotOptions]="stackedPlotOptions"
+          [colors]="['#a5a5a5', '#2689d6', '0000a5']" [dataLabels]="stackedDataLabels" [legend]="stackedLegend"
+          [fill]="stackedFill" [xaxis]="stackedXAxis" [tooltip]="stackedTootTip" [title]="{
+            text: 'Activity Graph (Hrs/Week)',
+            align: 'right',
+            floating: 'true',
+            offsetY: 6,
+            style: { fontSize: '12px' }
+          }">
+        </apx-chart>
+      </div>
+    </div>
+    <!-- Circle charts row closed -->
+    <!-- Bar charts row start -->
+    <div class="row barchart " style="margin-top:-18px;">
+      <div class="col wow  fadeInLeft">
+        <apx-chart #bar [series]="barSeries" [colors]="barcolors" [chart]="barChartOptions"
+          [plotOptions]="barplotOptions" [dataLabels]="{ enabled: false }" [xaxis]="barxaxis"
+          [annotations]="barAnnotations" [yaxis]="baryaxis" [tooltip]="barTooltip"></apx-chart>
+      </div>
+    </div>
+    <!-- Bar charts row closed -->
+    <!-- Footer row start -->
+    <div class="row " style="margin-top: -8px;border-top: 1px solid #949494 ">
+
+      <div class="col wow  fadeInLeft" style="font-size: 13px; margin-top: 8px;">
+        <div class="text-center" style="padding: 5px;font-size: 16px;">
+          <p style="color: #949494; margin-bottom: 10px;">
+            Powered by &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="https://rossum.io"><img src="assets/images/logo.png" height="38px" /></a>
+            &nbsp;&nbsp;&nbsp;&nbsp;<span> </span>
+            <span style="padding-left: 25px;color: #949494;">Version: 1.0.1</span>
+          </p>
+          <p style="color: #949494" >
+            &copy; Copyright {{ copyrightYear | date: "yyyy" }}
+            <strong>truequalify.com </strong>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Footer row ends -->
+

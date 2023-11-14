@@ -1,0 +1,63 @@
+#example-radio-group-label{
+    font-size: 13px;
+    font-weight: 600;
+    font-family: SourceSansPro-Regular,sans-serif;
+    color: #607d8b;
+}
+.example-full-width {
+    width: 92%;
+  }
+  .tq{
+      color: #982395;
+      font-family: 'Graphik';
+      font-size: 37px;
+  }
+  
+  
+  .container{
+    background: rgba(240, 242, 247, 0.37);  /* fallback for old browsers */
+   
+  }
+
+  ::ng-deep .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element {
+    // opacity: 0.5 !important;     /*click effect color change*/
+    background-color: #14B8B1 !important;
+}
+
+::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle {
+    background-color: #14B8B1!important;   /*inner circle color change*/
+
+    
+}
+
+::ng-deep.mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+   border-color:lightgray !important; /*outer ring color change*/
+  
+}
+:host ::ng-deep .mat-radio-container{
+    height: 13px;
+    width: 13px;
+  }
+  :host ::ng-deep .mat-radio-outer-circle{
+    height: 13px;
+    width: 13px;
+    border-width: 1.1px;
+  }
+
+  :host ::ng-deep .mat-radio-inner-circle{
+    height: 13px;
+    width: 13px;
+  }
+  :host ::ng-deep .mat-radio-button .mat-radio-ripple{
+    height: 26px; /*double of your required circle radius*/
+    width: 26px;  /*double of your required circle radius*/
+    left: calc(50% - 13px); /*'13px'-same as your required circle radius*/
+    top: calc(50% - 13px); /*'13px'-same as your required circle radius*/
+    border-radius: 50%;
+  }
+  
+  ::ng-deep .cdk-overlay-container {
+    // position: fixed;
+    // z-index: 1000;
+    background: #a9acafad !important;
+}

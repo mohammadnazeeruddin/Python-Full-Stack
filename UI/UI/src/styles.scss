@@ -1,0 +1,282 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { 
+    height: 100%; 
+    // color: white;
+}
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    height: 100%; 
+    // color: white;
+}
+
+@import '~font-awesome/scss/_variables.scss';
+$fa-font-path: "~font-awesome/fonts";
+@import '~font-awesome/scss/font-awesome.scss';
+
+.ng-dropdown-panel .ng-dropdown-panel-items .ng-option {
+    white-space: normal !important;
+}
+
+.material-icons {
+    font-family: 'Material Icons' !important;
+}
+
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+@font-face {
+    font-family: 'super comic';
+    src: url('assets/font/SuperComic.otf');
+}
+
+@import "assets/editor_styles/solarized.css"; 
+@import "assets/editor_styles/script.css"; 
+@import "assets/editor_styles/skulptide.css"; 
+@import "assets/editor_styles/interactive.css"; 
+
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+@import '~@angular/material/theming';
+
+@import "~prismjs/plugins/line-numbers/prism-line-numbers.css";
+
+@font-face {
+    font-family: 'DancingScript';
+    src: url('assets/font/Dancing_Script/static/DancingScript-Regular.ttf');
+}
+
+body {
+    // height: 1000px;
+    background: #fafafa;
+}
+
+// @font-face {
+//     font-family: 'Satisfy';
+//     src: url('assets/font/Satisfy/Satisfy-Regular.ttf');
+// }
+
+@font-face {
+    font-family: 'Segoe Pro Bold';
+    src: url('assets/font/SegoePro-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Segoe Pro Light';
+    src: url('assets/font/SegoePro-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Segoe Pro Regular';
+    src: url('assets/font/SegoePro-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Segoe Pro Semi Bold';
+    src: url('assets/font/SegoePro-Semibold.ttf');
+}
+
+@font-face {
+    font-family: 'Segoe Pro Light Italic';
+    src: url('assets/font/SegoePro-SemilightItalic.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins Light';
+    src: url('assets/font/poppins/Poppins-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins Bold';
+    src: url('assets/font/poppins/Poppins-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins Semibold';
+    src: url('assets/font/poppins/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins Regular';
+    src: url('assets/font/poppins/Poppins-Regular.ttf');
+}
+
+
+@font-face {
+    font-family: 'Roboto Light';
+    src: url('assets/font/roboto/Roboto-Light.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Medium';
+    src: url('assets/font/roboto/Roboto-Medium.ttf');
+}
+
+
+@font-face {
+    font-family: 'Roboto bold';
+    src: url('assets/font/roboto/Roboto-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'ShadowsIntoLight';
+    src: url('assets/font/ShadowsIntoLight.ttf');
+}
+
+@font-face {
+    font-family: "PT Sans Regular";
+    src: url('assets/font/PT_Sans/PTSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: "PT Sans Bold";
+    src: url('assets/font/PT_Sans/PTSans-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'Merienda-Regular';
+    src: url('assets/font/Merienda/Merienda-Regular.ttf')
+}
+
+@font-face {
+    font-family: 'SourceSansPro-Light';
+    src: url('assets/font/Source_Sans_Pro/SourceSansPro-Light.ttf')
+}
+
+@font-face {
+    font-family: 'SourceSansPro-Regular';
+    src: url('assets/font/Source_Sans_Pro/SourceSansPro-Regular.ttf')
+}
+
+@font-face {
+    font-family: 'SourceSansPro-Black';
+    src: url('assets/font/Source_Sans_Pro/SourceSansPro-Black.ttf')
+}
+
+@font-face {
+    font-family: 'SourceSansPro-Bold';
+    src: url('assets/font/Source_Sans_Pro/SourceSansPro-Bold.ttf')
+}
+
+@font-face {
+    font-family: 'BerkshireSwash-Regular';
+    src: url('assets/font/Berkshire_Swash/BerkshireSwash-Regular.ttf')
+}
+
+* {
+    // font-family: 'Roboto Regular';
+    font-family: 'SourceSansPro-Regular', sans-serif;
+}
+
+@font-face {
+    font-family: "graphik";
+    src: url('assets/font/graphik/GraphikSuper.otf');
+}
+
+@font-face {
+    font-family: 'AlfaSlabOne';
+    src: url('assets/font/Alfa_Slab_One/AlfaSlabOne-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Satisfy';
+    src: url('assets/font/Satisfy/Satisfy-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Circular';
+    src: url('assets/font/Circular\ Std\ Book.ttf');
+}
+
+@font-face {
+    font-family: 'anirb';
+    src: url('assets/font/anirb___.ttf');
+}
+
+@font-face {
+    font-family: 'anirm';
+    src: url('assets/font/anirm___.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto Regular';
+    src: url('assets/font/roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto thin';
+    src: url('assets/font/roboto/Roboto-Thin.ttf');
+}
+
+@font-face {
+    font-family: 'Consolas';
+    src: url('assets/font/Consolas.ttf');
+}
+
+// $custom-typography: mat-typography-config(
+//     $font-family: 'Segoe Pro Regular' !important 
+// );
+
+// @include mat-core($custom-typography);
+
+// * {
+//     font-family: 'Segoe Pro Regular' !important;
+// }
+
+
+@font-face {
+    font-family: 'CONSOLA';
+    src: url('assets/font/consola/CONSOLA.TTF');
+}
+
+@font-face {
+    font-family: 'CONSOLAB';
+    src: url('assets/font/consola/CONSOLAB.TTF');
+}
+
+@font-face {
+    font-family: 'Montserrat-Medium';
+    src: url('assets/font/montserra/Montserrat-Medium.ttf');
+}
+
+
+@font-face {
+    font-family: 'Inconsolata';
+    src: url('assets/font/Inconsolata/Inconsolata-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'InconsolataB';
+    src: url('assets/font/Inconsolata/Inconsolata-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'SourceCodeProBold';
+    src: url('assets/font/Source_Code_Pro/SourceCodePro-Bold.ttf');
+}
+
+@font-face {
+    font-family: 'SourceCodeProRegular';
+    src: url('assets/font/Source_Code_Pro/SourceCodePro-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'open_24_display_st';
+    src: url('assets/font/open_24_display_st/Open_24_Display_St.ttf');
+}
+
+.modal-backdrop {
+    position: initial; 
+    top: 0;
+    left: 0;
+    z-index: 1040;
+    width: 100vw;
+    height: 100vh;
+    background-color: #fafafa; 
+}
+
+.mat-drawer-container {
+    background:transparent;
+}
+

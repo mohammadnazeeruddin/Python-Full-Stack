@@ -1,0 +1,1181 @@
+<div class="side-code-editor mat-elevation-z3 d-none d-sm-none d-md-block">
+    <button class="d-flex justify-content-start code_side_button" id="editorkeys" (click)="code_side_event()" title="click here"
+        type="submit">
+        <span>
+            <mat-icon [ngStyle]="{color: editor_flag? '#19a209' : '#e91816'}" [innerText]="editor_flag?'keyboard_arrow_down' : 'keyboard_arrow_up'"
+                style="font-size: 26px; margin-left: 45px; margin-top: 10px;">
+            </mat-icon>
+        </span>
+    </button>
+    <div class="container container_code" #side_code_editor>
+        <iframe #iframe_code style="margin-top: -7px;" class="embed-responsive-item editor_iframe" src="assets/material_editor.html"></iframe>
+    </div>
+</div>
+
+<div class="container" style="max-width: 1200px; padding-left: 0px; padding-right: 0px;">
+    <div class="navbar-fixed-left-top" style="border-bottom: 1px solid #dddddd; border-left: 1px solid #dddddd;">
+        <div class="container" style="max-width: 1200px;">
+            <div class="d-none d-sm-none d-md-block">
+                <div class="row d-flex justify-content-center" style="min-height: 54px;">
+                    <div class="col-xl-3 col-lg-4 col-md-4 d-flex" style="margin-top: auto; margin-bottom: auto;"
+                        #side_nav *ngIf="chapters_list && chapters_list.length > 0">
+
+                        <!-- <div style="width: 100%;" class="d-flex"> -->
+                        <button mat-icon-button (click)="snav.toggle()">
+                            <mat-icon style="color: #777777; line-height: 19px;">menu</mat-icon>
+                        </button>
+                        <div class="back" style="margin: auto; ">
+                            <!-- <mat-card class="example-header-image mat-elevation-z2" [style.background-image]="image"
+                                [matMenuTriggerFor]="menu">
+                                <mat-card-header class="profile">
+                                    <div mat-card-avatar class="avatar">
+                                    </div>
+                                </mat-card-header>
+                            </mat-card> -->
+                            <!-- <mat-menu #menu="matMenu"
+                                style="padding-top: 0px !important; padding-bottom: 0px !important; margin: 0px !important;"> -->
+                            <button mat-button (click)="back()" matTooltip="Back" matTooltipPosition="right"
+                                aria-tooltip="Button that displays and hides a tooltip triggered by other buttons"
+                                style="padding:3px 5px;line-height: 25px;min-width: 0px;border-radius: 50px">
+                                <mat-icon style="vertical-align: middle">arrow_back</mat-icon>
+                            </button>
+                            <!-- </mat-menu> -->
+                        </div>
+                        <!-- <img src="assets/images/title/logoblackeye.png" height="24px"
+                            style="margin: auto; cursor: pointer;" [routerLink]="['/home']"> -->
+                        <button mat-button class="btn btn-primary mat-elevation-z1" style="height: 35px; line-height: 20px; margin: auto; color:#ffffff; background-color: #17a2b8;; border-radius: 4px; min-width: 64px; font-size: 14px"
+                            (click)="assign_task()">
+                            Assign Task
+                        </button>
+                        <div class="form-popup" #note_text style="display: none;">
+                            <textarea [(ngModel)]="take_notes" cols=50 rows=15 maxlength="2000" placeholder="take notes here..."
+                                style="background: #fdfcee; border-radius: 4px; padding: 15px; color: #444444; border: 1px solid #777777;"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-xl-9 col-lg-8 col-md-8" style="margin-top: auto; margin-bottom: auto; padding-right: 15px;">
+                        <div class="d-none d-sm-none d-md-block">
+                            <div width="100%" #pageNavBar class="row" *ngIf="pages_list && pages_list.length > 0">
+                                <div class="col-3 d-flex padding-custom">
+                                    <div>
+                                        <button mat-icon-button [hidden]="page_num <= 0" (click)="changePageFun(page_num - 1)"
+                                            style="white-space: nowrap;">
+                                            <mat-icon matTooltip="Go to previous page" class="arrow_backs" style="color: #777777;">skip_previous
+                                            </mat-icon>
+                                        </button>
+                                    </div>
+                                    <div style="overflow: hidden;" *ngIf="!(page_num <= 0)" (click)="changePageFun(page_num - 1)">
+                                        <!-- <span style="font-size: 12px;white-space: nowrap; display: block; color: #777777;">
+                                        PREV</span> -->
+                                        <span class="page-navigator">{{pages_list[page_num - 1]}}</span>
+                                    </div>
+                                    <!-- #2d86c9 -->
+                                </div>
+                                <!-- <div *ngIf="page_data[0]['embedded_url']!=''">
+                                    <img src="assets/images/videoicon.ico" width="30px">
+                                </div> -->
+                                <div class="col-md" style="display :inline-flex">
+                                    <button mat-button id="videoimg" (click)="video_img()" title="click here" type="submit">
+                                        <img *ngIf="page_data[0]['embedded_url']!=''" src="assets/images/videoicon.ico"
+                                            width="34px" height="34px" class="videoimg" style="margin:auto 10px">
+                                    </button>
+                                    <h5 class="d-flex justify-content-center page-title">
+                                        {{page_data[0]['data']}}</h5>
+                                </div>
+                                <div class="col-3 d-flex justify-content-end padding-custom">
+                                    <div style="overflow: hidden;" *ngIf="!(page_num == pages_list.length-1)" (click)="changePageFun(page_num + 1)">
+
+                                        <span class="page-navigator">{{pages_list[page_num + 1]}}</span>
+                                    </div>
+                                    <div>
+                                        <button mat-icon-button [hidden]="page_num == pages_list.length-1" (click)="changePageFun(page_num + 1)"
+                                            style="margin-right: 10px; white-space: nowrap;">
+                                            &nbsp;<mat-icon matTooltip="Go to next page" class="arrow_backs" style="color: #777777;">
+                                                skip_next</mat-icon>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- <div class="col-12"
+                                    style="max-width: 500px; margin-bottom: -8px; margin-top: 7px; margin-left: auto; margin-right: auto;">
+                                    <div class="row">
+                                        <div class="col-md d-flex justify-content-center"
+                                            *ngFor="let i of dots; let step_ind=index;"
+                                            style="margin-top: auto; margin-bottom: auto; padding-left: 0px; padding-right: 0px;">
+                                            <div [ngStyle]="{'width': page_num == step_ind? '18px': '9px', 'height': page_num == step_ind? '18px': '9px', 'line-height': '18px'}"
+                                                [innerText]="page_num == step_ind ? step_ind+1 : ''"
+                                                [matTooltip]="pages_list[step_ind] ? pages_list[step_ind]: ''"
+                                                class="circle-navigator" (click)="changePageFun(step_ind)">
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                <!-- <mat-step style="display: none !important;" *ngFor="let i of dots; let step_ind=index;" [completed]="step_ind < 5 ? true:false" [state]="'done'"> &#9679;-->
+                                <!-- [completed]="step_ind < 5 ? true:false" [state]="step_ind <= page_num ? 'done':''"-->
+                                <!-- </mat-step> -->
+                                <!-- <mat-horizontal-stepper [linear]="true" #stepper style="background: transparent; height: 20px;" *ngIf="dots.length > 1">
+                                    
+                                    <mat-step *ngFor="let i of dots; let step_ind=index;"  [completed]="step_ind+2 <= page_num ? true:false" [editable]="false">
+                                        <ng-template matStepLabel><span [matTooltip]="'hihihi'" style="margin-right: 10px;">&nbsp;</span></ng-template>
+                                    </mat-step>
+                                    </mat-horizontal-stepper> -->
+                                <!-- </div> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="d-block d-sm-block d-md-none">
+                <div class="row" style="min-height: 54px;" *ngIf="pages_list && pages_list.length > 0">
+                    <div class="col-2 d-flex justify-content-center" style="margin-top: auto; margin-bottom: auto; padding-left: 0px; padding-right: 0px;">
+                        <button mat-icon-button (click)="snav.toggle()">
+                            <mat-icon style="color: #777777;">menu</mat-icon>
+                        </button>
+                    </div>
+
+                    <div class="col-1" style="margin-top: auto; margin-bottom: auto; padding-left: 0px; padding-right: 0px;">
+                        <button mat-icon-button [hidden]="page_num <= 0" (click)="changePageFun(page_num - 1)">
+                            <mat-icon matTooltip="Go to previous page" class="arrow_backs" style="color: #777777;">
+                                skip_previous
+                            </mat-icon>
+                        </button>
+                    </div>
+                    <div class="col-6" style="margin-top: auto; margin-bottom: auto;">
+                        <h5 class="page-title-sm">
+                            <span class="page-navigator-sm">{{page_data[0]['data']}}</span></h5>
+                    </div>
+                    <div class="col-1 d-flex justify-content-end" style="margin-top: auto; margin-bottom: auto; padding-left: 0px; padding-right: 0px;">
+                        <button mat-icon-button [hidden]="page_num == pages_list.length-1" (click)="changePageFun(page_num + 1)">
+                            &nbsp;<mat-icon matTooltip="Go to next page" class="arrow_backs" style="color: #777777;">
+                                skip_next</mat-icon>
+                        </button>
+                    </div>
+                    <div class="col-2 mat-menu-content d-flex justify-content-center" style="margin-top: auto; margin-bottom: auto; padding-left: 0px; padding-right: 0px;">
+                        <mat-card class="example-header-image mat-elevation-z2" [style.background-image]="image"
+                            [matMenuTriggerFor]="menu">
+                            <mat-card-header class="profile">
+                                <div mat-card-avatar class="avatar">
+                                </div>
+                            </mat-card-header>
+                        </mat-card>
+                        <mat-menu #menu="matMenu" style="padding-top: 0px !important; padding-bottom: 0px !important; margin: 0px !important;">
+                            <button mat-menu-item (click)="signout()">
+                                <img src="assets/images/Logout.png" width="20px">&nbsp;&nbsp;<span>Logout</span>
+                            </button>
+                        </mat-menu>
+                        <!-- <img src="assets/images/title/logoblackeye.png" height="24px" style="cursor: pointer;"
+                            [routerLink]="['/home']"> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-sidenav-container [style.marginTop.px]="mobileQuery.matches ? 96 : 0">
+        <mat-sidenav class="side-nav" #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches"
+            opened>
+            <mat-nav-list>
+                <div *ngIf="group_id && ( tree_data!=null )&& flags">
+                    <div>
+                        <div class="d-flex">
+                            <div style="margin: auto">
+                                <h6 class="material-title" *ngIf="material_name">{{material_name}}</h6>
+                            </div>
+
+                            <button mat-button (click)="expand_all()" matTooltip="Expand all" matTooltipPosition="below"
+                                class="exp" style=" background-color: #17a2b8; ">
+                                <mat-icon style="color: white; font-size: 20px; vertical-align: sub;">add</mat-icon>
+                            </button>
+                            <button mat-button (click)="collapse_all()" matTooltip="Collapse all" matTooltipPosition="below"
+                                class="exp" style="color:#ffffff; background-color: #f36494;">
+                                <mat-icon style="color: white; font-size: 20px; vertical-align: sub;">remove</mat-icon>
+                            </button>
+                        </div>
+                        <!-- <button mat-button class="btn btn-primary mat-elevation-z1"
+                            style="height: 35px; line-height: 20px; margin: auto; color:#ffffff; background-color: #17a2b8;; border-radius: 4px; min-width: 64px; font-size: 14px"
+                            (click)="assign_task()">
+                            Assign Task
+                        </button> -->
+                    </div>
+                    <div class="container" style="cursor: pointer" *ngFor="let childitem of tree_data[0]['children']; let index=index;">
+                        <div style="display: inline-flex;width : 100%;">
+                            <p style="background: #fafafa; display: flex">
+                                <mat-checkbox *ngIf="!(group_id == 'none' ||group_id == 'undefined' )&& ( tree_data!=null )&& flags"
+                                    [checked]="childitem.isSelected" [disabled]="childitem.isAssigned" (change)="onChange(childitem, index, tree_data[0], $event, 1)"
+                                    style="vertical-align: -webkit-baseline-middle">
+                                </mat-checkbox>
+                                <span style="margin-top: auto; margin-bottom: auto;height: 16px;" *ngIf="group_id && group_id == 'none'">
+                                    <div style="font-size: 7px; width: 9px; height: 9px; border-radius: 50%; background-color: #fdf7f4; border: 1px solid #777777; text-align: center; line-height: 18px;">
+                                    </div>
+                                </span>
+                                <span (click)="chaps(material_id,childitem.name, childitem['_id'], group_id )" style="padding-left: 10px; 
+                                font-weight: bold ;vertical-align: middle; color: #555555 !important;">{{childitem.name}}</span>
+                            </p>
+
+                            <button mat-button (click)="expand(index)" style="top:10px;padding:3px 5px;line-height: 25px;min-width: 0px;border-radius: 50px">
+                                <mat-icon *ngIf="!flags[index]">keyboard_arrow_down</mat-icon>
+                                <mat-icon *ngIf="flags[index]">keyboard_arrow_up</mat-icon>
+
+                                <!-- (click)="chapter(material_id,childitem.name, childitem['_id'], group_id )" -->
+                            </button>
+                        </div>
+                        <ul *ngIf="flags[index]">
+                            <li *ngFor="let subchilditem of childitem.children; let i = index;">
+                                <p style="background: #fafafa;  display: flex">
+                                    <mat-checkbox *ngIf="!(group_id == 'none' ||group_id == 'undefined' )&& ( tree_data!=null )&& flags"
+                                        [checked]="subchilditem.isSelected" [disabled]="subchilditem.isAssigned"
+                                        (change)="onChange(childitem.children[i],i,childitem,$event,2)" style="vertical-align:-webkit-baseline-middle">
+                                    </mat-checkbox>
+                                    <span style="margin-top: auto; margin-bottom: auto; height: 16px" *ngIf="group_id && group_id == 'none'">
+                                        <div style="font-size: 7px; width: 9px; height: 9px; border-radius: 50%; background-color: #fdf7f4; border: 1px solid #777777; text-align: center; line-height: 18px;">
+                                        </div>
+                                    </span>
+                                    <span style="padding-left: 10px; margin-top: -4px; vertical-align: middle;">
+                                        {{subchilditem.name}}</span>
+                                </p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- <div *ngIf="group_id && (group_id == 'none' || group_id == 'undefined')">
+                    <h6 class="material-title" *ngIf="material_name">{{material_name}}</h6>
+                </div> -->
+                <!-- <div *ngIf="group_id && group_id == 'none'">
+                    <div class="hand py-2 pl-3 pg-link" style="font-size: 16px; color: #444444;"
+                        routerLinkActive="pg-active-link"
+                        [routerLink]="['/trainer/material', material_id, chapter['chapter_url'], chapter['_id'],group_id]"
+                        *ngFor="let chapter of chapters_list; let i= index;">
+                        <div class="d-flex">
+                            <span style="margin-top: auto; margin-bottom: auto;">
+                                <div
+                                    style="font-size: 7px; width: 9px; height: 9px; border-radius: 50%; background-color: #fdf7f4; border: 1px solid #777777; text-align: center; line-height: 18px;">
+                                </div>
+                            </span>
+                            <span style="padding-left: 15px;">{{chapter['chapter_name']}}</span></div>
+                    </div>
+                </div> -->
+            </mat-nav-list>
+        </mat-sidenav>
+        <mat-sidenav-content>
+            <div class="row no-gutters" style="margin-bottom: 40px;">
+                <div class="col-md-12" style="margin-bottom: -16px;" #material_div>
+                    <div *ngIf="spinner" [ngStyle]="{'margin-top': mobileQuery.matches ? '0px': '120px'}">
+                        <p class="d-flex justify-content-center">Loading...</p>
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-grow spinner-grow-sm m-1 text-primary" style="width: 1.3rem; height: 1.3rem;"
+                                role="status" aria-hidden="false">
+                            </div>
+                            <div class="spinner-grow spinner-grow-sm m-1 text-success" style="width: 1.3rem; height: 1.3rem;"
+                                role="status" aria-hidden="false">
+                            </div>
+                            <div class="spinner-grow spinner-grow-sm m-1 text-warning" role="status" style="width: 1.3rem; height: 1.3rem;">
+                            </div>
+                            <div class="spinner-grow spinner-grow-sm m-1 text-info" style="width: 1.3rem; height: 1.3rem;"
+                                role="status" aria-hidden="false">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-none d-sm-none d-md-block">
+                        <div class="row no-gutters d-flex justify-content-center" *ngIf="pages_list && pages_list.length > 0"
+                            id="video_id" class="nav_video">
+                            <div class="col-lg-12 col-md-12" style="max-width: 768px;">
+                                <!-- <div class="d-flex justify-content-center">
+                                    <h1 [innerHTML]="data['blog_data'][0]['data']"
+                                        style="padding-bottom: 15px; font-size: 36px; font-family: Pt Sans Bold !important; letter-spacing: 2.2px; color: #424242;">
+                                    </h1>
+                                </!-->
+                                <!-- <iframe src="https://player.vimeo.com/video/393968602" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen=""></iframe> -->
+                                <div style="margin-bottom: 0px;" #body_margin></div>
+                                <div width="100%" *ngFor="let record of page_data; let ind = index;">
+
+                                    <div class="fixed-video">
+                                        <p class="container_code2" #videoimg *ngIf="record['name']== 'page' && video_imgs"
+                                            [innerHTML]="record['embedded_url']" style="margin-top: 10px; margin-bottom: 15px; line-height: 27px;
+                                        word-spacing: 0px; font-size: 18px; letter-spacing: normal; vertical-align: baseline;"></p>
+                                    </div>
+
+
+                                    <!--  To display text or paragraph -->
+                                    <p *ngIf="record['name']== 'text'" [innerHTML]="record['data']" style="margin-top: 15px; margin-bottom: 15px; line-height: 27px; word-spacing: 0px; font-size: 18px; letter-spacing: normal; vertical-align: baseline;">
+                                    </p>
+                                    <!-- To display Note -->
+                                    <div *ngIf="record['name']== 'note'" class="matcard1" style="margin-bottom: 15px; margin-top: 15px; background-color: #e8faed;">
+                                        <!-- fdf7f4 -->
+                                        <div class="python-code-header d-flex" style="background-color: #e8faed; height: 47px; padding-top: 7px;">
+                                            <span>
+                                                <mat-icon fontSet="material-icons-outlined" style="font-size: 22px; padding-left: 15px; padding-top: 5px;">
+                                                    notes
+                                                </mat-icon>
+                                            </span><span style="font-family: 'SourceSansPro-Bold'; font-size: medium; line-height: 30px; color: #666666;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note </span>
+                                        </div>
+                                        <div>
+                                            <p *ngIf="record['name']== 'note'" style="font-size: 16px; margin-bottom: 0px; padding: 0px 15px 10px 15px;"
+                                                [innerHtml]="record['data'] ">
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- To display Tip -->
+                                    <div *ngIf="record['name']== 'tip'" class="matcard1" style="margin-bottom: 15px; margin-top: 15px; background-color: #fdfcee;">
+                                        <div class="python-code-header d-flex" style="background-color: #fdfcee; height: 47px; padding-top: 7px;">
+                                            <mat-icon fontSet="material-icons-outlined" style="padding-left: 15px; padding-top: 3px;">wb_incandescent
+                                            </mat-icon>
+                                            <small style="font-family: 'SourceSansPro-Bold'; font-size: medium; line-height: 30px; color: #666666;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tip </small>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 16px; margin-bottom: 0px; padding: 0px 15px 10px 15px;"
+                                                [innerHtml]="record['data']"></p>
+                                        </div>
+                                        <!-- #fdfcee -->
+
+                                    </div>
+                                    <!-- To display Did You Know -->
+                                    <div *ngIf="record['name']== 'did_you'" class="matcard1" style="margin-bottom: 15px; margin-top: 15px; background: #fdfcee;">
+                                        <div class="python-code-header d-flex" style="background: #fdfcee; height: 47px; padding-top: 7px;">
+                                            <mat-icon fontSet="material-icons-outlined" style="padding-left: 15px; padding-top: 3px;">wb_sunny
+                                            </mat-icon> <small style="font-family: 'SourceSansPro-Bold'; font-size: medium; line-height: 30px; color: #666666;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Did you know? </small>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 16px; margin-bottom: 0px; padding: 0px 15px 10px 15px;"
+                                                [innerHtml]="record['data']"></p>
+                                        </div>
+                                    </div>
+                                    <!-- To display Important -->
+                                    <div *ngIf="record['name']== 'important'" class="matcard1" style="margin-bottom: 15px; margin-top: 15px; background: #fdf7f4;">
+                                        <!-- e5f1f9 -->
+                                        <div class="python-code-header d-flex" style="background: #fdf7f4; height: 47px; padding-top: 7px;">
+                                            <mat-icon style="padding-left: 15px; padding-top: 3px;">star_border
+                                            </mat-icon><small style="font-family: 'SourceSansPro-Bold'; font-size: medium; line-height: 30px; color: #666666;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Important </small>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 16px; margin-bottom: 0px; padding: 0px 15px 10px 15px;"
+                                                [innerHtml]="record['data']"></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- To display image -->
+                                    <div class="d-none d-sm-none d-md-block">
+                                        <div *ngIf="record['name'] == 'image'" class="d-flex justify-content-center">
+                                            <img [ngStyle]="{'max-width': record['size']? (record['size'] > 770 ? '100%': record['size']+'px'): '100%'}"
+                                                class="postImage mat-elevation-z1" [src]="record['data']">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- To display Subtitle -->
+                                        <div class="col-lg-12" *ngIf="record['name']== 'subtitle'">
+                                            <h5 [innerHTML]="record['data']" style="color: #666666 !important; margin-bottom: 10px; margin-top: 15px; font-family: 'SourceSansPro-Bold' !important;">
+                                            </h5>
+                                        </div>
+
+                                        <!-- To display code  -->
+                                        <div class="col-lg-12" style="margin-top: 15px; margin-bottom: 15px;" *ngIf="record['name']=='code' && record['data']">
+                                            <div style="border-radius: 4px;" *ngIf="record['class'] == 'language-python'">
+                                                <div class="card-header python-code-header" style="border: 1px solid #d8d8d8;">
+                                                    <small style="padding-left: 9px; font-size: medium; color: #3d3d3d;"></small>
+                                                    <button (click)="code_editor(ind, record['data']);" title="click here"
+                                                        mat-raised-button *ngIf="record['class'] == 'language-python'"
+                                                        style="float: right; font-family: PT sans regular; height: 30px; background: transparent; box-shadow: none;;
+                                                        line-height: 30px;">
+                                                        <!-- background-color: #5683B7;  -->
+                                                        <div style="margin-top: -5px;">
+
+                                                            <span [innerText]="record['show'] && record['class'] == 'language-python' ? 'close' : 'editor'"></span><span>
+                                                                &nbsp;&nbsp;
+                                                                <!-- <img src="../assets/images/run.svg" height="14px" width="14px"> -->
+                                                            </span>
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                                <div class="matcard">
+                                                    <pre [ngClass]="record['class']" class="line-numbers" style="margin-bottom: 0px !important;"
+                                                        *ngIf="record['class'] == 'language-python'">
+
+                                                        <code style=" overflow-y: scroll;">
+                                                            {{record['data']}}
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                            <div style=" border-radius: 4px; background-color: #fafafa;" *ngIf="record['class'] == 'language-python shell'">
+                                                <div class="card-header python-code-header" style="border: 1px solid #d8d8d8;">
+                                                    <small style="padding-left: 9px; font-size: medium; line-height: 30px;">>>></small>
+                                                    <button (click)="material_shell(ind,record['data']);" title="click here"
+                                                        mat-raised-button *ngIf="record['class'] == 'language-python shell'"
+                                                        style="float: right; font-family: PT sans regular; box-shadow: none; background: none;
+                                                    line-height: 30px;">
+                                                        <div style="margin-top: -3px;">
+                                                            <span [innerText]="record['show'] && record['class'] == 'language-python shell' ? 'close' : 'shell'"></span>
+                                                            &nbsp;&nbsp;
+                                                            <!-- <span><img src="../assets/images/run.svg" height="14px"
+                                                                    width="14px"></span> -->
+                                                        </div>
+                                                    </button>
+                                                </div>
+                                                <div class="matcard">
+                                                    <pre [ngClass]="record['class']" class="line-numbers" style="background-color: #fafafa; margin-bottom: 0px !important;"
+                                                        *ngIf="record['class'] == 'language-python shell'">
+
+                                                        <code style=" overflow-y: scroll; background-color: #fafafa;">
+                                                            {{record['data']}}
+                                                        </code>
+
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                            <div style="border-radius: 4px;" *ngIf="record['class'] == 'language-python(non exe)'">
+                                                <div class="card-header python-code-header" style="border: 1px solid #d8d8d8;">
+                                                    <small style="padding-left: 9px;font-size: medium;color: #3d3d3d;">
+                                                    </small>
+                                                </div>
+                                                <div class="matcard">
+                                                    <pre [ngClass]="record['class']" class="line-numbers" style="margin-bottom: 0px !important;"
+                                                        *ngIf="record['class'] == 'language-python(non exe)'">
+
+                                                        <code style=" overflow-y: scroll;">
+                                                            {{record['data']}}
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                            <div style=" margin-top: -30px; " *ngIf="record['language'] == 'output >>'">
+                                                <!-- <div class="card-header"
+                                                    style="height: 30px; border-radius: 0px !important; padding: 0px; background-color: #dff3e4; border: 1px solid #d8d8d8;">
+                                                    <small style="padding-left: 10px;font-size: medium;">
+                                                        <ul
+                                                            style="margin-bottom:-10px; margin-left: -49px; display: inline-flex;">
+                                                            <p class="circle" style="float:right; line-height: 30px;">></p>
+                                                        </ul>
+                                                    </small>
+                                                </div> -->
+
+                                                <pre [ngClass]="'language-output >>'" style="background-color: #eeeeee; padding-left: 20px; margin-bottom: 0px !important; border: 1px solid #d8d8d8; border-top: none;"
+                                                    *ngIf="record['language'] == 'output >>'">
+                                                    <code style=" overflow-y: scroll; background: transparent; color: #555555;">
+                                                        {{record['data']}}
+                                                    </code>
+                                                </pre>
+                                            </div>
+                                            <!-- This is the material code Editor blog -->
+                                            <!-- <div id="container" class="container"
+                                                *ngIf="record['show'] && record['class'] == 'language-python'">
+                                                <iframe style="margin-top: -20px;"
+                                                    class="embed-responsive-item editor_iframe"
+                                                    src="assets/material_code_editor_blog.html"></iframe>
+                                            </div> -->
+                                            <div id="container_shell" class="container" *ngIf="record['show'] && record['class'] == 'language-python shell'">
+                                                <iframe style="margin-top: -20px;" class="embed-responsive-item iframe_shell"
+                                                    src="assets/material_shell.html"></iframe>
+                                            </div>
+                                            <div *ngIf="record['class'] == 'language-bash' && record['language'] != 'output >>' "
+                                                style="margin-top: 10px; margin-bottom: 10px;">
+                                                <div class="card-header" style="padding: 0px;background-color: #dbebf7;border: 1px; border: 1px solid #d8d8d8; border-radius: 5px 5px 0px 0px; height: 30px;">
+                                                    <small style="padding-left: 9px;font-size: medium;color: #3d3d3d; line-height: 30px;">$</small>
+                                                </div>
+                                                <div *ngIf="record['class'] == 'language-bash'" class="matcard">
+                                                    <!-- <b>output:</b>  #e2e2e2; code-->
+                                                    <pre [ngClass]="record['class']" *ngIf="record['class'] == 'language-bash'"
+                                                        style="margin-bottom: 0px !important">
+                                                        <code style=" overflow-y: scroll;">
+                                                            {{record['data']}} 
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                                <!-- <div *ngIf="record['class'] == 'language-bash'" style="overflow-y: scroll;">
+                                                    {{record['data']}}
+                                                </div> -->
+                                            </div>
+                                        </div>
+
+                                        <!-- To display Take Challenge -->
+                                        <div class="col-lg-12" *ngIf="record['name']== 'challenge'" style="margin-top: 15px; margin-bottom: 15px;">
+                                            <div style="border: 1px solid #d8d8d8; padding: 20px; line-height: 36px; border-radius: 4px;">
+                                                {{record['question_tag']}}
+                                                <button mat-raised-button style="float: right; border-radius: 10px; background: #f7eefd;"
+                                                    (click)="openChallengeDialog('challenge', record)">Try
+                                                    it</button>
+                                            </div>
+                                        </div>
+
+                                        <!-- To display Syntax -->
+                                        <div class="col-lg-12" *ngIf="record['name']== 'syntax'" style="margin-top: 15px; margin-bottom: 15px;">
+                                            <div style="border-radius: 4px;" *ngIf="record['class'] == 'language-python'">
+                                                <div style="background: #fafafa;">
+                                                    <small style="font-family: 'SourceSansPro-Bold'; font-size: medium; padding: 0px 0px 30px 15px; color: #3d3d3d;">&lt;&#47;&gt;&nbsp;
+                                                        Syntax</small>
+                                                </div>
+                                                <div>
+                                                    <pre [ngClass]="record['class']" style="margin-bottom: 0px !important;"
+                                                        *ngIf="record['class'] == 'language-python'">
+                                                        <code style="overflow-y: scroll;">
+                                                            {{record['data']}}
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- To display quiz -->
+                                        <div class="col-lg-12" style="margin-top: 20px;" *ngIf="record['name'] == 'mcq'">
+                                            <div class="row" style="margin-left: 0px !important; margin-right: 0px !important;">
+                                                <div class="col-12" style="padding: 0px !important" *ngIf="mcq_result[ind] == null">
+                                                    <div *ngIf="record['questions'].length > 0" [ngClass]="(flag==true)?'blurClass': none">
+                                                        <mat-card class="col col-12" style="border-radius: 5px 5px 0px 0px; text-align: center">
+                                                            <div style="display: inline-flex;" *ngFor="let que of record['questions']; let i=index;">
+                                                                <button mat-mini-fab class="fabs" (click)="selectQuestion(ind, i+1)"
+                                                                    [style.background-color]="que.color">
+                                                                    {{i+1}}
+                                                                </button>
+                                                            </div>
+                                                        </mat-card>
+                                                        <div *ngFor="let que of record['questions']; let i=index;">
+                                                            <div *ngIf="selectedIndex[ind] == i+1">
+                                                                <mat-card style="padding: 0px !important; border-radius: 5px; border: 1px solid rgb(231, 231, 231);"
+                                                                    class="mat-elevation-z1">
+                                                                    <mat-card-content>
+                                                                        <div class="ques1 d-flex" style="border-bottom: 1px solid rgb(231, 231, 231);">
+                                                                            <div class="quest1">
+                                                                                {{i+1}}.&nbsp;{{que['question']}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div *ngIf="que.code" style="border-bottom: 1px solid rgb(231, 231, 231);">
+                                                                            <pre class="language-python line-numbers"
+                                                                                style="margin-top: 0px; margin-bottom: 0px; padding-left: 70px !important; max-height: 237px; overflow-y: auto;">
+                                                                        <code style="font-size: 16px !important;">
+                                                                            {{que.code}}
+                                                                        </code>
+                                                                    </pre>
+                                                                        </div>
+                                                                        <div class="scrolls">
+                                                                            <label class="example-radio-group"></label>
+                                                                            <section class="section" style="margin-left:15px !important"
+                                                                                *ngFor="let s of que.options; let opIn=index;">
+                                                                                <mat-checkbox class="example-margin"
+                                                                                    [checked]='s.checked' (change)="onChangeQuestion(s,$event.checked, que['number'], i, opIn, ind)"
+                                                                                    [value]="s.checked">
+                                                                                    <div *ngFor="let x of s |keyvalue">
+                                                                                        <div style="white-space: pre-line; font-size:16px !important; letter-spacing: 0.3px;"
+                                                                                            *ngIf="x.key.length <=1">
+                                                                                            &nbsp;{{x.value}}
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </mat-checkbox>
+                                                                            </section>
+                                                                        </div>
+                                                                    </mat-card-content>
+                                                                </mat-card>
+                                                                <mat-card-actions>
+                                                                    <div style="display: inline-flex; width: 100%;">
+                                                                        <button mat-mini-fab class="lefts" style="margin-left: auto;"
+                                                                            [disabled]="i== 0" (click)="backf(ind, i, que['number'])">
+                                                                            <mat-icon class="arrow_backs">
+                                                                                arrow_back
+                                                                            </mat-icon>
+                                                                        </button>
+                                                                        <button mat-mini-fab class="lefts" style="margin-right: auto;"
+                                                                            [disabled]="i == record['questions'].length-1"
+                                                                            (click)="nextf(ind, i, que['number'])">
+                                                                            <mat-icon class="arrow_backs">
+                                                                                arrow_forward
+                                                                            </mat-icon>
+                                                                        </button>
+                                                                        <button mat-raised-button style="min-width: 110px; margin-right: 40px;"
+                                                                            (click)="submit(ind)" [hidden]="selectedIndex[ind] != record['questions'].length ">
+                                                                            SUBMIT
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- <div
+                                                                        style="margin-top: 12px; margin-left:auto; margin-right:auto">
+                                                                        
+                                                                    </div> -->
+                                                                </mat-card-actions>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-12 child mat-elevation-z8" *ngIf="flag">
+                                                    <div class="txt">
+                                                        <h4 class="strttext">Quick Test</h4>
+                                                        <button mat-raised-button (click)="start_quiz()" class="strt">Start
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <!-- <ng-template cdk-portal #overlayTemplate="cdkPortal"> -->
+
+                                                <!-- </ng-template> -->
+                                                <!-- <h3>Overlay CDK Portal</h3>
+                                                        <p>Portals in templates in portals in templates</p> -->
+
+                                                <div class="col-12" *ngIf="mcq_result[ind]" style="padding: 0px !important"
+                                                    class="parent">
+                                                    <!-- <div class="col-12" style="padding: 0px !important"> -->
+                                                    <div *ngIf="record['questions'].length > 0" [ngClass]="(flag1==true)?'blurClass': none">
+                                                        <mat-card class="col col-12" style="border-radius: 5px 5px 0px 0px; text-align: center"
+                                                            *ngIf="mcq_result[ind]">
+                                                            <div style="display: inline-flex;" *ngFor="let que of record['questions']; let i=index;">
+                                                                <button mat-mini-fab class="fabs" (click)="selectQuestion1(ind, i+1)"
+                                                                    [style.background-color]="que.color">
+                                                                    {{i+1}}
+                                                                </button>
+                                                            </div>
+                                                        </mat-card>
+                                                        <div *ngFor="let que of record['questions']; let i=index;">
+                                                            <div *ngIf="selectedIndex[ind] == i+1">
+                                                                <mat-card style="padding: 0px !important; border-radius: 0px 0px 5px 5px; border: 1px solid rgb(231, 231, 231);"
+                                                                    class="mat-elevation-z1">
+                                                                    <mat-card-content>
+                                                                        <div class="ques1 d-flex" style="border-bottom: 1px solid rgb(231, 231, 231);">
+                                                                            <div class="quest1">
+                                                                                {{i+1}}.&nbsp;{{que['question']}}
+                                                                            </div>
+                                                                        </div>
+                                                                        <div *ngIf="que.code" style="border-bottom: 1px solid rgb(231, 231, 231);">
+                                                                            <pre class="language-python line-numbers"
+                                                                                style="margin-top: 0px; margin-bottom: 0px; padding-left: 70px !important; max-height: 237px; overflow-y: auto;">
+                                                                            <code style="font-size: 16px !important;">
+                                                                                {{que.code}}
+                                                                            </code>
+                                                                        </pre>
+                                                                        </div>
+                                                                        <div class="scrolls">
+                                                                            <label class="example-radio-group"></label>
+                                                                            <section class="section" style="margin-left:15px !important"
+                                                                                *ngFor="let s of que.options; let opIn=index;">
+                                                                                <mat-checkbox class="example-margin"
+                                                                                    [checked]='s.checked' (change)="onChangeQuestion(s,$event.checked, que['number'], i, opIn, ind)"
+                                                                                    [value]="s.checked" [disabled]='true'>
+                                                                                    <div *ngFor="let x of s |keyvalue"
+                                                                                        style=" display: flex;">
+                                                                                        <!-- {{s}}  {{s.length}}ssss
+                                                                                           {{x}} {{x.length}}xxxx -->
+                                                                                        <div style="white-space: pre-line; font-size:16px !important; letter-spacing: 0.3px;"
+                                                                                            *ngIf="x.key.length<7; else elseBlock;"
+                                                                                            style=" display: flex;">
+                                                                                            &nbsp;{{x.value}}
+                                                                                        </div>
+                                                                                        <ng-template #elseBlock style=" display: flex;">
+                                                                                            <!-- {{x.key.length}} x.key.length
+                                                                                                    {{x.correct_ans}}  x.correct_ans -->
+                                                                                            <div *ngIf="x.key.length>=10"
+                                                                                                style="display:inline-flex">
+                                                                                                <!-- {{x.value }} -->
+                                                                                                <div *ngIf="x.value  == true">
+                                                                                                    <mat-icon class="correct"
+                                                                                                        style="color:#56B05C; margin-left: 10px; display: flex;">
+                                                                                                        check_circle
+                                                                                                    </mat-icon>
+                                                                                                </div>
+                                                                                                <div *ngIf="x.value  == false"
+                                                                                                    style="display: inline-flex;">
+                                                                                                    <!-- <span> -->
+                                                                                                    <mat-icon class="wrong"
+                                                                                                        style="color: red;  margin-left: 10px; display: flex;">
+                                                                                                        cancel
+                                                                                                    </mat-icon>
+                                                                                                    <!-- </span> -->
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <!-- <span [ngClass]="(x.correct_ans  == true)? 'correct': 'wrong'"> hii</span> </div> -->
+                                                                                        </ng-template>
+                                                                                    </div>
+                                                                                </mat-checkbox>
+                                                                            </section>
+                                                                        </div>
+                                                                    </mat-card-content>
+                                                                </mat-card>
+                                                                <mat-card-actions>
+                                                                    <div style="display: inline-flex; width: 100%;">
+                                                                        <button mat-mini-fab class="lefts" style="margin-left: auto;"
+                                                                            [disabled]="i== 0" (click)="backf1(ind, i, que['number'])">
+                                                                            <mat-icon class="arrow_backs">
+                                                                                arrow_back
+                                                                            </mat-icon>
+                                                                        </button>
+                                                                        <button mat-mini-fab class="lefts" style="margin-right: auto;"
+                                                                            [disabled]="i == record['questions'].length-1"
+                                                                            (click)="nextf1(ind, i, que['number'])">
+                                                                            <mat-icon class="arrow_backs">
+                                                                                arrow_forward
+                                                                            </mat-icon>
+                                                                        </button>
+                                                                        <button mat-raised-button style="min-width: 110px; margin-right: 40px; border-radius: 25px;"
+                                                                            (click)="ok(ind)" [hidden]="selectedIndex[ind] != record['questions'].length ">
+                                                                            ok
+                                                                        </button>
+                                                                    </div>
+                                                                    <!-- <div
+                                                                            style="margin-top: 12px; margin-left:auto; margin-right:auto">
+                                                                            
+                                                                        </div> -->
+                                                                </mat-card-actions>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class=" col col-12 child" *ngIf="flag1==true && mcq_result[ind]">
+                                                    <!-- <div class="col-12 child" *ngIf="flag"> -->
+                                                    <div class="txt">
+                                                        <!-- <h4 class="strttext">Start Quiz</h4>
+                                                                        <button mat-raised-button (click)="start_quiz()" class="strt">Start
+                                                                            Quiz</button>
+                                                                    </div>
+                                                                </div> -->
+                                                        <!-- <mat-card 
+                                                            style="width: 100%;">
+                                                            <mat-card-content style="text-align: center"> -->
+                                                        <!-- <div *ngIf="mcq_result[ind].percent<50">
+                                                                <h5 style="display: inline-flex; color: #317CAE; margin-top: 30px;">
+                                                                    Try Again</h5>
+                                                            </div><br> -->
+                                                        <!-- <div *ngIf="mcq_result[ind].percent<50">
+                                                                    <h4 style="display: inline-flex;"><code style="color: #317CAE;"><q><i>Failure is a lesson learned. Success is a lesson applied.</i></q></code>
+                                                                    </h4>
+                                                                </div><br> -->
+
+                                                        <!-- <div *ngIf="mcq_result[ind].percent>=50">
+                                                                <h5 style="display: inline-flex">
+                                                                    <code style=" color: #317CAE; font-weight: bolder;font-size: 26px;">Congratulations!</code>
+                                                                </h5> -->
+                                                        <!-- </div> -->
+
+                                                        <div *ngIf="mcq_result[ind].Unanswered == 0 && mcq_result[ind].percent== 100"
+                                                            style="margin-top: -10px">
+                                                            <h5 style="display: inline-flex">
+                                                                <code style=" color: #ffffff; font-weight: bolder;font-size: 26px;">Congratulations!</code>
+                                                            </h5>
+                                                        </div>
+                                                        <div *ngIf="mcq_result[ind].Unanswered == 0 && mcq_result[ind].percent<=50"
+                                                            style="margin-top: -10px">
+                                                            <h5 style="display: inline-flex">
+                                                                <code style=" color: #ffffff; font-weight: bolder;font-size: 26px;">That's OK! Try again...</code>
+                                                            </h5>
+                                                        </div>
+                                                        <div *ngIf="mcq_result[ind].Unanswered == 0  && mcq_result[ind].percent>50&&mcq_result[ind].percent<100"
+                                                            style="margin-top: -10px">
+                                                            <h5 style="display: inline-flex">
+                                                                <code style=" color: #ffffff; font-weight: bolder;font-size: 26px;">Good Attempt!</code>
+                                                            </h5>
+                                                        </div>
+                                                        <div *ngIf="mcq_result[ind].Unanswered == mcq_result[ind].len"
+                                                            style="margin-top: -10px">
+                                                            <h5 style="display: inline-flex">
+                                                                <code style=" color: #ffffff; font-weight: bolder;font-size: 26px;">That's OK! Try again...</code>
+                                                            </h5>
+                                                        </div>
+                                                        <div *ngIf="mcq_result[ind].Unanswered >0 && mcq_result[ind].Unanswered < mcq_result[ind].len && mcq_result[ind].percent>50"
+                                                            style="margin-top: -10px">
+                                                            <h5 style="display: inline-flex">
+                                                                <code style=" color: #ffffff; font-weight: bolder;font-size: 26px;">Good Attempt!</code>
+                                                            </h5>
+                                                        </div>
+                                                        <div *ngIf="mcq_result[ind].Unanswered >0 && mcq_result[ind].Unanswered < mcq_result[ind].len && mcq_result[ind].percent<=50"
+                                                            style="margin-top: -10px">
+                                                            <h5 style="display: inline-flex">
+                                                                <code style=" color: #ffffff; font-weight: bolder;font-size: 26px;">That's OK! Try again...</code>
+                                                            </h5>
+                                                        </div>
+
+
+
+                                                        <h6 style="color: white"><code style="color: white"><b style="color: white;
+                                                                font-weight: 900;">{{mcq_result[ind].correctans}}</b></code>
+                                                            correct out
+                                                            <code style="color: white"><b style="color: white;
+                                                                    font-weight: 900;">{{mcq_result[ind].len}}</b></code>
+                                                            questions
+                                                            with <code style="color: white"><b style="color: white;
+                                                                    font-weight: 900;">{{mcq_result[ind].percent}}%</b>.</code>
+                                                        </h6>
+                                                        <div *ngIf="mcq_result[ind].Unanswered==0 " style="display:inline-flex;">
+                                                            <h6 style="color: white">You have attempted all the
+                                                                questions</h6>
+                                                        </div>
+                                                        <div *ngIf="mcq_result[ind].Unanswered!=0" style="display:inline-flex;">
+                                                            <h6 style="color: white">You haven't attempted
+                                                                <code style="color: white"><b style="color: white;
+                                                                        font-weight: 900;">{{mcq_result[ind].Unanswered}}</b></code>
+                                                                questions. </h6><br>
+                                                        </div><br>
+
+                                                        <button mat-raised-button (click)="Review()" class="strt" style="margin-top: 1rem;">Review</button>
+                                                        <!-- <br><button mat-raised-button (click)="back()">Go to Homepage</button> -->
+                                                        <!-- </mat-card-content>
+                                                        </mat-card> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+                    <!-- For small screens -->
+                    <div class="d-block d-sm-block d-md-none">
+                        <div class="row no-gutters" style=" padding-top: 30px; padding-left: 15px; padding-right: 15px;">
+                            <div class="col-lg-12" *ngIf="pages_list && pages_list.length > 0">
+                                <div width="100%" *ngFor="let record of page_data; let main_ind=index;">
+
+                                    <!-- To display Page Title -->
+                                    <div *ngIf="record['name']== 'page'" class="d-block d-sm-none">
+                                        <h4 [innerHTML]="record['data']" style="color: #607D8B; font-family: 'SourceSansPro-Bold' !important;">
+                                        </h4>
+                                    </div>
+
+                                    <!--  To display text or paragraph -->
+                                    <p *ngIf="record['name']== 'text'" [innerHTML]="record['data']" style="margin-bottom: 10px; text-align: justify;"></p>
+
+                                    <!-- To display Note -->
+                                    <div *ngIf="record['name']== 'note'" class="matcard1" style="margin-bottom: 15px; margin-top: 15px; background-color: #e8faed;">
+                                        <!-- fdf7f4 -->
+                                        <div class="python-code-header d-flex" style="background-color: #e8faed; height: 47px; padding-top: 7px;">
+                                            <span>
+                                                <mat-icon fontSet="material-icons-outlined" style="font-size: 22px; padding-left: 15px; padding-top: 5px;">
+                                                    notes
+                                                </mat-icon>
+                                            </span><span style="font-family: 'SourceSansPro-Bold'; font-size: medium; line-height: 30px; color: #666666;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Note </span>
+                                        </div>
+                                        <div>
+                                            <p *ngIf="record['name']== 'note'" style="font-size: 16px; margin-bottom: 0px; padding: 0px 15px 10px 15px;"
+                                                [innerHtml]="record['data'] ">
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <!-- To display Tip -->
+                                    <div *ngIf="record['name']== 'tip'" class="matcard1" style="margin-bottom: 15px; margin-top: 15px; background-color: #fdfcee;">
+                                        <div class="python-code-header d-flex" style="background-color: #fdfcee; height: 47px; padding-top: 7px;">
+                                            <mat-icon fontSet="material-icons-outlined" style="padding-left: 15px; padding-top: 3px;">wb_incandescent
+                                            </mat-icon>
+                                            <small style="font-family: 'SourceSansPro-Bold'; font-size: medium; line-height: 30px; color: #666666;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tip </small>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 16px; margin-bottom: 0px; padding: 0px 15px 10px 15px;"
+                                                [innerHtml]="record['data']"></p>
+                                        </div>
+                                        <!-- #fdfcee -->
+                                    </div>
+
+                                    <!-- To display Did You Know -->
+                                    <div *ngIf="record['name']== 'did_you'" class="matcard1" style="margin-bottom: 15px; margin-top: 15px; background: #fdfcee;">
+                                        <div class="python-code-header d-flex" style="background: #fdfcee; height: 47px; padding-top: 7px;">
+                                            <mat-icon fontSet="material-icons-outlined" style="padding-left: 15px; padding-top: 3px;">wb_sunny
+                                            </mat-icon> <small style="font-family: 'SourceSansPro-Bold'; font-size: medium; line-height: 30px; color: #666666;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Did you know? </small>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 16px; margin-bottom: 0px; padding: 0px 15px 10px 15px;"
+                                                [innerHtml]="record['data']"></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- To display Important -->
+                                    <div *ngIf="record['name']== 'important'" class="matcard1" style="margin-bottom: 15px; margin-top: 15px; background: #fdf7f4;">
+                                        <!-- e5f1f9 -->
+                                        <div class="python-code-header d-flex" style="background: #fdf7f4; height: 47px; padding-top: 7px;">
+                                            <mat-icon style="padding-left: 15px; padding-top: 3px;">star_border
+                                            </mat-icon><small style="font-family: 'SourceSansPro-Bold'; font-size: medium; line-height: 30px; color: #666666;">
+                                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Important </small>
+                                        </div>
+                                        <div>
+                                            <p style="font-size: 16px; margin-bottom: 0px; padding: 0px 15px 10px 15px;"
+                                                [innerHtml]="record['data']"></p>
+                                        </div>
+                                    </div>
+
+                                    <!-- To display Syntax -->
+                                    <div class="col-lg-12" *ngIf="record['name']== 'syntax'" style="margin-top: 15px; margin-bottom: 15px;">
+                                        <div style="border-radius: 4px;" *ngIf="record['class'] == 'language-python'">
+                                            <div style="background: #fafafa;">
+                                                <small style="font-family: 'SourceSansPro-Bold'; font-size: medium; padding: 0px 0px 30px 15px; color: #3d3d3d;">&lt;&#47;&gt;&nbsp;
+                                                    Syntax</small>
+                                            </div>
+                                            <div>
+                                                <pre [ngClass]="record['class']" style="margin-bottom: 0px !important;"
+                                                    *ngIf="record['class'] == 'language-python'">
+                                                <code style="overflow-y: scroll;">
+                                                    {{record['data']}}
+                                                </code>
+                                            </pre>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- To display image -->
+                                    <div *ngIf="record['name'] == 'image'" class="d-flex justify-content-center">
+                                        <img class="postImage-small mat-elevation-z1" [src]="record['data']">
+                                    </div>
+
+                                    <!-- To display quiz -->
+                                    <div class="col-lg-12" style="margin-top: 20px;" *ngIf="record['name'] == 'mcq'">
+                                        <div class="row" style="margin-left: 0px !important; margin-right: 0px !important;">
+                                            <div class="col-12" style="padding: 0px !important" *ngIf="mcq_result[main_ind] == null">
+                                                <div *ngIf="record['questions'].length > 0">
+                                                    <div *ngFor="let que of record['questions']; let i=index;">
+                                                        <div *ngIf="selectedIndex[main_ind] == i+1">
+                                                            <mat-card style="padding: 0px !important; border-radius: 5px; border: 1px solid rgb(231, 231, 231);"
+                                                                class="mat-elevation-z1">
+                                                                <mat-card-content>
+                                                                    <div class="ques1 d-flex" style="border-bottom: 1px solid rgb(231, 231, 231);">
+                                                                        <div class="quest1">
+                                                                            {{i+1}}.&nbsp;{{que['question']}}
+                                                                        </div>
+                                                                    </div>
+                                                                    <div *ngIf="que.code" style="border-bottom: 1px solid rgb(231, 231, 231);">
+                                                                        <pre class="language-python line-numbers" style="margin-top: 0px; margin-bottom: 0px; padding-left: 70px !important; max-height: 237px; overflow-y: auto;">
+                                                                        <code style="font-size: 16px !important;">
+                                                                            {{que.code}}
+                                                                        </code>
+                                                                    </pre>
+                                                                    </div>
+                                                                    <div class="scrolls">
+                                                                        <label class="example-radio-group"></label>
+                                                                        <section class="section" style="margin-left:15px !important"
+                                                                            *ngFor="let s of que.options; let opIn=index;">
+                                                                            <mat-checkbox class="example-margin"
+                                                                                [checked]='s.checked' (change)="onChangeQuestion(s,$event.checked, que['number'], i, opIn, main_ind)"
+                                                                                [value]="s.checked">
+                                                                                <div *ngFor="let x of s |keyvalue">
+                                                                                    <div style="white-space: pre-line; font-size:16px !important; letter-spacing: 0.3px;"
+                                                                                        *ngIf="x.key.length <=1">
+                                                                                        &nbsp;{{x.value}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </mat-checkbox>
+                                                                        </section>
+                                                                    </div>
+                                                                </mat-card-content>
+                                                            </mat-card>
+                                                            <mat-card-actions>
+                                                                <div style="display: inline-flex; width: 100%;">
+                                                                    <button mat-mini-fab class="lefts" style="margin-left: auto;"
+                                                                        [disabled]="i== 0" (click)="backf(main_ind, i, que['number'])">
+                                                                        <mat-icon class="arrow_backs">
+                                                                            arrow_back
+                                                                        </mat-icon>
+                                                                    </button>
+                                                                    <button mat-mini-fab class="lefts" style="margin-right: auto;"
+                                                                        [disabled]="i == record['questions'].length-1"
+                                                                        (click)="nextf(main_ind, i, que['number'])">
+                                                                        <mat-icon class="arrow_backs">
+                                                                            arrow_forward
+                                                                        </mat-icon>
+                                                                    </button>
+                                                                    <button mat-raised-button style="min-width: 110px; margin-right: 40px;"
+                                                                        (click)="submit(main_ind)" [hidden]="selectedIndex[main_ind] != record['questions'].length ">
+                                                                        SUBMIT
+                                                                    </button>
+                                                                </div>
+                                                                <!-- <div
+                                                                        style="margin-top: 12px; margin-left:auto; margin-right:auto">
+                                                                        
+                                                                    </div> -->
+                                                            </mat-card-actions>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12" *ngIf="mcq_result[main_ind]" style="padding: 0px !important">
+                                                <mat-card style="width: 100%;">
+                                                    <mat-card-content style="text-align: center">
+                                                        <div *ngIf="mcq_result[main_ind].percent<50">
+                                                            <h5 style="display: inline-flex; color: #317CAE; margin-top: 30px;">
+                                                                Try Again</h5>
+                                                        </div><br>
+                                                        <div *ngIf="mcq_result[main_ind].percent<50">
+                                                            <h4 style="display: inline-flex;"><code style="color: #317CAE;"><q><i>Failure is a lesson learned. Success is a lesson applied.</i></q></code>
+                                                            </h4>
+                                                        </div><br>
+
+                                                        <div *ngIf="mcq_result[main_ind].percent>=50">
+                                                            <h5 style="display: inline-flex; ">
+                                                                <code>Congratulations!!!... Keep Sharpen your Axe.</code>
+                                                            </h5>
+                                                        </div>
+                                                        <h6><code>{{mcq_result[main_ind].correctans}}</code>
+                                                            correct out
+                                                            of
+                                                            <code>{{mcq_result[main_ind].len}}</code> questions
+                                                            with <code>{{mcq_result[main_ind].percent}}%.</code>
+                                                        </h6>
+                                                        <div *ngIf="mcq_result[main_ind].Unanswered==0 " style="display:inline-flex;">
+                                                            <h6>You have attempted all the questions</h6>
+                                                        </div>
+                                                        <div *ngIf="mcq_result[main_ind].Unanswered!=0" style="display:inline-flex;">
+                                                            <h6>You haven't attempted
+                                                                <code>{{mcq_result[main_ind].Unanswered}}</code>
+                                                                questions. </h6><br>
+                                                        </div>
+                                                        <!-- <br>
+                                                    <button mat-raised-button (click)="Review()">Review</button>&ensp;&ensp;
+                                                    <button mat-raised-button (click)="back()">Go to Homepage</button> -->
+                                                    </mat-card-content>
+                                                </mat-card>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <!-- To display Subtitle -->
+                                        <div class="col-lg-12" *ngIf="record['name']== 'subtitle'">
+                                            <h5 [innerHTML]="record['data']" style="color: #666666 !important; margin-bottom: 10px; margin-top: 15px; font-family: 'SourceSansPro-Bold' !important;">
+                                            </h5>
+                                        </div>
+
+                                        <!-- To display code  -->
+                                        <div class="col-lg-12" style="margin-top: 15px; margin-bottom: 15px;" *ngIf="record['name']=='code' && record['data']">
+                                            <div style="border-radius: 4px;" *ngIf="record['class'] == 'language-python'">
+                                                <div class="card-header python-code-header" style="border: 1px solid #d8d8d8;">
+                                                    <small style="padding-left: 9px; font-size: medium; color: #3d3d3d;"></small>
+                                                    <!-- <button (click)="code_editor(ind, record['data']);"
+                                                        title="click here" mat-raised-button
+                                                        *ngIf="record['class'] == 'language-python'" style="float: right; font-family: PT sans regular; height: 30px; background: transparent; box-shadow: none;;
+                                                        line-height: 30px;">
+                                                        <div style="margin-top: -5px;">
+
+                                                            <span
+                                                                [innerText]="record['show'] && record['class'] == 'language-python' ? 'close' : 'editor'"></span><span>
+                                                                &nbsp;&nbsp;
+                                                            </span>
+                                                        </div>
+                                                    </button> -->
+                                                </div>
+                                                <div class="matcard">
+                                                    <pre [ngClass]="record['class']" class="line-numbers" style="margin-bottom: 0px !important;"
+                                                        *ngIf="record['class'] == 'language-python'">
+
+                                                        <code style=" overflow-y: scroll;">
+                                                            {{record['data']}}
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                            <div style=" border-radius: 4px; background-color: #fafafa;" *ngIf="record['class'] == 'language-python shell'">
+                                                <div class="card-header python-code-header" style="border: 1px solid #d8d8d8;">
+                                                    <small style="padding-left: 9px; font-size: medium; line-height: 30px;">>>></small>
+                                                    <!-- <button (click)="material_shell(ind,record['data']);"
+                                                        title="click here" mat-raised-button
+                                                        *ngIf="record['class'] == 'language-python shell'" style="float: right; font-family: PT sans regular; box-shadow: none; background: none;
+                                                    line-height: 30px;">
+                                                        <div style="margin-top: -3px;">
+                                                            <span
+                                                                [innerText]="record['show'] && record['class'] == 'language-python shell' ? 'close' : 'shell'"></span>
+                                                            &nbsp;&nbsp;
+                                                        </div>
+                                                    </button> -->
+                                                </div>
+                                                <div class="matcard">
+                                                    <pre [ngClass]="record['class']" class="line-numbers" style="background-color: #fafafa; margin-bottom: 0px !important;"
+                                                        *ngIf="record['class'] == 'language-python shell'">
+
+                                                        <code style=" overflow-y: scroll; background-color: #fafafa;">
+                                                            {{record['data']}}
+                                                        </code>
+
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                            <div style="border-radius: 4px;" *ngIf="record['class'] == 'language-python(non exe)'">
+                                                <div class="card-header python-code-header" style="border: 1px solid #d8d8d8;">
+                                                    <small style="padding-left: 9px;font-size: medium;color: #3d3d3d;">
+                                                    </small>
+                                                </div>
+                                                <div class="matcard">
+                                                    <pre [ngClass]="record['class']" class="line-numbers" style="margin-bottom: 0px !important;"
+                                                        *ngIf="record['class'] == 'language-python(non exe)'">
+
+                                                        <code style=" overflow-y: scroll;">
+                                                            {{record['data']}}
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                            <div style=" margin-top: -30px; " *ngIf="record['language'] == 'output >>'">
+                                                <pre [ngClass]="'language-output >>'" style="background-color: #eeeeee; padding-left: 20px; margin-bottom: 0px !important; border: 1px solid #d8d8d8; border-top: none;"
+                                                    *ngIf="record['language'] == 'output >>'">
+                                                    <code style=" overflow-y: scroll; background: transparent; color: #555555;">
+                                                        {{record['data']}}
+                                                    </code>
+                                                </pre>
+                                            </div>
+                                            <div id="container_shell" class="container" *ngIf="record['show'] && record['class'] == 'language-python shell'">
+                                                <iframe style="margin-top: -20px;" class="embed-responsive-item iframe_shell"
+                                                    src="assets/material_shell.html"></iframe>
+                                            </div>
+                                            <div *ngIf="record['class'] == 'language-bash' && record['language'] != 'output >>' "
+                                                style="margin-top: 10px; margin-bottom: 10px;">
+                                                <div class="card-header" style="padding: 0px;background-color: #dbebf7;border: 1px; border: 1px solid #d8d8d8; border-radius: 5px 5px 0px 0px; height: 30px;">
+                                                    <small style="padding-left: 9px;font-size: medium;color: #3d3d3d; line-height: 30px;">$</small>
+                                                </div>
+                                                <div *ngIf="record['class'] == 'language-bash'" class="matcard">
+                                                    <pre [ngClass]="record['class']" *ngIf="record['class'] == 'language-bash'"
+                                                        style="margin-bottom: 0px !important">
+                                                        <code style=" overflow-y: scroll;">
+                                                            {{record['data']}} 
+                                                        </code>
+                                                    </pre>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- To display code  -->
+                                        <!-- <div class="col-lg-12" *ngIf="record['name']=='code' && record['data']"
+                                            style="margin-bottom: 10px;">
+                                            <div class="mat-elevation-z1" style=" border-radius: 4px;">
+                                                <pre [ngClass]="record['class']" class="line-numbers"
+                                                    *ngIf="record['class'] != 'language-bash'">
+                                                    <code style=" overflow-y: scroll;">
+                                                        {{record['data']}}
+                                                    </code>
+                                                </pre>
+                                            </div>
+                                            <div>
+                                                <div *ngIf="record['class'] == 'language-bash'">
+                                                    <b>Output:</b>
+                                                </div>
+                                                <pre [ngClass]="record['class']"
+                                                    *ngIf="record['class'] == 'language-bash'">
+                                                    <code style=" overflow-y: scroll;">
+                                                        {{record['data']}}
+                                                    </code>
+                                                </pre>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>
+<!-- </div>
+</div> -->
+
+<!-- <div class="d-none d-sm-none d-md-block">
+    <div class="row" *ngIf="most_popular.length > 0" style="padding: 32px 32px 15px 15px;">
+        <div class="pt-3" style="border: 0.2px solid rgb(231, 231, 231);">
+            <div class="col-md-12">
+                <h4 style="color:#466aa7; cursor: pointer;">Most Popular</h4>
+                <hr>
+            </div>
+            <div class="col-md-12" *ngFor="let i of most_popular">
+                <a class="pg-a" [routerLink]="['/home/post', i['url_title'], i['_id']]">
+                    <h6 class="title" style="color:#317CAE; cursor: pointer;" *ngIf="i['title']">
+                        {{i['title']}}</h6>
+                </a>
+                <div style="margin-top:-10px;">
+                    <span style="color:#56B05C;">{{i['author']['name']}}</span>&nbsp;
+                    <span style="color:rgb(82, 82, 82); font-size: 14px;">{{ i['post_date'] | date: 'dd/MM/yy' }}</span>
+                </div><br>
+            </div>
+        </div>
+    </div>
+</div> -->

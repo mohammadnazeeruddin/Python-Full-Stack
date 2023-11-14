@@ -1,0 +1,30 @@
+<div *ngIf="data['type'] == 'challenge'">
+    <div id="container" class="container">
+        <iframe style=" margin-left:auto;" src="assets/material_challenge.html" #ifrm></iframe>
+    </div>
+
+    <div class="modal" id="myModal" role="dialog">
+        <div class="modal-dialog modal-dialog-centerd">
+            <!-- Modal content-->
+            <div class="modal-content" style="padding-bottom: 21px;margin-top: 400px;
+                ">
+                <div style="padding: 1rem 1rem;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title"></h4>
+                </div>
+                <div>
+                    <p style="text-align: center;font-size: 20px;" id="success"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a data-toggle="modal" href="#myModal" id="aler"></a>
+    <button #sendActivity_five id="sendActivity_five" (click)="reset_time_me(5)" style="border: none;"></button>
+    <button #sendActivity_zero id="sendActivity_zero" (click)="reset_time_me(0)" style="border: none;"></button>
+</div>
+
+<div *ngIf="data['type'] == 'msg'">
+    <p>{{data['msg']}}</p>
+    <br>
+    <button mat-raised-button (click)="onNoClick()"> Close</button>
+</div>

@@ -1,0 +1,33 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+<table class="table" id="book-table">
+    <thead>
+        <tr>
+            <th style="color: #337ab7;font-size: 18px;">#</th>
+            <th style="color: #337ab7;font-size: 17px;">Title</th>
+            <th style="color: #337ab7;font-size: 17px;">Author</th>
+            <th style="color: #337ab7;font-size: 17px;">Type</th>
+            <th style="color: #337ab7;font-size: 17px;">Publication date</th>
+            <th style="color: #337ab7;font-size: 17px;">Pages</th>
+            <th style="color: #337ab7;font-size: 17px;">Price</th>
+            <th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.get_book_type_display }}</td>
+            <td>{{ book.publication_date }}</td>
+            <td>{{ book.pages }}</td>
+            <td>{{ book.price }}</td>
+
+            </td>
+        </tr>
+        
+        {%endfor%}
+    </thead>
+
+</table>

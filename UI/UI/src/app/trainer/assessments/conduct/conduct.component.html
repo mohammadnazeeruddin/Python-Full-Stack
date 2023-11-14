@@ -1,0 +1,51 @@
+<div class="container-fluid" style="max-width: 1200px;">
+    <div class="d-flex justify-content-center" style="margin-top: 20px;">
+        <form [formGroup]="conductForm" (submit)="conductAssessment()">
+            <div class="row mb-2" style="max-width: 786px;">
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field appearance="outline" class="mat-form-style">
+                        <mat-label>Type</mat-label>
+                        <mat-select formControlName="type">
+                            <mat-option [value]="'online'">online</mat-option>
+                            <mat-option [value]="'offline'">offline</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="conductForm.controls['group_id'].hasError('required')">
+                            Please select a type</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field appearance="outline" class="mat-form-style">
+                        <mat-label>Groups</mat-label>
+                        <mat-select formControlName="group_id">
+                            <mat-option *ngFor="let val of group_ids" [value]="val">{{val}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="conductForm.controls['group_id'].hasError('required')">
+                            Please select a group</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Start Time</mat-label>
+                        <input matInput required [owlDateTime]="dt1" [min]="minDateStart"
+                            placeholder="Start Time" (dateTimeChange)="dateChange($event)"
+                            [owlDateTimeTrigger]="dt1" formControlName="start_time">
+                        <!-- [max]="maxDate" -->
+                        <owl-date-time #dt1></owl-date-time>
+                    </mat-form-field>
+                </div>
+                <div class="col-sm-12 col-md-4">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Link Expiry Time</mat-label>
+                        <input matInput required [owlDateTime]="dt2" [min]="minDateStart" placeholder="Link Expiry Time"
+                            (dateTimeChange)="dateChange($event)" [owlDateTimeTrigger]="dt2" formControlName="end_time">
+                        <!-- [max]="maxDate" -->
+                        <owl-date-time #dt2></owl-date-time>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-12 d-flex justify-content-center">
+                <button mat-raised-button type="submit"> Conduct Assessment </button>
+            </div>
+        </form>
+    </div>
+</div>

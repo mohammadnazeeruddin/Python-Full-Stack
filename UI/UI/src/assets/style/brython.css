@@ -1,0 +1,103 @@
+.CodeMirror pre {
+    font-size: 16px;
+    padding: 0px 10px;
+}
+
+.CodeMirror-linenumber {
+    font-size: 16px;
+}
+
+.CodeMirror-lines {
+    padding: 10px 0;
+}
+
+.CodeMirror{
+    height: 250px;
+}
+.CodeMirror pre.CodeMirror-line, .CodeMirror pre.CodeMirror-line-like {
+    padding: 0 8px;
+}
+.font_applied {
+    font-family: 'Consolas';
+    color: white;
+}
+.CodeMirror span{
+    font-size: 16px;
+}
+.output_ {
+    margin-top: -5px;
+    margin-bottom: 0px;
+    height: 170px;
+    width: 756px;
+    padding: 0px 0px 0px 30px;
+    border: 0px;
+    color: white;
+    background-color: #3a4249;
+    font-size: 15px;
+    float: left;
+}
+
+HTML
+CSS
+.scrollbar {
+margin-left: -30px;
+float: right;
+height: 300px;
+width: 65px;
+background: #3a4249;
+overflow-y: scroll;
+margin-bottom: 25px;
+}
+.scrollbar-info::-webkit-scrollbar-track {
+background-color: #3a4249;
+border-radius: 10px;
+}
+
+.scrollbar-info::-webkit-scrollbar {
+width: 8px;
+background-color: #3a4249; 
+}
+
+.scrollbar-info::-webkit-scrollbar-thumb {
+border-radius: 10px;
+background-color: #3189D6;
+height: 50px; 
+}
+
+.scrollbar-info {
+scrollbar-color: #3189D6;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    color: black;
+    min-width: 200px;
+    box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.3);
+    z-index: 50;
+    padding-top: 7px;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 10px 10px;
+    text-decoration: none;
+    display: block;
+    font-size: 12px;
+  }
+  
+  .dropdown-content a:hover {background-color: #ddd;}
+  
+  .dropdown:hover .dropdown-content {display: block;}
+
+
+
+
+  
+  

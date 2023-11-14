@@ -1,0 +1,70 @@
+
+<div class="container" *ngIf="data.type=='add'">
+        <div class="container-fluid" style="max-width: 1200px;">
+            <mat-card style="min-width: 360px; margin: 30px auto;" [hidden]="show">
+                <form [formGroup]="valForm" class="form-validate mb-3" role="form" name="addInstitutionForm" novalidate=""
+                    (submit)="create_superAdmin($event, valForm.value)" style="margin-top:16px; text-align: center;">
+    
+                    <div class="form-group">
+                        <mat-form-field appearance="outline" class="mat-form-style">
+                            <mat-label>Institution Name</mat-label>
+                            <input matInput formControlName="institution" autocomplete="off">
+                        </mat-form-field>
+                        <mat-error class="mat-error-cs"
+                            *ngIf="valForm.controls['institution'].hasError('required') && (valForm.controls['institution'].dirty || valForm.controls['institution'].touched)">
+                            Institution is required
+                        </mat-error>
+                    </div>
+    
+                    <!-- <div class="form-group">
+                        <mat-form-field appearance="outline" class="mat-form-style">
+                            <mat-label>Domain Name</mat-label>
+                            <mat-select formControlName="domain_name">
+                                <mat-option *ngFor="let domain of domains" [value]="domain.code">
+                                    {{domain.code}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <mat-error class="mat-error-cs"
+                            *ngIf="valForm.controls['domain_name'].hasError('required') && (valForm.controls['domain_name'].dirty || valForm.controls['domain_name'].touched)">
+                            Domain name is required
+                        </mat-error>
+                    </div> -->
+    
+                    <div class="form-group">
+                        <mat-form-field appearance="outline" class="mat-form-style">
+                            <mat-label>Admin email</mat-label>
+                            <input matInput formControlName="email"
+                                autocomplete="off">
+                        </mat-form-field>
+    
+                        <mat-error class="mat-error-cs"
+                            *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">
+                            Email is required </mat-error>
+                        <mat-error class="mat-error-cs"
+                            *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">
+                            this field must be a valid email address
+                        </mat-error>
+                    </div>
+    
+                    <div class="form-group">
+                        <mat-form-field appearance="outline" class="mat-form-style">
+                            <mat-label>Location</mat-label>
+                            <input matInput formControlName="location" autocomplete="off">
+                        </mat-form-field>
+                        <mat-error class="mat-error-cs"
+                            *ngIf="valForm.controls['location'].hasError('required') && (valForm.controls['location'].dirty || valForm.controls['location'].touched)">
+                            Location is required </mat-error>
+                    </div>
+    
+                    <button mat-raised-button class="createfromqb" type="submit" color="warn">
+                        <span *ngIf="spinner" class="spinner-border spinner-border-sm"></span>&nbsp;Create Institution
+                    </button>
+                    <button mat-raised-button color="primary" (click)="onNoClick()" style="margin-left: 30px;">
+                        Close
+                        </button>
+                </form>
+            </mat-card>
+        </div>
+    </div>
+    

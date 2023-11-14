@@ -1,0 +1,57 @@
+.createfromqb{
+    background: #14B8B1 !important;
+    color: #ffffff;
+    margin-top: 14px;
+    margin-right: 10px;
+}    
+.newtest{
+    background: #E94C6F !important;
+    color: #ffffff;
+    margin-top: 14px;
+}
+.mat-header-cell {
+    text-align: center;
+   vertical-align: middle;
+   background-color: rgb(87, 85, 85);
+   color: white;
+  }
+  .mat-cell {
+   text-align: center;
+   vertical-align: middle;
+ }
+ .creategroup{
+    color: white;
+    background: #E94C6F;
+    min-width: 123px;
+    max-width: 123px;}   
+::ng-deep .details-font{
+    vertical-align: middle;
+    margin-top: 5px;
+}
+ .crd-font{
+    font-family: SourceSansPro-Regular,sans-serif;
+    font-size: 13px;
+    text-transform: capitalize;
+    color: #607d8b;
+    font-weight: 800;
+    margin-top: 40px !important;
+  
+  
+  }
+  ::ng-deep .mat-sort-header-container {
+    display:flex;
+    justify-content:center;
+  }
+  ::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label {
+    color:grey;
+    text-transform: uppercase;
+    font-family: SourceSansPro-Regular,sans-serif !important;
+    font-size: 12px;
+    font-weight: 600;
+    // background-color: green;
+    }
+    
+    /* ink bar */
+    ::ng-deep .mat-ink-bar {
+      background: linear-gradient(to right, #a1c4fd 0%, #74787a 100%);
+    }

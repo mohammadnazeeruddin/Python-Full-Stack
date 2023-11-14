@@ -1,0 +1,390 @@
+button {
+  outline: none;
+}
+
+.createfromqb{
+  color: #89aceb;
+  // background: #FEF7F4;
+}  
+
+.newtest{
+  // background: #fdfcee;
+  color: #28a745;
+}
+
+.creategroup{
+  color: white;
+  background: #E94C6F;
+  min-width: 130px;
+  max-width: 130px;
+} 
+
+.crd-font{
+  font-family: SourceSansPro-Regular,sans-serif;
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #607d8b;
+  font-weight: 800;
+  margin-top: 40px !important;
+  letter-spacing: 1px;
+  word-spacing: 2px;
+  vertical-align: sub;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: rgb(95, 95, 95);
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #E4E8EB;
+}
+
+::ng-deep .mat-progress-bar {
+  border-radius: 3px;
+  width: 99% !important;
+}
+
+.mat-stroked-button:not([disabled]) {
+  border-color: #d8d8d8;
+}
+
+.createfromqb:hover {
+  color: #FEF7F4;
+  background: #89aceb;
+}
+
+.newtest:hover{
+  background: #28a745;
+  color: #fdfcee;
+}
+
+.example-card {
+  min-width: 270px;
+  min-height: 115px !important;
+  margin: 10px;
+  padding: 2px;
+  cursor: pointer;
+}
+.new_group{
+  background: repeating-linear-gradient(90deg, hsla(298,16%,68%,0.06) 0px,
+  hsla(298,16%,68%,0.06) 1px,transparent 1px, transparent 21px,hsla(298,16%,68%,0.06) 21px, 
+  hsla(298,16%,68%,0.06) 22px,transparent 22px, transparent 72px),
+  repeating-linear-gradient(0deg, hsla(298,16%,68%,0.06) 0px, hsla(298,16%,68%,0.06) 1px,
+  transparent 1px, transparent 21px,hsla(298,16%,68%,0.06) 21px, hsla(298,16%,68%,0.06) 22px,
+  transparent 22px, transparent 72px),repeating-linear-gradient(135deg, hsla(298,16%,68%,0.06) 0px,
+   hsla(298,16%,68%,0.06) 1px,transparent 1px, transparent 21px,hsla(298,16%,68%,0.06) 21px,
+    hsla(298,16%,68%,0.06) 22px,transparent 22px, transparent 72px),
+    linear-gradient(90deg, hsl(275,3%,97%),hsl(275,3%,97%));
+}
+.mat-header-cell {
+  text-align: center;
+  vertical-align: middle;
+  background: repeating-linear-gradient(90deg, hsla(298,16%,68%,0.06) 0px,
+   hsla(298,16%,68%,0.06) 1px,transparent 1px, transparent 21px,hsla(298,16%,68%,0.06) 21px, 
+   hsla(298,16%,68%,0.06) 22px,transparent 22px, transparent 72px),
+   repeating-linear-gradient(0deg, hsla(298,16%,68%,0.06) 0px, hsla(298,16%,68%,0.06) 1px,
+   transparent 1px, transparent 21px,hsla(298,16%,68%,0.06) 21px, hsla(298,16%,68%,0.06) 22px,
+   transparent 22px, transparent 72px),repeating-linear-gradient(135deg, hsla(298,16%,68%,0.06) 0px,
+    hsla(298,16%,68%,0.06) 1px,transparent 1px, transparent 21px,hsla(298,16%,68%,0.06) 21px,
+     hsla(298,16%,68%,0.06) 22px,transparent 22px, transparent 72px),
+     linear-gradient(90deg, hsl(275,3%,97%),hsl(275,3%,97%));
+  color: #3b3a3a;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.mat-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.example-list::-webkit-scrollbar {
+  -webkit-appearance: none;
+  line-height: 1em;
+}
+
+.example-list::-webkit-scrollbar:vertical {
+  width: 4px;
+}
+
+.example-list::-webkit-scrollbar:horizontal {
+  height: 4px;
+}
+
+.example-list::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  border: 1px solid white; /* should match background, can't be transparent */
+  background: linear-gradient(to right, #a1c4fd 0%, #74787a 100%);
+  // border-radius: 5px; 
+  height: 4px; 
+}
+
+.example-list::-webkit-scrollbar-track{
+  margin: 50px  0;
+  // height: 10px; 
+}
+
+.example-list {
+  max-width: 100%;
+  // border: solid 1px #ccc;
+  min-height: 60px;
+  display: flex;
+  flex-direction: row;
+  // border-radius: 4px;
+  overflow-x: scroll;
+  // margin: 20px;
+  margin-top: 20px;
+  overflow-x: scroll;
+}
+
+::ng-deep .mat-sort-header-container {
+  display:flex;
+  justify-content:center;
+}
+
+::ng-deep .mat-tab-list .mat-tab-labels .mat-tab-label {
+  color:grey;
+  text-transform: uppercase;
+  font-family: SourceSansPro-Regular,sans-serif !important;
+  font-size: 12px;
+  font-weight: 600;
+  // background-color: green;
+}
+    
+/* ink bar */
+::ng-deep .mat-ink-bar {
+  background: linear-gradient(to right, #a1c4fd 0%, #74787a 100%);
+}
+  
+.example-box {
+  // padding: 20px 10px;
+  // border-right: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  // display: flex;
+  flex-direction: row;
+  // align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  cursor: move;
+  background: white;
+  font-size: 14px;
+  flex-grow: 1;
+  flex-basis: 0;
+  margin: 10px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.row{
+  margin: 0px !important;
+}
+.stroke-transparent {
+  -webkit-text-stroke: 1px #A78446;
+  -webkit-text-fill-color: #f0f5fa;
+}
+.fa-icons{
+  padding: 0px 10px;
+}
+.progress-bar{
+  width: 98%;
+// margin: auto 10px;
+}
+
+.example-card:hover{
+  -webkit-box-shadow: 5px 5px 8px 2px #ffd740;     
+  transform: scaleY(1.1);
+  // box-shadow:5px 5px 8px 2px rgb(136, 164, 189);
+  // box-shadow:5px 5px 8px 2px rgb(138, 139, 139);  
+  // box-shadow: 0px 0px 1px 5px #ffd740;    
+}
+
+// .crd-css{
+//   // color: white;
+//   // transform: scaleX(1.5);
+//   // -webkit-box-shadow: 1px 1px 54px 12px rgba(100,187,255,0.57); 
+//   box-shadow:5px 5px 8px 2px rgb(243, 243, 243); 
+//   // box-shadow: 0px 0px 1px 5px #ffd740;    
+    
+// }
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+.chapter-font{
+  text-transform: capitalize;
+  font-size: 14px;
+  font-family: SourceSansPro-Regular,sans-serif;
+  color: #5F5F5F;
+  margin-top: 5px;
+  padding: 0 !important;
+  line-height: 0;
+  text-transform: capitalize;
+  font-size: 14px;
+  font-family: SourceSansPro-Regular, sans-serif;
+  color: #5F5F5F;
+  margin-top: 5px;
+  padding: 0 !important;
+  line-height: 20px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100px;
+  // height: 130px;
+  white-space: nowrap;
+  margin: 0px !important;
+// font-weight: 600;
+}
+
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: whitesmoke;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.example-element-row td {
+  border-bottom-width: 0;
+}
+
+.example-element-detail {
+  overflow: hidden;
+  display: flex;
+}
+
+.example-element-diagram {
+  min-width: 80px;
+  border: 2px solid black;
+  padding: 8px;
+  font-weight: lighter;
+  margin: 8px 0;
+  height: 104px;
+}
+
+.example-element-symbol {
+  font-weight: bold;
+  font-size: 40px;
+  line-height: normal;
+}
+
+.example-element-description {
+  padding: 16px;
+}
+
+.example-element-description-attribution {
+  opacity: 0.5;
+}
+.example-tree-invisible {
+  display: none;
+}
+
+.example-tree ul,
+.example-tree li {
+  margin-top: 0;
+  margin-bottom: 0;
+  list-style-type: none;
+}
+
+.example-tree-node {
+  display: block;
+}
+
+.example-tree-node .example-tree-node {
+  padding-left: 40px;
+}
+
+::ng-deep .details-font{
+  vertical-align: middle;
+  margin-top: 5px;
+}
+
+.p-cu { margin: 0;
+  background: white;
+  position: relative;
+  top: 1em; 
+  text-align: left;
+  margin: 5px 0px -4px 0px;
+}
+.p-cu:before {
+  content: '';
+  position: absolute;
+  width: 1em;
+  // border: 1px solid black;
+  height: 1em;
+  border-radius: 1em;
+  margin-left: 0.5em;
+}
+
+ul, li { 
+  list-style: none; 
+  margin: 0; 
+  padding: 0; 
+}
+
+ul { padding-left: 1em; }
+
+li { 
+  padding-left: 1em;
+  border: 1px solid #cacaca;
+  border-width: 0 0 1px 1px; 
+}
+
+li.container { 
+  border-bottom: 0px; 
+}
+
+li.empty { 
+  font-style: italic;
+  color: silver;
+  border-color: silver;
+}
+
+ul li:last-child ul {
+  border-left: 1px solid white;
+  margin-left: -17px;
+}
+
+r {
+  margin-left: 2em;
+}
+
+::ng-deep .mat-checkbox-disabled.mat-checkbox-checked .mat-checkbox-background, .mat-checkbox-disabled.mat-checkbox-indeterminate .mat-checkbox-background {
+  background-color: #f36494;
+  border-radius: 50px;
+}
+
+::ng-deep .mat-checkbox-frame {
+  background-color: rgba(0, 0, 0, 0);
+  border-width: 1px !important;
+  border-style: solid;
+  border-color: #cacaca;
+  border-radius: 25px !important;
+}
+

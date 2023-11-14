@@ -1,0 +1,44 @@
+table {
+  width: 100%;
+  background-color: #fafafa;;
+  color: aqua;
+  border: 1px solid rgb(221, 216, 216);
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+.crd-font{
+  font-family: SourceSansPro-Regular,sans-serif;
+  font-size: 15px;
+  text-transform: capitalize;
+  color: #607d8b;
+  font-weight: 800;
+  margin-top: 40px !important;
+
+
+}
+
+h2{
+  text-align: center;
+}
+
+
+.mat-header-cell {
+   text-align: center;
+  vertical-align: middle;
+  background-color: rgb(87, 85, 85);
+  color: white;
+ }
+ .mat-cell {
+  text-align: center;
+  vertical-align: middle;
+}
+::ng-deep .approve-btn,.mat-cell:nth-child(5){
+text-align: right;
+width: 250px;
+}
+
+
+

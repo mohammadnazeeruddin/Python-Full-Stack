@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html style="margin-top:-30px;">
+
+<head>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="style/codemirror_exe.css">
+    <link rel="stylesheet" type="text/css" href="style/solarized.css">
+    <link rel="stylesheet" type="text/css" href="style/skulptide.css">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+
+    <script src="editor_javascripts/jquery.min.js"></script>
+    <script src="editor_javascripts/codemirror.js"></script>
+    <script src="editor_javascripts/matchbrackets.js"></script>
+    <script src="editor_javascripts/python.js"></script>
+    <script src="editor_javascripts/skulpt.min.js"></script>
+    <script src="editor_javascripts/skulpt-stdlib.js"></script>
+    <script src="editor_javascripts/processing.min.js"></script>
+    <script src="editor_javascripts/pythonide_script.js"></script>
+    <script src="editor_javascripts/lz-string.js"></script>
+    <script src="editor_javascripts/FileSaver.min.js"></script>
+    <script src="editor_javascripts/pythoninteractive.js"></script>
+    <script src="editor_javascripts/timeme.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+    <div class="content">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-9" style="padding-right: 16px;">
+                <div class="card wrapping-div">
+                    <h5 class="card-header " style="padding: 2px;">
+                        <p
+                            style="font-size:13px;color:#466aa7; vertical-align: middle; margin-top: 4px !important;margin-bottom: 3px;">
+                            &nbsp;Problem</p>
+                    </h5>
+                    <div class="card-body" style="height:auto;">
+                        <div id="outputpanel">
+                            <div class="problem" id="question" style="font-family:sans-serif;font-size:15px;">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-lg-9" style="padding-right:1px;padding-left: 1px;">
+            <div class="card" style="margin-top: 2px;">
+                <h5 class="card-header " style="padding:2px;">
+                    <!-- Practice online -->
+                    <p
+                    style="font-size:13px;color:#466aa7; vertical-align: middle; margin-top: 4px !important;margin-bottom: 3px;">&nbsp;Editor</p>
+                    <!-- save file -->
+                    <div class="mobileHide">
+                        <input class="form-control form-control-sm "
+                            style="width: 136px;float: right;margin-left: 33px; border-color:#579a43;" id="savefilename"
+                            type="hidden" value="program.py" />
+                    </div>
+                    <div>
+
+                </h5>
+                <div class="card-body" style="padding:0px;">
+                    <div class="maindiv">
+                        <div id="centralarea">
+                            <div id="canvas">
+                            </div>
+                            <div class="editor IDE">
+                                <textarea id="code" cols="400" rows="400">
+                                 </textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button onclick="get_user_code()"
+                    style="float:right;background-color: #ff4081; color: white;margin-top: 5px;" type="button"
+                    class="btn btn-sm" data-toggle="modal" data-target="#myModal" id="user_sub">Submit
+                    code</button>
+                <button class="btn btn-info btn-sm"
+                    style="float:right;margin-right: 10px;background-color: #fafafa; color: #3268ad;margin-top: 5px;"
+                    onclick="runProgram()">Run code
+                </button>
+            </div>
+        </div>
+        <br><br>
+        <div id="myDIV" style="display:none;">
+            <div class="col-sm-12 col-lg-9" style="padding-left: 1px;padding-right: 1px;">
+                <div class="card wrapping-div">
+                    <h5 class="card-header" style="padding: 2px;">
+                        <!-- <button class="btn btn-info btn-sm" style="float:right;background-color: #fafafa; color: black;"
+                            onclick="clear_output()">X</button> -->
+                        <!-- <button type="button" class="close" data-dismiss="modal">&times;</button> -->
+                        <p
+                        style="font-size:13px;color:#466aa7; vertical-align: middle; margin-top: 4px !important;margin-bottom: 3px;">&nbsp;Console</p>
+                    </h5>
+                    <div class="card-body" style="padding:0px;">
+                        <div id="outputpanel">
+                            <pre id="output" class="output code_op" style="border-radius: 0px;">
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+
+        var parms = {
+            program:
+                [].join("\n")
+        };
+
+        var date = new Date();
+        var mat_exercise = JSON.parse(localStorage.getItem("material_exercise"));
+        if (mat_exercise != 'undefined' && mat_exercise != "null") {
+            parms.program = mat_exercise['code'];
+            question = mat_exercise['question'];
+            answer = mat_exercise['answer'] + "\n";
+            localStorage.setItem('code_answer', answer)
+            document.getElementById("question").innerHTML = question.replace(/\n/g, "<br/>");
+            setProgram(parms.program);
+        }
+
+        function get_output() {
+            user_output = document.getElementById('output').innerText;
+        }
+
+        // Number of changes to the program after save
+        var changeCount = 0;
+
+        // Obtain the url parameter with name theParameter. Returns false
+        // if not specified.
+        function getParameter(theParameter) {
+            var params = window.location.search.substr(1).split('&');
+
+            for (var i = 0; i < params.length; i++) {
+                var p = params[i].split('=');
+                if (p[0] == theParameter) {
+                    if (p.length > 1)
+                        return p[1];
+                    else
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        // Saves the current state to the browser's store
+        function storeProgram() {
+            localStorage.setItem("skulptIdeProgram", getProgram());
+            localStorage.setItem("skulptIdeProgramName", document.getElementById("savefilename").value);
+        }
+
+        // Callback for "run"
+        function runProgram() {
+
+            storeProgram();
+            runit();
+            var x = document.getElementById('myDIV').style.display = "block";
+            get_output();
+        }
+        // getting user code
+        function get_user_code() {
+            var user_code = editor.getValue();
+            localStorage.setItem('user_code', user_code)
+        }
+        function clear_output() {
+            clearit();
+            user_output = document.getElementById('output').innerText;
+            // var x = document.getElementById('myDIV')
+            // x.close();
+        }
+
+        // Setup 
+        function setup() {
+            // Setup skulpt and editor
+            setupPythonIDE('code', 'output', 'canvas');
+
+            // Arrange for counting the total number of changes
+            editor.on('change', function (cm) { changeCount++; });
+
+            // Reset the change Counter
+            changeCount = 0;
+            setProgram(parms.program);
+
+            // Arrange to run it automatically if requested
+            if (parms.autoRun) {
+                setTimeout(function () { runit() }, 50)
+            }
+        }
+        // Loads program from a given url using XMLHttprequest (must be on the same domain)
+        function loadUrl(url) {
+            function reqListener() {
+                parms.program = this.responseText;
+                setup();
+            }
+
+            var oReq = new XMLHttpRequest();
+            oReq.addEventListener("load", reqListener);
+            oReq.open("GET", url);
+            oReq.send();
+        }
+
+        // See if there is a source program encoded in the url
+        var source = getParameter("source");
+        if (source) {
+            parms.program = decodeURIComponent(source);
+        }
+        var lzsource = getParameter("lzsrc");
+        if (lzsource) {
+            parms.program = LZString.decompressFromEncodedURIComponent(lzsource);
+        }
+
+        // Whether to hide interface
+        if (parms.hideIde) {
+            var elements = document.getElementsByClassName('IDE');
+            for (var i = 0; i < elements.length; i++) {
+                elements[i].style.display = "none";
+            }
+        }
+        // Callback for "new"
+        function refresh_program() {
+            if (changeCount != 0) {
+                var yes = confirm("Are you sure! You want to Clear code?");
+                if (!yes) return;
+            }
+
+            clearit();
+            setProgram("");
+
+            changeCount = 0;
+            document.getElementById("savefilename").value = "saveprogram.py";
+        }
+
+        // Load an external program if its url is passed as parameter 'program'
+        var programUrl = getParameter("program");
+        if (programUrl) {
+            // Load from file
+            programUrl = decodeURIComponent(programUrl);
+            var components = programUrl.split("/")
+            document.getElementById("savefilename").value = components[components.length - 1];
+            loadUrl(programUrl);
+        }
+        else {
+            // Load the initial program
+            setup();
+        }
+        window.onbeforeunload = function () {
+            // var url = "http://localhost:5001/api/v1/store/user/activity";
+            // // var url = "https://test.pythonguru.io/api/v1/store/user/activity"
+            // var api_token = localStorage.getItem('access_token_cookie');
+            // var xhr2 = new XMLHttpRequest();
+            // data = JSON.stringify({
+            //     "time_in_sec": TimeMe.getTimeOnPageInSeconds("solve-challenge"),
+            //     "page_name": "solve-challenge",
+            //     "time_stamp": date.toUTCString()
+            // });
+            // xhr2.open("POST", url, false);
+            // xhr2.setRequestHeader("Content-Type", "application/json");
+            // xhr2.setRequestHeader('Authorization', 'Bearer ' + api_token);
+            // xhr2.send(data);
+            if (changeCount == 0) return null;
+            return "Have you saved your program?";
+        }
+
+        window.onunload = storeProgram;
+
+    </script>
+</body>
+
+</html>

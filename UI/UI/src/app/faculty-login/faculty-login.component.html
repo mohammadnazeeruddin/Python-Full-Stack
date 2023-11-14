@@ -1,0 +1,79 @@
+<div class="container-fluid" style="max-width: 1200px; padding-left: 0px; padding-right: 0px; overflow: hidden;">
+    <!-- START card-->
+    <div>
+        <div class="mt-4">
+            <form [formGroup]="valForm" class="form-validate mb-3" role="form" name="loginForm" novalidate="" (submit)="submitForm($event, valForm.value)">
+                <div class="form-group" style="padding-top: 9px;">
+                    <div class="input-group with-focus">
+                        <input class="form-control border-right-0" id="exampleInputEmail1" type="email" name="email"
+                            placeholder="Enter email" autocomplete="off" formControlName="email" required="" />
+                        <div class="input-group-append input-group-append-radius">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                <!-- <em class="fa fa-envelope"></em> -->
+                                <mat-icon>email_outline</mat-icon>
+                            </span>
+                        </div>
+                    </div>
+                    <mat-error class="mat-error-cs"
+                        *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">
+                        email is required
+                    </mat-error>
+                    <mat-error class="mat-error-cs"
+                        *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">
+                        this field must be a valid email address
+                    </mat-error>
+                </div>
+                <div class="form-group" style="padding-top: 9px;">
+                    <div class="input-group with-focus">
+                        <input class="form-control border-right-0" id="exampleInputPassword1" name="password"
+                            placeholder="Enter Password" formControlName="password" [type]="hide ? 'password' : 'text'"
+                            required />
+                        <div class="input-group-append" (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <span class="input-group-text text-muted bg-transparent border-left-0">
+                                <mat-icon style="cursor: pointer">{{hide ? 'visibility_off' : 'visibility'}}
+                                </mat-icon>
+                            </span>
+                        </div>
+                    </div>
+                    <mat-error class="mat-error-cs"
+                        *ngIf="valForm.controls['password'].hasError('required') && (valForm.controls['password'].dirty || valForm.controls['password'].touched)">
+                        password is required
+                    </mat-error>
+                </div>
+                <!-- <ng-select [items]="college_list" (selected)="selected($event)"
+                        placeholder="Search or Select institution">
+                    </ng-select> -->
+                <div class="row d-flex justify-content-end pr-3" style="padding-top: 3px;">
+                    <span><a [routerLink]="'/facultyRegistration'">Register</a></span>&nbsp;&nbsp;/&nbsp;&nbsp;<span><a [routerLink]="'/facultyForgotPassword'">Forgot Password</a></span>&nbsp;&nbsp;
+                    <!-- <div class="col-lg-6 col-md-6 col-sm-6">
+                        <p class="text-right"><a [routerLink]="'/register'"> register now</a></p>
+                    </div> -->
+                </div>
+                <div class="login-btn-lg" align="right">
+                    <button mat-raised-button class="btn custom-btn" type="submit">
+                        <span *ngIf="spinner" class="spinner-border spinner-border-sm"></span>&nbsp;
+                        <mat-icon>input</mat-icon>&nbsp;&nbsp; login
+                    </button>
+                </div>
+                
+
+            </form>
+            
+            <div class="row pt-5">
+                <div class="col-md-12 d-flex justify-content-center ">
+                    <p style="color: #949494;">Powered by &nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="https://rossum.io"><img src="assets/images/logo.png" height="38px"></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span>
+    
+                        </span>
+                        <span style="padding-left: 25px;color: #949494;">Version: 1.0.1</span></p>
+                        
+                </div>
+                <div class="col-12 d-flex justify-content-center block-font">
+                    Copyrights reserved &copy; {{copy_right_date | date:'yyyy'}} Rossum Computing Pvt. Ltd.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

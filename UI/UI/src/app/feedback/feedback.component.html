@@ -1,0 +1,104 @@
+<div class="container mat-elevation-z4 mt-5" style="max-width:450px;border-top-left-radius: 75px;border-bottom-right-radius: 85px;">
+    <!-- <form [formGroup]="valForm" class="form-validate mb-3" role="form" name="loginForm" novalidate="" (submit)="submitForm($event, valForm.value)"> -->
+    <!-- <div class="form-group" style="padding-top: 9px;">
+            <div class="input-group with-focus">
+                <input class="form-control border-right-0" id="exampleInputEmail1" type="email" name="email"
+                    placeholder="Enter email" autocomplete="off" formControlName="email" required="" />
+                <div class="input-group-append input-group-append-radius">
+                    <span class="input-group-text text-muted bg-transparent border-left-0">
+                        <mat-icon>email_outline</mat-icon>
+                    </span>
+                </div>
+            </div>
+            <mat-error class="mat-error-cs"
+                *ngIf="valForm.controls['email'].hasError('required') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">
+                email is required
+            </mat-error>
+            <mat-error class="mat-error-cs"
+                *ngIf="valForm.controls['email'].hasError('email') && (valForm.controls['email'].dirty || valForm.controls['email'].touched)">
+                this field must be a valid email address
+            </mat-error>
+        </div> -->
+    <form class="mt-3 p-3" [formGroup]="valForm" class="form-validate mb-3" role="form" name="loginForm" novalidate=""
+        (submit)="feedBack($event, valForm.value)">
+        <!-- // #5BB12F #28abe3#E8B71A#14B8B1#F2671F#982395#E94C6F#1352A2 -->
+        <h2 align='center' style="color: #E94C6F;margin-top: 5px;margin-bottom: 17px;font-weight: 200"> Feedback</h2>
+        <hr>
+        <div>
+            <label id="example-radio-group-label">1. How was the session today?</label> <br>
+
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName='session'>
+                <mat-radio-button class="example-radio-button" style="text-transform: capitalize" *ngFor="let session of sessions"
+                    [value]="session">
+                    {{session}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <mat-error class="mat-error-cs" *ngIf="valForm.controls['session'].hasError('required') && (valForm.controls['session'].dirty || valForm.controls['session'].touched)">
+                This field is required </mat-error>
+
+        </div>
+        <div>
+            <label id="example-radio-group-label">2. Is the training relevant to your curriculum?</label> <br>
+
+            <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group" formControlName='curriculam'>
+                <!-- <mat-radio-button class="example-radio-button" style="text-transform: capitalize" 
+                    [value]="curriculam">
+                    {{session}}
+                </mat-radio-button> -->
+                <mat-radio-button value="yes" >Yes</mat-radio-button>
+          <mat-radio-button value="no">No </mat-radio-button>
+            </mat-radio-group>
+            <mat-error class="mat-error-cs" *ngIf="valForm.controls['curriculam'].hasError('required') && (valForm.controls['curriculam'].dirty || valForm.controls['curriculam'].touched)">
+                This field is required </mat-error>
+
+        </div>
+        <div>
+            <label id="example-radio-group-label">3. Any suggestions?</label> <br>
+
+            <mat-form-field class="example-full-width" appearance="outline">
+
+                <textarea matInput rows="4" placeholder="suggestions..."  formControlName='suggestions'></textarea>
+              </mat-form-field> 
+            <mat-error class="mat-error-cs" *ngIf="valForm.controls['suggestions'].hasError('required') && (valForm.controls['suggestions'].dirty || valForm.controls['suggestions'].touched)">
+                This field is required </mat-error>
+
+        </div>
+        <!-- <mat-radio-group aria-label="Select an option" required>
+            &nbsp;&nbsp;&nbsp;
+          <mat-radio-button value="1">Poor</mat-radio-button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-radio-button value="2">Average </mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-radio-button value="3">Good</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-radio-button value="4">Helpful</mat-radio-button>
+        </mat-radio-group> <br> <br> -->
+
+        <!-- <label id="example-radio-group-label">2. Is the training relevant to your curriculum?</label> <br>
+      
+        <mat-radio-group aria-label="Select an option" required> 
+            &nbsp;&nbsp;&nbsp;
+          <mat-radio-button value="1" >Yes</mat-radio-button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          <mat-radio-button value="2">No </mat-radio-button>&nbsp;&nbsp;&nbsp;
+      
+        </mat-radio-group> <br> <br>
+      
+        <label id="example-radio-group-label">3. Any suggestions?</label> <br>
+        &nbsp;&nbsp;&nbsp;
+
+        <mat-form-field class="example-full-width" appearance="outline">
+
+          <textarea matInput rows="4" placeholder="suggestions..."></textarea>
+        </mat-form-field> -->
+        <!-- <div align="center">
+            <button mat-raised-button class="btn custom-btn" type="submit" >
+                <mat-icon>input</mat-icon> login
+            </button>
+        </div> -->
+        <div align='center'>
+            <button mat-stroked-button class='mb-4 ' type="submit" 
+            style="border-radius:4px; min-width: 160px;background-color:#14B8B1 ;color: white;margin-top: -10px !important;padding-top: 0;">Submit</button>
+        </div>
+    </form>
+
+
+
+
+</div>

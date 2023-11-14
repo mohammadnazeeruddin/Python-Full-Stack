@@ -1,0 +1,29 @@
+<!-- <div #cdk> -->
+        <cdk-tree [dataSource]="tree_dataSource" [treeControl]="treeControl" [trackBy]="trackByFn" *ngIf="tree_dataSource">
+
+                <!-- <cdk-tree-node *cdkTreeNodeDef="let node" cdkTreeNodeToggle cdkTreeNodePadding>
+                                <button mat-icon-button disabled></button>
+                                <mat-checkbox class="checklist-leaf-node"
+                                              [checked]="checklistSelection.isSelected(node)"
+                                              (change)="checklistSelection.toggle(node);">{{node.item}}</mat-checkbox>
+                              </cdk-tree-node> -->
+                <cdk-nested-tree-node *cdkTreeNodeDef="let node" class="example-tree-node">
+                    <button mat-icon-button></button>
+                    <mat-checkbox class="checklist-leaf-node" [checked]="node.checked" [disabled]="node.disabled"> {{node.name}}
+                    </mat-checkbox>
+                </cdk-nested-tree-node>
+                <cdk-nested-tree-node *cdkTreeNodeDef='let node; when: hasChild' class="example-tree-node">
+                    <button mat-icon-button [attr.aria-label]="'toggle ' + node.name" cdkTreeNodeToggle [disabled]="node.disabled">
+                        <mat-icon class="mat-icon-rtl-mirror" >
+                            {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+                        </mat-icon>
+                    </button>
+                    <mat-checkbox class="checklist-leaf-node" [checked]="node.checked" [disabled]="node.disabled">{{node.name}}
+                    </mat-checkbox>
+                    <!-- {{node.name}} -->
+                    <div [class.example-tree-invisible]="!treeControl.isExpanded(node)">
+                        <ng-container cdkTreeNodeOutlet let i=index></ng-container>
+                    </div>
+                </cdk-nested-tree-node>
+            </cdk-tree>
+            <!-- </div> -->

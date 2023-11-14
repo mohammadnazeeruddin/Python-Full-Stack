@@ -1,0 +1,207 @@
+<div style="margin: 20px 20px 40px 20px;">
+    <div class="col-sm-12">
+        <div class="d-flex justify-content-start">
+            <button mat-mini-fab class="createfromqb" style=" margin-right: 20px;  outline:none;"
+                (click)="backClicked()">
+                <!-- <button mat-mini-fab (click)="back()" class="createfromqb" style=" margin-right: 20px;  outline:none;"> -->
+                <mat-icon style="vertical-align: sub">arrow_back</mat-icon>
+                <!-- </button> -->
+            </button>
+            <!-- <button mat-raised-button class="newtest" (click)="createAssessment()">Create Assessment</button> -->
+            <!-- </div>
+        <div class="col col-sm-3"> -->
+
+            <mat-card class="example-container mb-2 mat-elevation-z5" *ngIf="assessment_data">
+                <div class="d-flex justify-content-center">
+                    <form [formGroup]="assessmentForm" (submit)="createAssessment()">
+                        <div class="row mb-2" style="max-width: 786px;">
+                            <div class="col-sm-3 ">
+                                <mat-form-field appearance="outline" class="mat-form-style">
+                                    <mat-label>Courses</mat-label>
+                                    <mat-select formControlName="course" (selectionChange)='selectMaterial($event)'>
+                                        <mat-option *ngFor="let val of materials" [value]="val">
+                                            {{val.material_name |titlecase}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <mat-form-field appearance="outline" class="mat-form-style">
+                                    <mat-label>minutes</mat-label>
+                                    <mat-select formControlName="minutes">
+                                        <mat-option *ngFor="let min of minutes" [value]="min">{{min}}</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <mat-form-field appearance="outline" class="mat-form-style">
+                                    <mat-label>Topics</mat-label>
+                                    <mat-select formControlName="topic" (selectionChange)='selectChapter($event)'>
+                                        <mat-option *ngFor="let t of chapters" [value]="t">{{t.chapter_name}}
+                                        </mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </div>
+
+                            <div class="col-sm-3" style="margin: auto;">
+                                <button mat-raised-button type="submit" class="newtest" [disabled]="show == true">Create
+                                    assessment</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-8">
+            <div class="d-flex justify-content-center">
+                <div class="row mx-1">
+                    <div class="group">
+                        <p style="color: #68b96f;">Assessment-{{assessment_data.assessment_id}} Questions({{createassessment.length}})
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <mat-card class="example-container mb-2 mat-elevation-z5">
+                <mat-tab-group #tabGroup (selectedTabChange)="onLinkClick($event)" [selectedIndex]="index">
+                    <mat-tab label="Question Bank">
+                        <div class="example-container mat-elevation-z8">
+                            <div style="text-align: center;">
+                                <mat-form-field style="width: 50%;">
+                                    <mat-label>Filter</mat-label>
+                                    <input matInput (keyup)="applyFilter($event)"
+                                        placeholder="Example enter introduction">
+                                </mat-form-field>
+                            </div>
+                            <div class="example-table-container">
+                                <table mat-table [dataSource]="questionBank" matSort [hidden]="!questionBank">
+
+                                    <ng-container matColumnDef="question">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <b
+                                                class="bold">Question</b>
+                                        </th>
+                                        <td mat-cell *matCellDef="let row" style="width: 600px;"> {{row.question}} </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="topic">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <b class="bold">Topic</b>
+                                        </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.topic}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="add">
+                                        <th mat-header-cell *matHeaderCellDef> </th>
+                                        <td mat-cell *matCellDef="let row; let i = index" style="padding-left:20px">
+                                            <button mat-mini-fab (click)="add(row)" (click)="preview(row, i)"
+                                                style="vertical-align: initial !important;" [hidden]="row.added==true"
+                                                [disabled]="!show">
+                                                <mat-icon>add</mat-icon>
+                                            </button>
+                                        </td>
+                                    </ng-container>
+
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns;"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns; let i=index;"
+                                        (click)="preview(row, i)" [ngClass]="{'highlight': selectedIndex == i}"
+                                        [style.background]="color">
+                                    </tr>
+                                </table>
+                            </div>
+                            <mat-paginator [pageSizeOptions]="[15, 100]"></mat-paginator>
+                        </div>
+                    </mat-tab>
+
+
+                    <mat-tab label="Assessment">
+                        <ng-template matTabContent>
+                            <div class="example-container mat-elevation-z8">
+                                <table mat-table [dataSource]="questionBank1" matSort [hidden]="!questionBank1">
+
+                                    <ng-container matColumnDef="question">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <b
+                                                class="bold">Question</b>
+                                        </th>
+                                        <td mat-cell *matCellDef="let row" style="width: 600px;"> {{row.question}}
+                                        </td>
+                                    </ng-container>
+
+                                    <ng-container matColumnDef="topic">
+                                        <th mat-header-cell *matHeaderCellDef mat-sort-header> <b class="bold">Topic</b>
+                                        </th>
+                                        <td mat-cell *matCellDef="let row"> {{row.topic}} </td>
+                                    </ng-container>
+                                    <ng-container matColumnDef="clear">
+                                        <th mat-header-cell *matHeaderCellDef> </th>
+                                        <td mat-cell *matCellDef="let row; let i = index" style="padding-left:20px">
+                                            <button mat-mini-fab style="vertical-align: initial !important;"
+                                                (click)="clear(row, i)">
+                                                <mat-icon>delete</mat-icon>
+                                            </button>
+                                        </td>
+                                    </ng-container>
+                                    <tr mat-header-row *matHeaderRowDef="displayedColumns1; sticky: true"></tr>
+                                    <tr mat-row *matRowDef="let row; columns: displayedColumns1; let i=index;"
+                                        (click)="preview(row, i)">
+                                    </tr>
+                                </table>
+
+                                <mat-paginator [pageSizeOptions]="[15, 100]"></mat-paginator>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="d-flex justify-content-center">
+                                    <button mat-raised-button class="submitForReview"
+                                        [disabled]="createassessment.length==0" (click)="submitForReview()">Submit
+                                        For Review</button>
+                                    <!-- <button mat-raised-button class="newtest" (click)="createAssessment()">Create Assessment</button> -->
+                                </div>
+                            </div>
+                        </ng-template>
+                    </mat-tab>
+                </mat-tab-group>
+            </mat-card>
+        </div>
+        <div class="col col-sm-4">
+            <!-- <div class="col-lg-6"> -->
+            <p [style.color]="'#56b05c'" style="text-align: center;">MCQ Assessment Preview
+            </p>
+            <mat-card style="padding: 0px !important; min-height: 600px; border-radius: 5px !important;"
+                class="mat-elevation-z2">
+                <!-- {{questionPreview[0]|json}} -->
+                <mat-card-content *ngIf="questionPreview">
+                    <!-- {{questionPreview[0]|json}} -->
+                    <div class="ques d-flex justify-content-center" style="border-radius: 5px 5px 0  0 !important;">
+                        <div class="question" innerText="{{questionPreview.question}}">
+                            {{questionPreview|json}}
+                        </div>
+                    </div>
+                    <div *ngIf="questionPreview.code">
+                        <pre class="language-python line-numbers"
+                            style="margin-top: 0px; padding-left: 70px !important;max-height: 237px; overflow-y: auto;">
+                                      <code style="font-size: 16px !important;" id="code_blog" innerHtml=" {{questionPreview.code}}"> 
+                                      </code>
+                            </pre>
+                    </div>
+                    <div>
+                        <label class="example-radio-group"> </label>
+                        <div>
+                            <section class="section" *ngFor="let s of options_list; let opIn=index">
+                                <mat-checkbox class="example-margin">
+                                    <div
+                                        style="white-space: pre-line; font-size:16px !important; font-family: Consolas; letter-spacing: 0.3px;">
+                                        &nbsp;<b>{{s[0]}}.</b>&nbsp;{{s[1]}}
+                                    </div>
+                                </mat-checkbox>
+                            </section>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+            <br>
+            <br>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
+<!-- Questions({{questionBank1.data.length}} -->

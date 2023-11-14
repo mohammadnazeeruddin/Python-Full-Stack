@@ -1,0 +1,52 @@
+<div class="container " style="width: 900px;">
+  <p style="text-align: center;">Detailed Report</p>
+  <div class="row">
+    <div class="col-12 " *ngFor='let i of adminCourseData;let k=index'>
+      <mat-card  style="margin-bottom: 25px;" >
+
+        <div class="row text-center">
+          <div class="col course-crd " >
+            <img src="{{i.img}}" style='width:70px'>
+            <!-- <p>{{i.couse_name}}</p> -->
+          </div>
+          <div class="col course-crd ">
+            <p>Trainers</p>
+
+            <p>{{i.trainers_cnt}}</p>
+          </div>
+          <div class="col course-crd">
+            <p>Batches</p>
+
+            <p>{{i.batches_cnt}}</p>
+
+          </div>
+          <div class="col course-crd">
+            <p>Duration</p>
+            <p>{{i.time_in_hrs}} <span style="font-size: 12px;"> &nbsp; hrs</span></p>
+
+          </div>
+          <div class="col course-crd" style="border: none !important;">
+            <p>Rating</p>
+
+            <p>{{i.rating}}</p>
+            <a (click)="expand(k)" style="line-height: 0px;cursor: pointer;">
+              <mat-icon *ngIf="!hide_list[k]">expand_more</mat-icon>
+              <mat-icon *ngIf="hide_list[k]">expand_less</mat-icon>
+          </a>
+          </div>
+
+
+
+        </div>
+
+        <div *ngIf="hide_list[k]" class="text-center">
+
+          <app-admin-trainers></app-admin-trainers>
+
+        </div>
+
+      </mat-card>
+    </div>
+  </div>
+
+</div>

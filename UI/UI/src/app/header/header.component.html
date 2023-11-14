@@ -1,0 +1,97 @@
+<mat-toolbar class="mat-elevation-z4 p-1 " style="top: 0;position: fixed;z-index: 1;">
+  <mat-toolbar-row>
+    <div class="d-flex justify-content-start" style="margin-top: 20px;">
+      <a routerLink='/home' style="text-decoration: none;">
+        <span class="d-flex justify-content-end"
+          style="font-size: 20px; color: rgb(148, 148, 148); margin-right: -15px; margin-bottom: -19px;">&trade;</span>
+        <p><span class="true-font">true</span></p>
+        <p style="margin-top: -33px !important; align-items: flex-end; margin-right: -23px;"
+          class="qualify-font d-flex justify-content-end">qualify</p>
+      </a>
+
+      <!-- <button mat-button [matMenuTriggerFor]="menu">My Batches</button> -->
+      <!-- <mat-menu #menu="matMenu" *ngIf="groups_data.length>0">
+        <button mat-menu-item *ngFor="let groups of groups_data">{{groups}}</button> 
+      </mat-menu> -->
+
+    </div>
+    <mat-menu #material1="matMenu">
+      <div *ngIf="groups_data">
+        <ng-container *ngFor="let groups of groups_data; let i=index">
+          <button mat-menu-item (click)="changeGroup(groups)">{{groups.batch_name}}</button>
+        </ng-container>
+      </div>
+    </mat-menu>
+    <button mat-stroked-button [matMenuTriggerFor]="material1" *ngIf="groups_data && selected_group"
+      style="background-color: #00a699 !important; margin-left: 50px !important; color: white !important;">
+      <span [innerText]="selected_group['batch_name']"></span>&nbsp;&nbsp;<mat-icon>keyboard_arrow_down</mat-icon>
+    </button> &nbsp;&nbsp;Select Group
+    <span class="menu-spacer"></span>
+    <div class="dropdown-cu">
+      <button mat-raised-button (click)="join_group_flag = join_group_flag? false: true;"
+        style="background-color: #E94C6F !important;color: white !important;margin-right: 10px;">
+        <mat-icon style="margin-top: 6px;font-size: 17px;">add</mat-icon> Join Group
+      </button>
+      <div class="dropdown-content-cu" [ngStyle]="{'display': join_group_flag? 'block': 'none'}">
+        <form [formGroup]="join_group_form" *ngIf="join_group_flag">
+          <mat-form-field>
+            <mat-label>Select a group</mat-label>
+            <mat-select formControlName="group_id">
+              <mat-option *ngFor="let group of groups_list" [value]="group['_id']">
+                {{group['batch_name']}}</mat-option>
+            </mat-select>
+          </mat-form-field><br>
+          <mat-form-field>
+            <input matInput type="text" formControlName="code" placeholder="Plase enter six digit code">
+          </mat-form-field><br>
+          <!-- <mat-form-field>
+            <mat-label>Select a subject</mat-label>
+            <mat-select formControlName="subject">
+              <mat-option *ngFor="let material of material_list" [value]="material['_id']">
+                {{material['material_name']}}</mat-option>
+            </mat-select>
+          </mat-form-field><br> -->
+          <button mat-raised-button (click)="joinGroup()" style="margin-right: 10px;">Join</button>
+        </form>
+      </div>
+    </div>
+    <button class="home wow jello" mat-raised-button routerLink='/myreport' style="margin-right: 10px;">
+      <mat-icon style="color: #982395; margin-top: -3px;"> insert_chart</mat-icon>
+      Report
+    </button>
+    <button *ngIf="count"  class="home  wow jello" mat-raised-button routerLink='/mytasks' matBadge="{{count}}" 
+     matBadgePosition="after" matBadgeColor="primary">
+      <mat-icon style="color: #14B8B1; margin-top: -3px;"> timeline</mat-icon>
+      Tasks
+    </button>&nbsp;&nbsp;&nbsp;
+    <!-- <button class="home  wow jello" mat-button routerLink='/mytasks'>
+      <mat-icon style="color: #14B8B1; margin-top: -3px;"> timeline</mat-icon>
+      Tasks
+      <span class="badge ">8</span>
+    </button>&nbsp;&nbsp;&nbsp; -->
+    <div>
+      <div [matMenuTriggerFor]="menu">
+        <button mat-fab style="outline: none;background-color: #3189D6;color: white;width: 40px;height: 40px;">
+          <mat-icon style="margin-top:-11px ;font-size: 17px;">person_outline</mat-icon>
+        </button>
+        <!-- <img src="assets/images/profile.png" width=50 height=50 style="margin-top: -4px; margin-left: -5px;"> -->
+      </div>
+
+      <mat-menu #menu="matMenu"
+        style="padding-top: 0px !important; padding-bottom: 0px !important; margin: 0px !important;">
+        <button mat-menu-item (click)="signout()">
+          <img src="assets/images/Logout.png" width="20px">&nbsp;&nbsp;<span>Logout</span>
+        </button>
+      </mat-menu>
+
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+
+<div (scroll)="scrollHandler($event)">
+  <a class="return-to-top" *ngIf="scroll_flag" (click)="scroll_fun($event)">
+    <mat-icon class="material-icons-scroll">keyboard_arrow_up</mat-icon>
+  </a>
+
+</div>

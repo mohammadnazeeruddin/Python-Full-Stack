@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html style="margin-top:3px; background-color: #3a4249;">
+<head>
+    <meta name="viewport" content="width=device-width,height=device-height,initial-scale=1.0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- <link rel="stylesheet" type="text/css" href="material_code_editor_styles/codemirror.css"> -->
+    <link rel="stylesheet" type="text/css" href="material_code_editor_styles/solarized_dark_theme.css">
+    <link rel="stylesheet" type="text/css" href="material_code_editor_styles/solarized_light_theme.css" id="theme_css">
+    <!-- <link rel="stylesheet" type="text/css" href="material_code_editor_styles/skulptide.css" id="theme_css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inconsolata" /> -->
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+    <script src="editor_javascripts/jquery.min.js"></script>
+    <script src="editor_javascripts/codemirror.js"></script>
+    <script src="editor_javascripts/matchbrackets.js"></script>
+    <script src="editor_javascripts/python.js"></script>
+    <script src="editor_javascripts/skulpt.min.js"></script>
+    <script src="editor_javascripts/skulpt-stdlib.js"></script>
+    <script src="editor_javascripts/processing.min.js"></script>
+    <script src="editor_javascripts/pythonide_script.js"></script>
+    <script src="editor_javascripts/lz-string.js"></script>
+    <script src="editor_javascripts/FileSaver.min.js"></script>
+    <script src="editor_javascripts/pythoninteractive.js"></script>
+    <script src="editor_javascripts/timeme.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+        .font_applied{
+            font-family: 'Consolas';
+        }
+
+        .CodeMirrorCustom {
+            font-family: 'Consolas' !important;
+            height: 500px !important;
+            color: black !important;
+        }
+
+        .output_material_custom {
+            height: 500px !important;
+        }
+    </style>
+</head>
+
+<body class="">
+    <div class="col-xs-12 col-sm-12 col-lg-12 code_header">
+        <div class="mobileHide">
+            <input class="form-control form-control-sm" style="width:90px;float: right;margin-left:8px;padding: 7px;margin-top: 4px;color: white;
+background-color: #3189D6;"
+                id="savefilename" type="text" value="program.py"  />
+        </div>
+
+       
+ 
+        <div class="dropdown">
+            <button class="dropbtn btn"> <img src="../assets/images/python1.svg" height="17px;" width="17px;"
+                    style="margin-left:-2px;"></button> 
+            <div class="dropdown-content font_applied">
+                <a style="text-align: center;"></a>
+                <a>Execute (Shift+Enter)</a>
+                <a>Save-code (Ctrl+S)</a>
+                <a>Hide editor (Ctrl+Shift+X)</a>
+            </div>
+        </div>
+        <small class="font_applied" style="color:white;text-align: center !important;">Shift + Enter to run</small>
+        <button class="btn" style="padding: 6px 8px;float: right;" onclick="openFullscreen();">
+            <img src="../assets/images/max_2.svg" id="maxm" height="14px;" width="14px;"> </button>
+
+        <button class="btn" style="padding: 6px 3px;float: right;" title="Reset" onclick="window.location.reload()">
+            <img src="../assets/images/reload_1.svg" height="14px;" width="15px;">
+        </button>
+
+        <button class="btn" style="padding: 6px 5px;float: right;" title="Download Code" onclick="saveit()"
+            id="savecode"><img style="width:15px;margin-right: 4px;" src="./images/download.svg" class=""></button>
+
+        <button title="execute" class="btn" style="padding: 6px 3px;float: right;" onclick="runProgram();" id="enter"><img
+                src="../assets/images/run_1.svg" height="14px;" width="14px;"> </button>
+
+        <button title="change theme" style="box-shadow: none;float: right;padding-right: 8px;" class="btn" onclick="switchTheme()"><img
+                src="../assets/images/theme.svg" height="17px;" width="17px;"></button> 
+
+        <!-- download file -->
+
+    </div>
+
+    <div>
+        <div class="tabpage" id="tabpage_1">
+            <div class="col-xs-12 col-sm-12 col-lg-12" style="padding-right:1px;padding-left: 0px;">
+                <div class="" style="min-height:190px;">
+                    <div class="mobileHide">
+                        <input class="form-control form-control-sm "
+                            style="width: 136px;float: right;margin-left: 33px; border-color:#579a43;" id="savefilename"
+                            type="hidden" value="program.py" />
+                    </div>
+                    <div class="" style="padding: 0px;">
+                        <div class="maindiv">
+                            <div id="centralarea">
+                                <div id="canvas">
+                                </div>
+                                <div class="editor IDE">
+                                    <textarea id="code" cols="400" rows="400" value="">
+                                 </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- style="display:none;" -->
+    <div>
+        <div class="col-sm-12 col-lg-12" style="padding-left: 0px;padding-right: 0px;margin-top:2px;">
+            <div class="" style="border:none">
+                <ul class="gre_than">
+                    <p class="circle" style="font-size: medium;color: white;;
+                    ">></p>
+
+                </ul>
+                <div style="max-height: 292px;">
+                    <div id="outputpanel" style="margin-top: -17px;">
+
+                        <pre id="output" class="output_material"
+                            style="margin-top: -3px;margin-bottom: -2rem;">
+                        </pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <button style="padding: 4px 0px;" style="visibility: hidden;" class="btn" id="code_refresh"
+        onclick="refresh_code()"></button>
+
+    <script type="text/javascript">
+
+        var parms = {
+            program:  // Initial skulpt program to show in the editor
+                typeof (Storage) !== "undefined" && localStorage.getItem("code_material") ||
+                ["# Start Coding...!",
+                    "for x in range(10): ",
+                    "     print(x)",
+
+                ].join("\n"),
+            programName: typeof (Storage) !== "undefined" && localStorage.getItem("skulptIdeProgramName") ||
+                "saveprogram.py",
+            noTitle: false,  // Whether to hide the title
+            noOutput: false, // Whether to hide the output panel
+            autoRun: false, // Whether to run the initial program after load
+            hideIde: false,  // Whether to hide the IDE buttons if autoRun is true
+            showUrl: false,  // Whether to show an interactive button for showing an url for this sketch
+        };
+
+        function refresh_code() {
+            parms.program = localStorage.getItem("code_material");
+            setProgram(parms.program);
+        }
+
+        var date = new Date();
+
+        // Number of changes to the program after save
+        var changeCount = 0;
+
+        // Obtain the url parameter with name theParameter. Returns false
+        // if not specified.
+        function getParameter(theParameter) {
+            var params = window.location.search.substr(1).split('&');
+
+            for (var i = 0; i < params.length; i++) {
+                var p = params[i].split('=');
+                if (p[0] == theParameter) {
+                    if (p.length > 1)
+                        return p[1];
+                    else
+                        return true;
+                }
+            }
+            return false;
+        }
+
+        function save_user_activity() {
+            // storeProgram();
+            // var url = "http://localhost:5001/api/v1/store/user/activity";
+            var url = "https://test.pythonguru.io/api/v1/store/user/activity";
+            var api_token = localStorage.getItem('access_token_cookie');
+            var xhr2 = new XMLHttpRequest();
+            data = JSON.stringify({
+                "time_in_sec": TimeMe.getTimeOnPageInSeconds("practice-online"),
+                "page_name": "practice-online",
+                "time_stamp": date.toUTCString()
+            });
+            if (TimeMe.getTimeOnPageInSeconds("practice-online") > 5) {
+                xhr2.open("POST", url, false);
+                xhr2.setRequestHeader("Content-Type", "application/json");
+                xhr2.setRequestHeader('Authorization', 'Bearer ' + api_token);
+                xhr2.send(data);
+            }
+        }
+
+        // Saves the current state to the browser's store
+        function storeProgram() {
+            localStorage.setItem("skulptIdeProgram", getProgram());
+            localStorage.setItem("skulptIdeProgramName", document.getElementById("savefilename").value);
+        }
+
+        // Callback for "run"
+        function runProgram() {
+            // var x = document.getElementById('myDIV').style.display = "block";
+            storeProgram();
+            runit()
+        }
+
+        function newProgram() {
+            if (changeCount != 0) {
+                var yes = confirm("Are you sure! You want to Clear code?");
+                if (!yes) return;
+            }
+            clearit();
+            setProgram("");
+            changeCount = 0;
+            document.getElementById("savefilename").value = "saveprogram.py";
+        }
+        // Callback for "download as"
+        function saveit() {
+
+            var data = getProgram();
+            var filename = document.getElementById("savefilename").value;
+            var blob = new Blob([data], { type: "text/plain;charset=utf-8" });
+            saveAs(blob, filename);
+            changeCount = 0;
+        }
+        // Setup 
+        function setup() {
+            // Setup skulpt and editor
+            setupPythonIDE('code', 'output', 'canvas');
+
+            // Arrange for counting the total number of changes
+            editor.on('change', function (cm) { changeCount++; });
+
+            // Set the initial program
+            setProgram(parms.program);
+
+            // Reset the change Counter
+            changeCount = 0;
+
+            // Arrange to run it automatically if requested
+            if (parms.autoRun) {
+                setTimeout(function () { runit() }, 50)
+            }
+        }
+
+        // Load an external program if its url is passed as parameter 'program'
+        var programUrl = getParameter("program");
+        if (programUrl) {
+            // Load from file
+            programUrl = decodeURIComponent(programUrl);
+            var components = programUrl.split("/")
+            document.getElementById("savefilename").value = components[components.length - 1];
+            loadUrl(programUrl);
+        }
+        else {
+            // Load the initial program
+            setup();
+        }
+
+        // Prevent silently navigating away from the IDE
+        window.onbeforeunload = function () {
+
+            if (changeCount == 0) return null;
+            return "Have you saved your program?";
+        }
+
+        window.onload = function () {
+            TimeMe.initialize({
+                currentPageName: "practice-online", // current page
+                idleTimeoutInSeconds: 60, // stop recording time due to inactivity
+            });
+        }
+
+        // Try to save the program to local storage before leaving
+        window.onunload = save_user_activity;
+
+        var elem = document.documentElement;
+        function openFullscreen() {
+            var doc = document.getElementsByClassName("CodeMirror")[0];
+            var doc_output = document.getElementsByClassName("output_material")[0];
+            document.getElementById("maxm").src = "../assets/images/inside.svg"
+            console.log(doc_output)
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+
+            if(!doc.classList.contains("CodeMirrorCustom")) {
+                doc.classList.add("CodeMirrorCustom");
+                doc_output.classList.add("output_material_custom");
+            } else {
+                closeFullscreen();
+            }
+        }
+
+        function closeFullscreen() {
+            var doc = document.getElementsByClassName("CodeMirror")[0];
+            var doc_output = document.getElementsByClassName("output_material")[0];
+            var class_list = doc.classList;
+            doc.classList.remove("CodeMirrorCustom");
+            doc_output.classList.remove("output_material_custom");
+            document.getElementById("maxm").src = "../assets/images/max_2.svg"
+
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+                document.exitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+                document.exitFullscreen();
+            }
+        }
+
+        // document.getElementById('myButton').addEventListener('click', function () {
+        //     var clickCount = parseInt(this.getAttribute('data-clicked'), 10);
+
+        //     console.log(clickCount);
+        //     console.log(document.getElementById('myUl'));
+        //     if (clickCount++ % 2) {
+        //         document.getElementById('myUl').style.height = '100px';
+        //     } else {
+        //         document.getElementById('myUl').style.height = '500px';
+        //     }
+        //     this.setAttribute('data-clicked', clickCount);
+        // });
+
+
+        // $('textarea').on('keydown', function (event) {
+        //     if (event.keyCode == 13 && event.shiftKey) {
+        //         document.getElementById("button").click();
+        //     }
+        // });
+        function ctrl_and_save() {
+            // this method is to save code_test by using ctrl+s keys.
+            document.onkeydown = function (event) {
+                event || window.event;
+                if (event.ctrlKey) {
+                    var c = event.which || event.keyCode;
+                    switch (c) {
+                        case 83:
+                            event.preventDefault();
+                            document.getElementById("savecode").click();
+                            break;
+                    }
+                } else if (event.shiftKey) {
+                    var c = event.which || event.keyCode;
+                    switch (c) {
+                        case 13:
+                            event.preventDefault();
+                            document.getElementById("enter").click();
+                            break;
+                    }
+                }
+            };
+        }
+        ctrl_and_save();
+
+        function switchTheme() {
+            var check = document.getElementById('theme_css').classList[0] === 'light';
+            var element = document.getElementById('theme_css');
+            if (check) {
+                element.href = 'material_code_editor_styles/solarized_light_theme.css';
+                element.classList.remove('light')
+                element.classList.add('dark');
+            } else {
+                element.href = 'material_code_editor_styles/solarized_dark_theme.css';
+                element.classList.remove('dark')
+                element.classList.add('light');
+            }
+        }
+
+    </script>
+</body>
+
+</html>

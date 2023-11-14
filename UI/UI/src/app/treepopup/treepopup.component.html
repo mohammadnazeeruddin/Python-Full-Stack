@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col col-6 tree example-list">
+            <div *ngFor="let childitem of data.data; let index=index;">
+                <p>
+                    <!-- (change)="onChange(childitem, index, tree_data[0], $event, 1)" -->
+                    <mat-checkbox [checked]="childitem.isSelected">
+                        <h5> {{childitem.name}}</h5>
+                    </mat-checkbox>
+                </p>
+                <ul>
+                    <li *ngFor="let subchilditem of childitem.children; let i = index;">
+                        <p>
+                            <!-- (change)="onChange(childitem.children[i],i,childitem,$event,2)" -->
+                            <mat-checkbox [checked]="subchilditem.isSelected">
+                                <h6> {{subchilditem.name}}</h6>
+                            </mat-checkbox>
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col col-6" style="margin: auto;">
+            <h5 style="text-align: center">Are you sure to assign the task?</h5>
+            <div style="text-align: center;">
+                <button mat-raised-button class="btn1 btn1-primary" (click)="assign()" style="margin-right: 20px;
+            margin-top: 20px;">Assign</button>
+                <button mat-raised-button class="btn1 btn1-secondary" (click)="close()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

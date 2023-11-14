@@ -1,0 +1,43 @@
+
+<div class="container-fluid popup" *ngIf="data && data['message']">
+  <div class="row">
+    <div class="col-xl-12">
+      <table style="max-height: 300px;min-height: 200px;">
+        <tbody>
+          <tr>
+            <td class="align-middle">
+              {{data['message']}} <span>
+              </span>
+            </td>
+          </tr>
+          <div class="buttons">
+            <button mat-raised-button class="ok" (click)="submits()">Ok</button>
+            <!-- <button mat-raised-button class="cancel" (click)="no()">Cancel</button> -->
+          </div> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid popup" *ngIf="data && data['msg']">
+  <div class="row">
+    <div class="col-xl-12">
+      <table style="max-height: 300px;min-height: 200px;">
+        <tbody>
+          <tr>
+            <td class="align-middle">
+              {{data['msg']}} <span>
+              </span>
+            </td>
+          </tr>
+          <div class="buttons">
+            <button mat-raised-button class="ok" (click)="submits()">Ok</button>
+            <!-- <button mat-raised-button class="cancel" (click)="no()">Cancel</button> -->
+          </div> 
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

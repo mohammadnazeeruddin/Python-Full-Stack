@@ -1,0 +1,238 @@
+<app-header></app-header>
+<div style="margin-top: 70px; padding-top: 30px">
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-2 vh-100" style="border-right: 1px solid #dddddd;">
+      <p class="topic-header ">
+        Materials
+      </p>
+      <hr />
+      <div *ngIf="material_list && material_list.length > 0;">
+        <!-- {{material_list|json}} -->
+        <!-- <button 
+        (click)="enableDisableRule()" 
+        [ngClass]="{'green' : toggle, 'red': !toggle}">
+        {{status}}
+    </button> -->
+        <div class="hand py-2 pl-3 pg-link" style="font-size: 16px; color: #444444;" routerLinkActive="pg-active-link"
+         *ngFor="let i of material_list; let k = index;" (click)="enableDisableRule(k)"
+          [ngClass]="{'pg-links': selectedIndex == k}">
+        <!-- <span>&#9675;</span>&nbsp;  -->
+        <div class="d-flex"><span style="margin-top: auto; margin-bottom: auto;">
+                <div style="font-size: 7px; width: 9px; height: 9px; border-radius: 50%; background-color: #fdf7f4; border: 1px solid #777777; text-align: center; line-height: 18px;">
+                </div>
+            </span>
+            <span style="padding-left: 15px;" (click)="getChapter(i, k)">{{ i['material_name'] }}</span></div>
+    </div>
+        <!-- <div class="mt-2 d-flex justify-content-left" *ngFor="let i of material_list; let k = index;">
+          <a (click)="getChapter(i, k)">
+            matTooltipPosition="right"
+            <mat-icon [innerHtml]="user_registered_courses.includes(i['_id']) ? 'lock_open' : 'lock'" style="margin-top: 6px;font-size: 17px;"
+              align="left">
+            </mat-icon>
+            {{ i['material_name'] }}
+          </a>
+        </div> -->
+      </div>
+    </div>
+
+    <div class="col-10" style="padding: 0px;">
+      <div class="container-fluid" style="max-width: 1200px; margin-top: -1px; margin-bottom: 20px">
+        <p class="topic-header" align="center">
+          Quick Review of <span style="color: #5BB12F !important;">{{ material_name }}</span>
+        </p>
+        <hr style="width:100%" />
+        <div class="row">
+          <ng-template #noResult>
+            <p class="topic-header" align="center">
+              You don't currently have permission to acccess
+              <span class="topic-header" style="color: #5BB12F !important;">
+                {{ material_name }}</span>
+              Topic..
+            </p>
+            <div class="text-center">
+              <!-- <img src="../../../assets/images/access.png" /> <br /> -->
+              <button mat-raised-button class="mt-5 pro-font">
+                Get Pro
+                <i class="fa fa-diamond" aria-hidden="true"></i>
+              </button>
+              <!-- <img src="../../../assets/images/lock.jpg" > -->
+            </div>
+          </ng-template>
+        </div>
+
+        <div class="row" *ngIf="user_activity_status; else noResult;">
+          <ng-container *ngIf="user_activity_status && last_activity_chapters && last_activity_chapters.length > 0">
+            <ng-container *ngFor="let chapter of last_activity_chapters; let ind=index">
+              <mat-card class="mat-elevation-z2 col-3" (click)="myMaterial(chapter)">
+                <div class="row">
+                  <div class="col-12 text-center" style="margin-top: -4px;">
+                    <h6 class="chapter-font">{{ chapter['chapter_name'] }}</h6>
+                  </div>
+                  <div class="col-12" align="right">
+                    <mat-icon>timer</mat-icon>
+                  </div>
+
+                  <div class="col-12 row" style="margin-top: -26px;">
+                    <div class="col-2" style="padding-left: 5px;margin-top: 3px;">
+                      <button mat-fab align="left" class="custom-btn" [ngStyle]="{'background-color': ind == 0 ? dotcolors[0]: dotcolors[1]}">
+                        <mat-icon>play_arrow</mat-icon>
+                      </button>
+                    </div>
+                    <div class="col-7" style=" margin-top: 5px !important;">
+                      <p style="margin: 3px;font-size: 12px;color: #888888;" [innerText]="user_activity_status[chapter['_id']]['percentage'] == 100 ? 'completed':(user_activity_status[chapter['_id']]['percentage']==0 ? 'start' :'continue ..')">
+                      </p>
+                      <mat-progress-bar mode="determinate" *ngIf="user_activity_status" [value]="user_activity_status[chapter['_id']]['percentage']"
+                        style="height: 4px;"></mat-progress-bar>
+                    </div>
+                    <div class="col-3" style="border-left: 1px solid #dddddd;">
+                      <p style="font-size: 12px;margin: 0;">time</p>
+                      <p style="font-size: 17px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                        {{user_activity_status[chapter['_id']]["spent_time"]}}
+                      </p>
+                      <p style="font-size: 12px; margin-top: -36px; margin-left: 40px;">
+                        mins
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </mat-card>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngFor="let c of chapters; let k = index">
+            <ng-container *ngIf="(last_activity == null) || (last_activity && c['_id'] != last_activity['chapter_id'])">
+              <mat-card class="mat-elevation-z2 col-3" (click)="myMaterial(c)" *ngIf="user_activity_status">
+                <div class="row">
+                  <div class="col-12 text-center" style="margin-top: -4px;">
+                    <h6 class="chapter-font">{{ c['chapter_name'] }}</h6>
+                  </div>
+                  <div class="col-12" align="right">
+                    <mat-icon>timer</mat-icon>
+                  </div>
+                  <div class="col-12 row" style="margin-top: -26px;">
+                    <div class="col-2" style="padding-left: 5px;margin-top: 3px;">
+                      <button mat-fab align="left" class="custom-btn" [ngStyle]="{'background-color': user_activity_status[c['_id']]['percentage'] == 0 ? dotcolors[2]: (user_activity_status[c['_id']]['percentage'] == 100 ? dotcolors[3] : dotcolors[1]) }">
+                        <mat-icon>play_arrow</mat-icon>
+                      </button>
+                    </div>
+                    <div class="col-7" style=" margin-top: 5px !important;">
+                      <p style="margin: 3px;font-size: 12px;color: #888888;" [innerText]="user_activity_status[c['_id']]['percentage'] == 100 ? 'completed':(user_activity_status[c['_id']]['percentage']==0 ? 'start' :'continue ..')">
+                      </p>
+                      <mat-progress-bar mode="determinate" [value]="user_activity_status[c['_id']]['percentage']" style="height: 4px;"></mat-progress-bar>
+                    </div>
+                    <div class="col-3" style="border-left: 1px solid #dddddd;">
+                      <p style="font-size: 12px;margin: 0;">time</p>
+                      <p style="font-size: 17px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                        {{user_activity_status[c["_id"]]["spent_time"]}}
+                      </p>
+                      <p style="font-size: 12px; margin-top: -36px; margin-left: 40px;">
+                        mins
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </mat-card>
+            </ng-container>
+          </ng-container>
+        </div>
+
+        <div class="row mt-5 d-flex justify-content-start" *ngIf="chapters.length > 0;">
+          <div class="col-12">
+            <!-- <p class="topic-header " style="text-align: center;">
+              Quick Statistics of <span style="color: #5BB12F !important;">{{ material_name }}</span>
+            </p>
+            <hr /> -->
+          </div>
+          <div class="col-12" *ngIf="user_activity_status && user_activity_status['total_chapters_read_time']">
+            <div class="row text-center">
+              <mat-card class="col mat-elevation-z4 crd-quick-stats">
+                <p class="topic-header " style="text-align: center;">
+                  Score
+                </p>
+                <div class="row">
+                  <div class="col" style="border-right: 1px solid #dddddd;;">
+                    <p style="font-size: 12px;">content</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      {{user_activity_status["total_chapters_read_marks"]}} /
+                      {{overall_activity_status["total_chapters_read_marks"]}}
+                    </p>
+                  </div>
+                  <div class="col" style="border-right: 1px solid #dddddd;;">
+                    <p style="font-size: 12px;">mcq's</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      {{user_activity_status["total_chapters_mcq_marks"]}} /
+                      {{overall_activity_status["total_chapters_mcq_marks"]}}
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p style="font-size: 12px;">code</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      {{user_activity_status["total_chapters_challenge_marks"]}} /
+                      {{overall_activity_status["total_chapters_challenge_marks"]}}
+                    </p>
+                  </div>
+                </div>
+              </mat-card>
+
+              <mat-card class="col mat-elevation-z4 crd-quick-stats">
+                <p class="topic-header " style="text-align: center;">
+                  Time Spent
+                </p>
+                <div class="row">
+                  <div class="col" style="border-right: 1px solid #dddddd;;">
+                    <p style="font-size: 12px;">content</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      {{user_activity_status["total_chapters_read_time"]}} /
+                      {{overall_activity_status["total_chapters_read_time"]}}
+                    </p>
+                  </div>
+                  <div class="col" style="border-right: 1px solid #dddddd;;">
+                    <p style="font-size: 12px;">mcq's</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      {{user_activity_status["total_chapters_mcq_time"]}} /
+                      {{overall_activity_status["total_chapters_mcq_time"]}}
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p style="font-size: 12px;">code</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      {{user_activity_status["total_chapters_challenge_time"]}} /
+                      {{overall_activity_status["total_chapters_challenge_time"]}}
+                    </p>
+                  </div>
+                </div>
+              </mat-card>
+
+              <mat-card class="col mat-elevation-z4 crd-quick-stats">
+                <p class="topic-header " style="text-align: center;">
+                  Status
+                </p>
+                <div class="row">
+                  <div class="col" style="border-right: 1px solid #dddddd;;">
+                    <p style="font-size: 12px;">content</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      54/70
+                    </p>
+                  </div>
+                  <div class="col" style="border-right: 1px solid #dddddd;;">
+                    <p style="font-size: 12px;">mcq's</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      54/70
+                    </p>
+                  </div>
+                  <div class="col">
+                    <p style="font-size: 12px;">code</p>
+                    <p style="font-size: 23px; font-weight: 600; color: #555555;margin-top: 5px; ">
+                      54/70
+                    </p>
+                  </div>
+                </div>
+              </mat-card>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,85 @@
+.btn{
+    display: block;
+    // width: 100%;
+    padding: 0px !important;
+    // font-size: 1.2em;
+    font-weight: 200;
+    margin-top: 10px;
+}
+.custom-btn{
+    margin-top: 25px;
+    background:  #474747;
+    color: #fff;
+    width: 200px;
+    border-radius: 30px;
+}
+
+.input-group-append-radius {
+    border-top-right-radius: 30px !important;
+    border-bottom-right-radius: 30px !important;
+}
+
+.custom-btn1{
+    margin-bottom: 15px;
+    background: #474747;
+    color: #fff;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(42, 125, 219);
+}
+
+.mat-error-cs {
+    padding-left: 10px;
+    font-size: 12px;
+}
+
+.card {
+    // border-color: transparent;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+    .card-header {
+        border-bottom: 0;
+        padding: 0.625rem 0.9375rem;
+        background-color: transparent;
+        .card-title {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+        a {
+            text-decoration: none !important;
+        }
+    }
+    .card-body {
+        padding: 0.9375rem; //15px
+    }
+    .card-footer {
+        padding: 0.625rem 0.9375rem;
+    }
+}
+// .card-flat {
+//     margin: 0 !important;
+//     // border: 0;
+//     width: 110%
+// }
+// .card {
+//     max-width: 400px;
+//     margin: auto;
+// }
+
+.hr-font{
+    text-shadow: 0px 1px 3px #b1abab;
+    font-family: 'Graphik';
+    letter-spacing: -2px;
+    font-size: 38px;
+    color: #474747;
+    line-height: .6;
+}
+.qualify-font {
+  font-family: 'Satisfy';
+  // font-family: 'Berkshire Swash';
+  font-size: 20px;
+  color: rgb(95, 95, 95);
+  padding-left: 110px;
+}
+

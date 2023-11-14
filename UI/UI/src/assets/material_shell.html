@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="material_code_editor_styles/shell.css">
+    <link rel="stylesheet" type="text/css" href="material_code_editor_styles/solarized.css">
+    <link rel="stylesheet" type="text/css" href="material_code_editor_styles/interactive.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Inconsolata" />
+
+    <script src="editor_javascripts/codemirror.js"></script>
+    <script src="editor_javascripts/matchbrackets.js"></script>
+    <script src="editor_javascripts/python.js"></script>
+    <script src="editor_javascripts/skulpt.minn.js"></script>
+    <script src="editor_javascripts/skulpt-stdlib.js"></script>
+    <script src="editor_javascripts/processing.min.js"></script>
+    <script src="editor_javascripts/pythoninteractive.js"></script>
+    <script src="editor_javascripts/timeme.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .font_applied{
+            font-family: 'Consolas';
+        }
+    </style>
+</head>
+
+<body style="background-color:#fafafa;">
+
+    <div class="col-xs-12 col-sm-12 col-lg-12 d-flex justify-content-center" style="margin-left: -11px;">
+        <div class="card" style="height: auto; width: 100% !important; margin-left:2px;border: none;">
+            <h5 class="card-header" style="height: 24px;
+            background-color: #5683B7;
+            margin-top: 30px;">
+                <ul style="    margin-top: -9px;
+                margin-bottom: -12px;
+                margin-left: -49px;
+            ">
+                    <p style="font-size: 13px;
+                   margin-top: 3px;
+                   color: white;float: right;" class="font_applied">Python 3.6.7</p>
+                    <img src="../assets/images/python.svg" height="15px;" width="15px;" style="margin-bottom: 7px;">
+                </ul>
+            </h5>
+
+            <div class="card-body" style="margin-left: -20px;">
+                <textarea id="code" cols="400" rows="400">
+                    </textarea>
+            </div>
+            <!-- <div class="card-header" style="height: 40px;background-color:white"> -->
+
+            <div class="lines-num" title="Lines of code"><input class="line" type="hidden" id="mytext" disabled>
+            </div>&nbsp;&nbsp;&nbsp;
+            <!-- </div> -->
+
+        </div>
+        <!-- <button id="call_fun" (click)="store_user_activity()"></button> -->
+    </div>
+    <script type="text/javascript">
+        function setup() {
+            setupPythonShell('code');
+            $(".CodeMirror").css("height", "130px").css("width", "auto");
+            var cod = localStorage.getItem('code')
+            // document.getElementById("code_blog").innerHTML = cod
+        }
+        setup()
+
+        var supported = 'This text will be saved locally, forever.',
+            unsupported = 'Oh no! Your browser does not support localStorage.';
+        if (window.localStorage) {
+            $('.persisted-text').keyup(function () {
+                localStorage.setItem(this.name, this.value);
+            }).val(function () {
+                return localStorage.getItem(this.name) || supported
+            })
+        } else {
+            $('.persisted-text').val(unsupported);
+        }
+        var date = new Date();
+
+        window.onbeforeunload = function () {
+            // console.log(TimeMe.getTimeOnPageInSeconds("practice-shell"), "unload");
+            // var url = "http://localhost:5001/api/v1/store/user/activity";
+            // // var url = "https://test.pythonguru.io/api/v1/store/user/activity"
+            // var api_token = localStorage.getItem('access_token_cookie');
+            // var xhr2 = new XMLHttpRequest();
+            // data = JSON.stringify({
+            //     "time_in_sec": TimeMe.getTimeOnPageInSeconds("practice-shell"),
+            //     "page_name": "practice-shell",
+            //     "time_stamp": date.toUTCString()
+            // });
+            // xhr2.open("POST", url, false);
+            // xhr2.setRequestHeader("Content-Type", "application/json");
+            // xhr2.setRequestHeader('Authorization', 'Bearer ' + api_token);
+            // xhr2.send(data);
+            // var status = xhr2.status;
+            // console.log(status);
+            // console.log(TimeMe.getTimeOnPageInSeconds("practice-shell"));
+        };
+
+        window.onunload = function () {
+            // var url = "http://localhost:5001/api/v1/store/user/activity";
+            var url = "https://test.pythonguru.io/api/v1/store/user/activity";
+            var api_token = localStorage.getItem('access_token_cookie');
+            var xhr2 = new XMLHttpRequest();
+            data = JSON.stringify({
+                "time_in_sec": TimeMe.getTimeOnPageInSeconds("practice-shell"),
+                "page_name": "practice-shell",
+                "time_stamp": date.toUTCString()
+            });
+            if (TimeMe.getTimeOnPageInSeconds("practice-shell") > 5) {
+                xhr2.open("POST", url, false);
+                xhr2.setRequestHeader("Content-Type", "application/json");
+                xhr2.setRequestHeader('Authorization', 'Bearer ' + api_token);
+                xhr2.send(data);
+                var status = xhr2.status;
+            }
+        };
+
+        window.onload = function () {
+            TimeMe.initialize({
+                currentPageName: "practice-shell", // current page
+                idleTimeoutInSeconds: 60, // stop recording time due to inactivity
+            });
+        }
+        var elem = document.documentElement;
+        function openFullscreen() {
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+
+        function closeFullscreen() {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+
+    </script>
+</body>
+
+</html>

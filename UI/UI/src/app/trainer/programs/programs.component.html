@@ -1,0 +1,63 @@
+<div class="container-fluid" style="max-width: 1200px; margin-top: 20px;">
+    <p class="crd-font text-center">Coding Room !</p>
+    <div class="mat-elevation-z1 p-3" style="margin: 10px;">
+        <div class="col-sm-12">
+            <div class="d-flex justify-content-end">
+                <button mat-raised-button class="creategroup" style="margin-top: 14px" (click)="createprogram()">
+                    <mat-icon style="font-size: 17px;margin-top: 6px !important;">code</mat-icon>New Test
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div *ngFor="let program of list_of_questions">
+        </div>
+        <table mat-table [dataSource]="dataSource" #sort="matSort" matSort matSortDisableClear style="width:100%;">
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header style="width: 300px;"> ID </th>
+                <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="topic">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Topic </th>
+                <td mat-cell *matCellDef="let row"> {{row.topic}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="tags">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Tags </th>
+                <td mat-cell *matCellDef="let row"> {{row.tags}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="question_tag">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Question Tag </th>
+                <td mat-cell *matCellDef="let row"> {{row.question_tag}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="edit">
+
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+                <td mat-cell *matCellDef="let row">
+                    <button mat-raised-button (click)="editProgram(row,i);">
+                        <mat-icon>edit</mat-icon>
+                        edit
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>Delete </th>
+                <td mat-cell *matCellDef="let row; let i = index"> <button mat-raised-button
+                        (click)="deleteProgram(row,i)">
+                        <mat-icon>close</mat-icon>
+
+                        delete
+                    </button>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator #paginator [pageSizeOptions]="[10,15,25,30,35,40,45,50]" showFirstLastButtons>
+        </mat-paginator>
+    </div>
+</div>

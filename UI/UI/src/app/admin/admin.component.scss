@@ -1,0 +1,27 @@
+.menu-spacer{
+    flex: 1 1 auto;
+}
+mat-sidenav  {
+    width: 220px;
+    margin-top: 60px;
+    position: fixed;
+}
+mat-sidenav a  {
+    width: 219px;
+    text-align: start;
+    vertical-align: middle;
+
+}
+mat-icon{
+  vertical-align: middle;
+}
+.tool-a{
+  text-decoration: none;
+}
+// .tool-a:hover{
+//   // color: white;
+// }
+::ng-deep .mat-toolbar{
+  z-index: 998;
+  position: fixed
+}

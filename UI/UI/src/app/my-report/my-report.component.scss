@@ -1,0 +1,159 @@
+.resultDemo{
+  padding: 3px;
+  border-radius: 10px;
+  font-size: 12px;
+  color: rgb(34, 34, 34);
+}
+
+.scorebtn{
+  min-width: 12px;
+  max-width: 12px;
+
+  min-height: 12px;
+  max-height: 12px;
+  margin-left: 12px;
+
+}
+.scoretext{
+  font-size: 12px;
+  margin-top: -3px;
+}
+// Main conatiner
+.container{
+  min-width: 800px;
+  max-width: 800px;
+  min-height: 1132px;
+  max-height: 1132px;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+// Header row styles
+
+.logo{
+  min-width: 160px;
+  margin-left: 25px;
+
+  max-width: 160px;
+  margin-top:40px;
+
+}
+.header{
+  // background-color: rgb(226, 214, 214);
+  min-height: 130px;
+  border-radius: 20px 20px 0 0;
+
+}
+.scorebox, p{
+font-size: 12px;
+letter-spacing: 1px;
+margin: 0;
+}
+.scorebox{
+  color: white;
+  padding: 0;
+  margin-right: 70px;
+  margin-top: 93px;
+  padding: 4px;
+
+  font-size: 13px;
+  min-height: 110px;
+  max-height: 110px;
+  min-width: 130px;
+  max-width: 130px;
+  text-align: center;
+  // border: rgb(204, 198, 198) solid 1px;
+}
+// Circle chart row styles
+.circlechart{
+  border: grey solid 1px;
+}
+.lineBar{
+  margin-top: -350px;
+  margin-left: -100px;
+}
+
+// Bar Chart bar row styles
+// .barchart{
+  // border: rgb(204, 198, 198) solid 1px;
+  // border-radius: 10px;
+// }
+
+// Footer styles
+.footer{
+  border: rgb(204, 198, 198) solid 1px;
+
+}
+.bold{
+  margin-top: -38px;
+  color: #262124;
+  // font-weight: bold;
+}
+
+
+.qualify-font {
+  font-family: 'Satisfy';
+  // font-family: 'Berkshire Swash';
+  font-size: 20px;
+  color: rgb(34, 34, 34);
+  padding-left: 108px;
+}
+
+.true-font {
+  font-family: 'Graphik';
+  font-size: 64px;
+  color: #3189D6;
+  line-height: .6;
+}
+
+.tm-font {
+  font-family: 'Roboto';
+  font-size: 64px;
+  color: rgb(33, 36, 39);
+  // line-height: 6;
+  padding-top: -80px;
+}
+
+// timeme.js
+.checkTimeDivClass {
+cursor: pointer;
+background-color: #555555;
+color: white;
+padding: 20px;
+width: 400px;
+font-size: large;
+text-align: center;
+}
+body {
+color: #111111;
+font-family: calibri;
+margin-left:auto;
+margin-right:auto;
+width: 80%;
+margin-top: 50px;
+font-size: large;
+}
+.top-level-message{
+text-align: center;
+}
+.time-message{
+text-align: center;
+}
+.code-block {
+background-color: #f3f3f3;
+border: 2px solid #e8e8e8;
+padding-left: 10px;
+}
+.area-of-interest {
+margin-top: 1em;
+padding: 2em;
+border-radius: 4px;
+border: 1px solid black;
+font-size: x-large;
+display: inline-block;
+width: 33%;
+min-width: 250px;
+}
+.area-of-interest input {
+margin-top: 5px;
+font-size: x-large !important;
+}
